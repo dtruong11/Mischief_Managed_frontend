@@ -13,15 +13,16 @@ import {
     DropdownItem
 } from 'reactstrap'
 import { connect } from 'react-redux'
+import { Route } from 'react-router-dom'
 import { bindActionCreators } from 'redux'
 import { Link } from 'react-router-dom'
 import { userLogout } from '../../actions/authUsers'
+import Login from '../Login'
 // import { getUser } from '../actions/authUsers'
 
 class Navigation extends Component {
     constructor(props) {
         super(props)
-
         this.state = {
             isOpen: false
         }
@@ -33,38 +34,44 @@ class Navigation extends Component {
         })
     }
 
+
     render() {
+        console.log("this.props.auth.isLoggedIn", this.props.auth.isLoggedIn)
         return (
             <div>
                 <Navbar color="light" light expand="md">
                     <NavbarBrand href="/" className="mr-auto">Mischief Managed</NavbarBrand>
                     <NavbarToggler onClick={this.toggleNavbar} className="mr-2" />
                     <Collapse isOpen={!this.state.isOpen} navbar>
-                        <Nav className="ml-auto" navbar>
+                        {this.props.auth.isLoggedIn ? <Nav className="ml-auto" navbar>
                             <NavItem>
-                                <NavLink href="/activities/">Activities</NavLink>
+                                <NavLink href="/activities">Activities</NavLink>
                             </NavItem>
                             <NavItem>
-                                <NavLink href="https://github.com/reactstrap/reactstrap">GitHub</NavLink>
+                                <NavLink href="/parenting">Parenting</NavLink>
                             </NavItem>
                             <UncontrolledDropdown nav inNavbar>
                                 <DropdownToggle nav caret>
-                                    Options
+                                    Profile
                                 </DropdownToggle>
                                 <DropdownMenu right>
                                     <DropdownItem>
-                                        Option 1
-                                </DropdownItem>
-                                    <DropdownItem>
-                                        Option 2
-                                </DropdownItem>
+                                        Favorites
+                                    </DropdownItem>
                                     <DropdownItem divider />
                                     <DropdownItem>
-                                        Reset
-                                </DropdownItem>
+                                        Account
+                                    </DropdownItem>
+                                    <DropdownItem divider />
+                                    <DropdownItem>
+                                        Log out
+                                    </DropdownItem>
                                 </DropdownMenu>
                             </UncontrolledDropdown>
-                        </Nav>
+                        </Nav> :
+                            <NavItem>
+                                <NavLink href="/login/users">Log In</NavLink>
+                            </NavItem>}
                     </Collapse>
                 </Navbar>
             </div>
@@ -73,4 +80,7 @@ class Navigation extends Component {
 
 }
 
-export default Navigation
+const mapStateToProps = ({ auth }) => ({ auth })
+// const mapDispatchToProps = dispatch => bindActionCreators({ getUser }, dispatch)
+
+export default connect(mapStateToProps, null)(Navigation)

@@ -3,7 +3,6 @@ import {
   Button,
   Form,
   FormGroup,
-  Label,
   Container,
   Row,
   Col,
@@ -12,7 +11,7 @@ import {
 } from 'reactstrap'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { userLogin } from '../actions/auth.actions'
+import { userLogin } from '../actions/authUsers'
 
 class Login extends Component {
   state = {
@@ -20,62 +19,59 @@ class Login extends Component {
     password: ''
   }
 
-onSubmit = (event) => {
-  event.preventDefault()
-  this.props.userLogin(this.state, this.props.history)
-}
+  submitLogin = e => {
+    e.preventDefault()
+    console.log('history',this.props);
+    
+    this.props.userLogin(this.state, this.props.history)
+  }
 
-render() {
+  render() {
     return (
       <Container className="main-wrapper">
-        <Row style={{ marginTop: '15vh' }}>
+        <Row style={{ marginTop: "20vh"}} className="mx-0">
           <Col
-            lg={{ size: 6, offset: 3 }}
-            style={{
-              border: '1px solid #c9c5c2',
-              padding: 35,
-              boxShadow: '3px 3px 47px 0px rgba(0,0,0,0.5)'
-            }}
+            md={{ size: 5, offset: 3 }}
+            style={{}}
           >
-            <Form onSubmit={this.onSubmit}>
+            <Form onSubmit={this.submitLogin}>
+                <h2 className="text-center text-danger" className="text-center font-weight-bold"> Log In</h2>
               <FormGroup>
-                <Label for="email-field">Email</Label>
                 <Input
                   type="email"
                   name="email"
                   id="email-field"
                   placeholder="email"
                   value={this.state.email}
-                  onChange={event => this.setState({email: event.target.value})}
+                  onChange={e => this.setState({ email: e.target.value })}
                 />
               </FormGroup>
               <FormGroup>
-                <Label for="password-field">Password</Label>
                 <Input
                   type="password"
                   name="password"
                   id="pass-field"
                   placeholder="password"
                   value={this.state.password}
-                  onChange={eve => this.setState({password: eve.target.value})}
+                  onChange={e => this.setState({ password: e.target.value })}
                 />
               </FormGroup>
-              {this.props.showLoginError ? (
-                <Alert color="primary">
-                  Either your email or password is incorrect. Please try again.
-                </Alert>
+              {this.props.LoginError ? (
+                <p color="danger" className="text-center font-weight-bold">
+                  Invalid email address or password                
+                  </p>
               ) : null}
-              <Button type="submit" color="primary">
-                Submit
-              </Button>
+              <Button size="lg" block className="mr-3" type="submit" color="primary">
+                Log In
+              </Button >
+              <p className="text-center">OR</p>
+              <Button size="lg" block className="mr-3" type="submit" color="primary">
+              <a href="/signup" style={{textDecoration: 'none'}}>SIGN UP</a>
+              </Button >
             </Form>
           </Col>
         </Row>
-        <Row>
-          <Col>
-            <a href="/signup">Not a member?</a>
-          </Col>
-        </Row>
+       
       </Container>
     )
   }
@@ -83,7 +79,7 @@ render() {
 
 function mapStateToProps(state) {
   return {
-    showLoginError: state.auth.showLoginError
+    LoginError: state.auth.LoginError
   }
 }
 
@@ -94,3 +90,7 @@ function mapDispatchToProps(dispatch) {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Login)
+
+
+
+

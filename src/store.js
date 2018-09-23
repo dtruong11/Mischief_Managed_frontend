@@ -1,10 +1,10 @@
 import thunk from 'redux-thunk'
 import logger from 'redux-logger'
 import { createStore, applyMiddleware, combineReducers, compose } from 'redux'
-import { authUsers } from './reducers/authUsers'
+import { auth } from './reducers/authUsers'
 
 const rootReducer = combineReducers({
-    authUsers
+    auth
 })
 
 const store = createStore(

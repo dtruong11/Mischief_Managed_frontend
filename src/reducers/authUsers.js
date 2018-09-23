@@ -11,11 +11,12 @@ import {
 let initialState = {
     isLoading: false,
     user: {},
-    showLoginError: false,
-    showSignupError: false
+    LoginError: false,
+    SignupError: false,
+    isLoggedIn: false  
 };
 
-export const authUsers = (state = initialState, action) => {
+export const auth = (state = initialState, action) => {
     switch (action.type) {
         case USER_LOGIN_PENDING:
             return {
@@ -23,11 +24,11 @@ export const authUsers = (state = initialState, action) => {
             }
         case USER_LOGIN_SUCCESS:
             return {
-                ...state, isLoading: false, user: action.payload
+                ...state, isLoading: false, user: action.payload, isLoggedIn: true
             }
         case USER_LOGIN_FAILED:
             return {
-                ...state, isLoading: false, showLoginError: true
+                ...state, isLoading: false, LoginError: true
             }
         case USER_SIGNUP_PENDING:
             return {
@@ -39,7 +40,7 @@ export const authUsers = (state = initialState, action) => {
             }
         case USER_SIGNUP_FAILED:
             return {
-                ...state, isLoading: false, showSignupError: true
+                ...state, isLoading: false, SignupError: true
             }
         case USER_LOGOUT:
             return {

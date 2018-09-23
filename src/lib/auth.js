@@ -18,7 +18,6 @@ const signup = async (body, userType) => {
     try {
     const res = await axios.post(`${BASE_URL}/signup/${userType}`, body)
     const token = res.data.token
-    localStorage.setItem(`${userType}`, token)
     return res.data
     } catch (e) {
         console.error(e.response)

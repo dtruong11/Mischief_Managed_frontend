@@ -6,11 +6,12 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 // import './styles/index.css';
 import App from './App';
 import registerServiceWorker from './registerServiceWorker';
+// import { BrowserRouter as Router } from 'react-router-dom'
 
 console.log("This is store", store)
 ReactDOM.render(
   <Provider store={store}>
-    <App />
+      <App />
   </Provider>,
   document.getElementById('root')
 );

@@ -1,4 +1,5 @@
 import axios from 'axios'
+import { request } from '../requests/requests'
 export const USER_LOGIN_PENDING = "USER_LOGIN_PENDING"
 export const USER_LOGIN_SUCCESS = 'USER_LOGIN_SUCCESS'
 export const USER_LOGIN_FAILED = 'USER_LOGIN_FAILED'
@@ -12,24 +13,20 @@ export const USER_LOGOUT = 'USER_LOGOUT'
 const BASE_URL = 'http://localhost:3000'
 
 
-export const userLogin = ({ email, password }) => {
+export const userLogin = ({ email, password }, history) => {
     return async (dispatch) => {
         try {
             dispatch({ type: USER_LOGIN_PENDING })
-            let response = await axios(`${BASE_URL}/auth/login/users`, {
-                method: "POST",
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ email, password })
-            })
-            let userObject = await response.json()
-
+            const response = await request(`${BASE_URL}/auth/login/users`, "POST", { email, password })
+            console.log("I am response from userLogin", response)
             dispatch({
                 type: USER_LOGIN_SUCCESS,
-                payload: userObject
+                payload: response
             })
-            localStorage.setItem('token', response.data.token);
-
+            localStorage.setItem('token_user', response.data.token);
+            history.push('/profiles')
         } catch (err) {
+            console.log("err from userLogin", err)
             dispatch({
                 type: USER_LOGIN_FAILED,
                 payload: err
@@ -38,6 +35,39 @@ export const userLogin = ({ email, password }) => {
     }
 };
 
+export const userVerify = (history) => {
+    const token = localStorage.getItem('token_user')
+    console.log('token?', token);
+    
+    // if (!token) return false
+    return async (dispatch) => {
+        console.log('hello this is userLogin inside the return');
+        if(token) {
+            try {
+                // change route to get a user data with token 
+                const response = await axios(`${BASE_URL}/auth/login/users`, {
+                    method: 'GET',
+                    headers: {
+                        Authorization: `Bearer ${token}`
+                    }
+                })
+                dispatch({
+                    type: USER_LOGIN_SUCCESS,
+                    payload: response
+                })
+                history.push('/profiles')
+                //   return response.data
+            } catch (e) {
+                console.error(e)
+                dispatch({
+                    type: USER_LOGIN_FAILED,
+                    payload: e
+                })
+            }
+        }
+    }
+}
+
 export const userSignup = (newUser) => {
     return async (dispatch) => {
         try {
@@ -45,7 +75,7 @@ export const userSignup = (newUser) => {
             let response = await axios(`${BASE_URL}/auth/signup/users`, {
                 method: "POST",
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(newUser)
+                data: { newUser }
             })
             let isSignedUp = await response.json()
             dispatch({
@@ -63,7 +93,7 @@ export const userSignup = (newUser) => {
 
 export const userLogout = () => {
     return async (dispatch) => {
-        localStorage.removeItem('token');
+        localStorage.removeItem('token_user');
         dispatch({ type: USER_LOGOUT })
     }
 }
