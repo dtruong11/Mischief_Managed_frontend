@@ -9,13 +9,15 @@ import './App.css';
 import UserProfile from './components/UserProfile'
 import AuthenticateRoute from './components/helpers/AuthenticateRoute'
 import { userVerify } from './actions/authUsers'
+import { history } from 'react-router-dom'
+import EventList from './components/events_page/EventList'
 
 
 class App extends Component {
 
-  componentDidMount() {
+  componentDidMount = () => {
     console.log("this.props inside app", this.props)
-    this.props.userVerify(this.props.history)
+    // this.props.userVerify(history)
   }
 
   render() {
@@ -33,6 +35,7 @@ class App extends Component {
             {/* <Route exact path="/events" component={Events} /> */}
             <Route exact path="/events/map" component={Map} />
             <Route exact path="/login/users" component={Login} />
+            <Route exact path="/users/events" component={EventList} />
             <AuthenticateRoute exact path="/profiles" isLoggedIn={this.props.isLoggedIn} component={UserProfile} />
 
             <Redirect to="/login/users" />

@@ -1,42 +1,55 @@
 import React, { Component } from 'react'
+import { Icon } from 'react-icons-kit'
+import { heart } from 'react-icons-kit/fa/heart'
+import { heartO } from 'react-icons-kit/fa/heartO'
+
+
+import { connect } from 'react-redux'
+import { Row, Col } from 'reactstrap'
 import { bindActionCreators } from 'redux'
-import { connect } from 'net';
+import { createFavoriteEvent, unLikeEvent } from '../../actions/events'
 
-
-const mapStateToProps = ({ events }) => ({ events })
-const mapDispatchToProps = (dispatch) => {
-    return bindActionCreators({ getEvents })
-}
 
 class EventCard extends Component {
     constructor(props) {
         super(props)
-        this.state = {
-            favorite: false
-        }
     }
 
-    componentDidMount() {
-        this.props.getEvents() // action creator 
+    favoriteEvent = (userId, eventId) => {
+        return createFavoriteEvent(userId, eventId)
     }
 
+    unLike = (userId, eventId) => {
+        return unLikeEvent(userId, eventId)
+    }
 
     render() {
-        // get events 
-        // const allEvents = this.props.events
-        // Single event 
-        console.log(this.props)
+        const { title, registered, image_url, min_age, max_age, street, city, state, event_description, favorite, zip } = this.props.event
+        // this.props.events.payload
+        console.log("this.props  in Eventcard", this.props)
         return (
             <Row className="mt-3">
                 <Col lg="4">
-                <img src={}></img>
+                    <img src={image_url} alt="event_image"></img>
                 </Col>
-                <Col lg="8">
-                
+                <Col lg="7">
+                    <div>{title} </div>
+                    <div>{`${street}, ${city}, ${state}, ${zip}`}</div>
+                    <div>{`From ${min_age} to ${max_age}`}</div>
+                    <div>{event_description}</div>
+                </Col>
+                <Col lg="1">
+                    {
+                        favorite ? <Icon icon={heart} /> : <Icon icon={heartO} />
+                    }
                 </Col>
             </Row>
         )
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(EventCard)
+const mapDispatchToProps = (dispatch) => {
+    return bindActionCreators({ createFavoriteEvent }, dispatch)
+}
+
+export default connect(null, mapDispatchToProps)(EventCard) 

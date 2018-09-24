@@ -21,21 +21,24 @@ class Login extends Component {
 
   submitLogin = e => {
     e.preventDefault()
-    console.log('history',this.props);
-    
+    console.log('history', this.props);
     this.props.userLogin(this.state, this.props.history)
+    this.setState({
+      email: '',
+      password: ''
+    })
   }
 
   render() {
     return (
       <Container className="main-wrapper">
-        <Row style={{ marginTop: "20vh"}} className="mx-0">
+        <Row style={{ marginTop: "20vh" }} className="mx-0">
           <Col
             md={{ size: 5, offset: 3 }}
             style={{}}
           >
             <Form onSubmit={this.submitLogin}>
-                <h2 className="text-center text-danger" className="text-center font-weight-bold"> Log In</h2>
+              <h2 className="text-center text-danger" className="text-center font-weight-bold"> Log In</h2>
               <FormGroup>
                 <Input
                   type="email"
@@ -58,7 +61,7 @@ class Login extends Component {
               </FormGroup>
               {this.props.LoginError ? (
                 <p color="danger" className="text-center font-weight-bold">
-                  Invalid email address or password                
+                  Invalid email address or password
                   </p>
               ) : null}
               <Button size="lg" block className="mr-3" type="submit" color="primary">
@@ -66,12 +69,12 @@ class Login extends Component {
               </Button >
               <p className="text-center">OR</p>
               <Button size="lg" block className="mr-3" type="submit" color="primary">
-              <a href="/signup" style={{textDecoration: 'none'}}>SIGN UP</a>
+                <a href="/signup" style={{ textDecoration: 'none' }}>SIGN UP</a>
               </Button >
             </Form>
           </Col>
         </Row>
-       
+
       </Container>
     )
   }

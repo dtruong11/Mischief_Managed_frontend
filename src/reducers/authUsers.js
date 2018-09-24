@@ -36,7 +36,7 @@ export const auth = (state = initialState, action) => {
             }
         case USER_SIGNUP_SUCCESS:
             return {
-                ...state, isLoading: false
+                ...state, isLoading: false, isLoggedIn: true
             }
         case USER_SIGNUP_FAILED:
             return {

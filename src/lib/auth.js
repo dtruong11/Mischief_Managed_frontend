@@ -1,5 +1,5 @@
 import axios from 'axios'
-const BASE_URL = 'http://localhost:3000/auth'
+const BASE_URL = 'http://localhost:5000/auth'
 
 // userType: 'organizations' or 'users'
 const login = async (username, password, userType) => {

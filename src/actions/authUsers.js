@@ -10,7 +10,7 @@ export const USER_SIGNUP_FAILED = 'USER_SIGNUP_FAILED'
 
 export const USER_LOGOUT = 'USER_LOGOUT'
 
-const BASE_URL = 'http://localhost:3000'
+const BASE_URL = 'http://localhost:5000'
 
 
 export const userLogin = ({ email, password }, history) => {
@@ -18,12 +18,14 @@ export const userLogin = ({ email, password }, history) => {
         try {
             dispatch({ type: USER_LOGIN_PENDING })
             const response = await request(`${BASE_URL}/auth/login/users`, "POST", { email, password })
-            console.log("I am response from userLogin", response)
             dispatch({
                 type: USER_LOGIN_SUCCESS,
                 payload: response
             })
+            console.log("response.data in userLogin", response.data)
             localStorage.setItem('token_user', response.data.token);
+            localStorage.setItem('user_id', response.data.id)
+
             history.push('/profiles')
         } catch (err) {
             console.log("err from userLogin", err)
@@ -38,11 +40,10 @@ export const userLogin = ({ email, password }, history) => {
 export const userVerify = (history) => {
     const token = localStorage.getItem('token_user')
     console.log('token?', token);
-    
-    // if (!token) return false
+
     return async (dispatch) => {
         console.log('hello this is userLogin inside the return');
-        if(token) {
+        if (token) {
             try {
                 // change route to get a user data with token 
                 const response = await axios(`${BASE_URL}/auth/login/users`, {
@@ -56,9 +57,9 @@ export const userVerify = (history) => {
                     payload: response
                 })
                 history.push('/profiles')
-                //   return response.data
             } catch (e) {
                 console.error(e)
+                console.log("history", history)
                 dispatch({
                     type: USER_LOGIN_FAILED,
                     payload: e
@@ -67,6 +68,19 @@ export const userVerify = (history) => {
         }
     }
 }
+
+// export const getUsers = () => {
+//     return async (dispatch) => {
+//         const payload = await axios(`${BASE_URL}/users`, {
+//             method: "GET",
+//             headers: { 'Content-Type': 'application/json' },
+//         })
+//         dispatch({
+//             type: GET_USERS,
+//             payload
+//         })
+//     }
+// }
 
 export const userSignup = (newUser) => {
     return async (dispatch) => {
