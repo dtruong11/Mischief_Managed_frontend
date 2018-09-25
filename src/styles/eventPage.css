@@ -1,0 +1,12 @@
+img {
+    width: 70%;
+    /* height: 36vh */
+}
+
+.Demo__search-bar-container {
+    width: 80%;
+  }
+  
+.Demo__search-input-container {
+    position: relative;
+}

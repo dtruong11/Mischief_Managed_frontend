@@ -3,6 +3,7 @@ import { request } from '../requests/requests'
 export const USER_LOGIN_PENDING = "USER_LOGIN_PENDING"
 export const USER_LOGIN_SUCCESS = 'USER_LOGIN_SUCCESS'
 export const USER_LOGIN_FAILED = 'USER_LOGIN_FAILED'
+export const USER_NOT_LOGINED = 'USER_NOT_LOGINED'
 
 export const USER_SIGNUP_PENDING = 'USER_SIGNUP_PENDING'
 export const USER_SIGNUP_SUCCESS = 'USER_SIGNUP_SUCCESS'
@@ -20,15 +21,14 @@ export const userLogin = ({ email, password }, history) => {
             const response = await request(`${BASE_URL}/auth/login/users`, "POST", { email, password })
             dispatch({
                 type: USER_LOGIN_SUCCESS,
-                payload: response
+                payload: response.data
             })
-            console.log("response.data in userLogin", response.data)
+            console.log('response in userLogin', response)
             localStorage.setItem('token_user', response.data.token);
             localStorage.setItem('user_id', response.data.id)
 
             history.push('/profiles')
         } catch (err) {
-            console.log("err from userLogin", err)
             dispatch({
                 type: USER_LOGIN_FAILED,
                 payload: err
@@ -37,16 +37,15 @@ export const userLogin = ({ email, password }, history) => {
     }
 };
 
-export const userVerify = (history) => {
-    const token = localStorage.getItem('token_user')
-    console.log('token?', token);
-
+export const userVerify = () => {
     return async (dispatch) => {
-        console.log('hello this is userLogin inside the return');
+        const token = localStorage.getItem('token_user')
+        const userId = localStorage.getItem('user_id')
+
         if (token) {
             try {
                 // change route to get a user data with token 
-                const response = await axios(`${BASE_URL}/auth/login/users`, {
+                const response = await axios(`${BASE_URL}/users/${userId}`, {
                     method: 'GET',
                     headers: {
                         Authorization: `Bearer ${token}`
@@ -54,33 +53,28 @@ export const userVerify = (history) => {
                 })
                 dispatch({
                     type: USER_LOGIN_SUCCESS,
-                    payload: response
+                    payload: response.data.data[0]
                 })
-                history.push('/profiles')
+                console.log('response in userVerify', response.data.data[0])
+                return true
+                // history.push('/profiles')
+
             } catch (e) {
-                console.error(e)
-                console.log("history", history)
                 dispatch({
                     type: USER_LOGIN_FAILED,
                     payload: e
                 })
+                return false
             }
+        } else {
+            dispatch({
+                type: USER_NOT_LOGINED
+            })
+            return false
         }
     }
 }
 
-// export const getUsers = () => {
-//     return async (dispatch) => {
-//         const payload = await axios(`${BASE_URL}/users`, {
-//             method: "GET",
-//             headers: { 'Content-Type': 'application/json' },
-//         })
-//         dispatch({
-//             type: GET_USERS,
-//             payload
-//         })
-//     }
-// }
 
 export const userSignup = (newUser) => {
     return async (dispatch) => {

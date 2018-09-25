@@ -13,9 +13,9 @@ import {
     DropdownItem
 } from 'reactstrap'
 import { connect } from 'react-redux'
-import { Route } from 'react-router-dom'
-import { bindActionCreators } from 'redux'
 import { Link } from 'react-router-dom'
+import { bindActionCreators } from 'redux'
+import { userVerify } from '../../actions/authUsers'
 import { userLogout } from '../../actions/authUsers'
 import Login from '../Login'
 // import { getUser } from '../actions/authUsers'
@@ -28,6 +28,10 @@ class Navigation extends Component {
         }
     }
 
+    componentDidMount = () => {
+        this.props.userVerify()
+    }
+
     toggleNavbar = () => {
         this.setState({
             isOpen: !this.state.isOpen
@@ -36,14 +40,14 @@ class Navigation extends Component {
 
 
     render() {
-        console.log("this.props.auth.isLoggedIn", this.props.auth.isLoggedIn)
+        console.log("this.props.isLoggedIn", this.props.isLoggedIn)
         return (
             <div>
                 <Navbar color="light" light expand="md">
-                    <NavbarBrand href="/" className="mr-auto">Mischief Managed</NavbarBrand>
+                    <NavbarBrand href="/users/events" className="mr-auto">Mischief Managed</NavbarBrand>
                     <NavbarToggler onClick={this.toggleNavbar} className="mr-2" />
-                    <Collapse isOpen={!this.state.isOpen} navbar>
-                        {this.props.auth.isLoggedIn ? <Nav className="ml-auto" navbar>
+                    {this.props.isLoggedIn ? <Collapse isOpen={!this.state.isOpen} navbar>
+                        <Nav className="ml-auto" navbar>
                             <NavItem>
                                 <NavLink href="/activities">Activities</NavLink>
                             </NavItem>
@@ -68,11 +72,16 @@ class Navigation extends Component {
                                     </DropdownItem>
                                 </DropdownMenu>
                             </UncontrolledDropdown>
-                        </Nav> :
-                            <NavItem>
-                                <NavLink href="/login/users">Log In</NavLink>
-                            </NavItem>}
-                    </Collapse>
+                        </Nav>
+                    </Collapse> :
+
+                        <Collapse isOpen={this.state.isOpen} navbar>
+                            <Nav className="ml-auto" navbar>
+                                <NavItem>
+                                    <Link to="/login/users" className="nav-link">Login</Link>
+                                </NavItem>
+                            </Nav>
+                        </Collapse>}
                 </Navbar>
             </div>
         );
@@ -80,7 +89,11 @@ class Navigation extends Component {
 
 }
 
-const mapStateToProps = ({ auth }) => ({ auth })
-// const mapDispatchToProps = dispatch => bindActionCreators({ getUser }, dispatch)
+function mapStateToProps(state) {
+    return {
+        isLoggedIn: state.auth.isLoggedIn
+    }
+}
+const mapDispatchToProps = dispatch => bindActionCreators({ userVerify }, dispatch)
 
-export default connect(mapStateToProps, null)(Navigation)
+export default connect(mapStateToProps, mapDispatchToProps)(Navigation)

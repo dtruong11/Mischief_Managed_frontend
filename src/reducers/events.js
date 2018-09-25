@@ -27,9 +27,10 @@ export const events = (state = eventsInitialState, {
         case GET_EVENTS_PENDING:
             return { ...state, isLoading: true, showError: false }
         case GET_EVENTS_SUCCESS:
-            return { ...state, payload, isLoading: false, showError: false }
+            console.log('event success', payload)
+            return { ...state, payload: payload.events, isLoading: false, showError: false }
         case GET_EVENTS_FAILED:
-            return { ...state, payload, isLoading: false, showError: true }
+            return { ...state, isLoading: false, showError: true }
         case GET_FAVORITE_EVENTS_PENDING:
             return { ...state, payload, isLoading: true, showError: false }
         case GET_FAVORITE_EVENTS_SUCCESS:

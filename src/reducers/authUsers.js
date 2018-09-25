@@ -1,4 +1,5 @@
 import {
+    USER_NOT_LOGINED,
     USER_LOGIN_PENDING,
     USER_LOGIN_SUCCESS,
     USER_LOGIN_FAILED,
@@ -9,15 +10,19 @@ import {
 } from '../actions/authUsers'
 
 let initialState = {
-    isLoading: false,
+    isLoading: true,
     user: {},
     LoginError: false,
     SignupError: false,
-    isLoggedIn: false  
+    isLoggedIn: false
 };
 
 export const auth = (state = initialState, action) => {
     switch (action.type) {
+        case USER_NOT_LOGINED:
+            return {
+                ...state, isLoading: false
+            }
         case USER_LOGIN_PENDING:
             return {
                 ...state, isLoading: true

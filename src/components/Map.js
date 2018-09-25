@@ -5,7 +5,6 @@ import { connect } from 'react-redux';
 // require('dotenv').load()
 const { REACT_APP_API_KEY } = process.env
 
-console.log("API KEY", REACT_APP_API_KEY)
 const MyMapComponent = compose(
   withProps({
     googleMapURL: `https://maps.googleapis.com/maps/api/js?key=${REACT_APP_API_KEY}&v=3.exp&libraries=geometry,drawing,places`,

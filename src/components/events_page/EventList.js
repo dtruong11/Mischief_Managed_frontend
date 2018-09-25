@@ -14,12 +14,16 @@ class EventList extends Component {
     componentDidMount() {
         this.props.getEvents() // action creator 
     }
+
     render() {
-        console.log('this.props in EventList',this.props)
-        const Events = this.props.events.payload.map(event => {
-            return <EventCard key={event.id} event={event} favorite={event.favorite} />
-        })
-        return ({ Events })
+        // console.log('this.props in EventList',this.props.events)
+        return (
+        <div>
+            {this.props.events.payload.map(event => {
+                return <EventCard key={event.id} event={event} favorite={event.favorite} />
+            })}
+        </div>
+        );
     }
 
 }

@@ -1,0 +1,25 @@
+.Rangecontainer {
+    display: grid;
+    width: 200px;
+    grid-template-columns: 5% auto 5%;
+    grid-template-rows: 50% 50%;
+    grid-template-areas: 
+    "slider slider slider"
+    "min . max";
+}
+
+.sliderAge {
+    grid-area: slider;
+}
+
+.min_age {
+    grid-area: min;
+}
+
+.max-age {
+    grid-area: max;
+}
+
+/* .empty_age {
+    grid-area: empty;
+} */

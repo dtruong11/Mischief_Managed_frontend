@@ -18,13 +18,12 @@ const UserProfile = (props) => {
         </Row>
         <Row style={{marginTop: 20}}>
           <Col>
-            <img src={props.user.data.avatar} alt="profile" />
+            <img src={props.user.avatar} alt="profile" />
           </Col>
           <Col>
-            <h3>Name: {props.user.data.first_name} {props.user.data.last_name}</h3>
-            <h3>Email: {props.user.data.email}</h3>
-            <h3>Phone: {props.user.phone}</h3>
-            <h3>Address: {props.user.address}</h3>
+            <h3>Name: {props.user.first_name} {props.user.last_name}</h3>
+            <h3>Email: {props.user.email}</h3>
+            <h3>Address: {`${props.user.city}, ${props.user.state}, ${props.user.zip}`}</h3>
           </Col>
         </Row>
       </Container>

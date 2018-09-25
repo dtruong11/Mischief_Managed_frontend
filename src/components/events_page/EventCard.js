@@ -8,7 +8,7 @@ import { connect } from 'react-redux'
 import { Row, Col } from 'reactstrap'
 import { bindActionCreators } from 'redux'
 import { createFavoriteEvent, unLikeEvent } from '../../actions/events'
-
+import '../../styles/eventPage.css'
 
 class EventCard extends Component {
     constructor(props) {
@@ -26,11 +26,10 @@ class EventCard extends Component {
     render() {
         const { title, registered, image_url, min_age, max_age, street, city, state, event_description, favorite, zip } = this.props.event
         // this.props.events.payload
-        console.log("this.props  in Eventcard", this.props)
         return (
             <Row className="mt-3">
                 <Col lg="4">
-                    <img src={image_url} alt="event_image"></img>
+                    <img src={image_url} alt="event_image" ></img>
                 </Col>
                 <Col lg="7">
                     <div>{title} </div>

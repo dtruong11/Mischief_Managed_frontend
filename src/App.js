@@ -8,38 +8,42 @@ import Login from './components/Login'
 import './App.css';
 import UserProfile from './components/UserProfile'
 import AuthenticateRoute from './components/helpers/AuthenticateRoute'
+import UnauthenticatedRoute from './components/helpers/UnAuthenticateRoute'
 import { userVerify } from './actions/authUsers'
-import { history } from 'react-router-dom'
-import EventList from './components/events_page/EventList'
+import EventPage from './components/events_page/EventPage'
 
 
 class App extends Component {
 
   componentDidMount = () => {
-    console.log("this.props inside app", this.props)
-    // this.props.userVerify(history)
+    this.props.userVerify()
   }
 
   render() {
+    console.log('APP', this.props)
     return (<Router>
       <div className="App">
+
         <header className="App-header">
           <NavBar />
         </header>
         <div className="main-page">
-          <Switch>
-            {/* <Route exact path="/" render={() => (
-                <Redirect to="/home" />
-              )} /> */}
-            {/* <Route exact path="/home" component={Home} /> */}
-            {/* <Route exact path="/events" component={Events} /> */}
-            <Route exact path="/events/map" component={Map} />
-            <Route exact path="/login/users" component={Login} />
-            <Route exact path="/users/events" component={EventList} />
-            <AuthenticateRoute exact path="/profiles" isLoggedIn={this.props.isLoggedIn} component={UserProfile} />
-
-            <Redirect to="/login/users" />
-          </Switch>
+          {
+            this.props.isLoading ?
+              <div></div>
+              :
+              <Switch>
+                <Route exact path="/events/map" component={Map} />
+                <UnauthenticatedRoute exact path="/login/users" isLoggedIn={this.props.isLoggedIn} component={Login} />
+                {/* <Route exact path="/login/users" render={() => {
+                  if (this.props.isLoggedIn) return <Redirect to="/profiles" />
+                  return <Login />
+                }} /> */}
+                <Route exact path="/users/events" component={EventPage} />
+                <AuthenticateRoute exact path="/profiles" isLoggedIn={this.props.isLoggedIn} component={UserProfile} />
+                <Redirect to="/login/users" />
+              </Switch>
+          }
         </div>
 
       </div>
@@ -52,14 +56,13 @@ class App extends Component {
 }
 function mapStateToProps(state) {
   return {
+    isLoading: state.auth.isLoading,
     isLoggedIn: state.auth.isLoggedIn
   }
 }
 
 function mapDispatchToProps(dispatch) {
-  return {
-    userVerify: bindActionCreators(userVerify, dispatch)
-  }
+  return bindActionCreators({ userVerify }, dispatch)
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(App)
