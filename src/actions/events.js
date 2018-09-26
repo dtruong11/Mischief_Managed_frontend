@@ -1,5 +1,5 @@
-import events from '../requests/events'
-
+import events  from '../requests/events'
+ 
 export const GET_EVENTS_PENDING = 'GET_EVENTS_PENDING'
 export const GET_EVENTS_SUCCESS = 'GET_EVENTS_SUCCESS'
 export const GET_EVENTS_FAILED = 'GET_EVENTS_FAILED'

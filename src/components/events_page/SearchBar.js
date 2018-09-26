@@ -3,12 +3,9 @@ import PlacesAutocomplete, { geocodeByAddress, getLatLng } from 'react-places-au
 import { classnames } from '../helpers/autocomplete';
 import '../../styles/eventPage.css'
 import { FormGroup, Label, Input, Button } from 'reactstrap'
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux'
 
-
-
-// const cache = scriptCache({
-//   google: "https://maps.googleapis.com/maps/api/js?v=3&libraries=places"
-// })
 
 class SearchBar extends React.Component {
   constructor(props) {
@@ -33,13 +30,14 @@ class SearchBar extends React.Component {
   };
 
   handleSelect = selected => {
-    // console.log('selected', selected)
+    console.log('selected', selected)
     this.setState({ isGeocoding: true, address: selected });
 
     geocodeByAddress(selected)
       .then(res => getLatLng(res[0]))
       .then(({ lat, lng }) => {
-        // call backend: dispatch 
+        // call backend: dispatch => search events based on location 
+        // ** this.props.getEventsByLocation({ lat, lng }) ** 
         this.setState({
           latitude: lat,
           longitude: lng,
@@ -48,7 +46,6 @@ class SearchBar extends React.Component {
       })
       .catch(error => {
         this.setState({ isGeocoding: false });
-        // console.log('error', error); // eslint-disable-line no-console
       });
   };
 
@@ -146,31 +143,16 @@ class SearchBar extends React.Component {
         {errorMessage.length > 0 && (
           <div className="Demo__error-message">{this.state.errorMessage}</div>
         )}
-
-        {/* {((latitude && longitude) || isGeocoding) && (
-          <div>
-            <h3 className="Demo__geocode-result-header">Geocode result</h3>
-            {isGeocoding ? (
-              <div>
-                <i className="fa fa-spinner fa-pulse fa-3x fa-fw Demo__spinner" />
-              </div>
-            ) : (
-                <div>
-                  <div className="Demo__geocode-result-item--lat">
-                    <label>Latitude:</label>
-                    <span>{latitude}</span>
-                  </div>
-                  <div className="Demo__geocode-result-item--lng">
-                    <label>Longitude:</label>
-                    <span>{longitude}</span>
-                  </div>
-                </div>
-              )}
-          </div>
-        )} */}
       </div>
     );
   }
 }
 
-export default SearchBar;
+// const mapDispatchToProps = (dipsatch) => bindActionCreators({
+//   getEventsByLocation
+// }, dispatch)
+
+
+// export default connect(null, mapDispatchToProps)(SearchBar);
+
+export default SearchBar
