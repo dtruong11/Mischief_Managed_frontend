@@ -8,7 +8,9 @@ import GoogleApi from '../helpers/GoogleApi'
 import scriptCache from '../helpers/ScriptCache'
 import { Icon } from 'react-icons-kit'
 import { angleDown } from 'react-icons-kit/fa/angleDown'
-
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import  { updateForm } from '../../actions/updateForm'
 
 const { REACT_APP_API_KEY } = process.env
 
@@ -17,9 +19,6 @@ class FilterForm extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            errorMessage: '',
-            latitude: null,
-            longitude: null,
             loaded: false
         };
     }
@@ -36,46 +35,43 @@ class FilterForm extends Component {
     componentDidMount() {
         this.scriptCache.google.onLoad((err, tag) => {
             this.setState({ loaded: true })
-            console.log('err', err, 'tag', tag)
+            console.log('err in scriptCache filterFrom.js')
         })
     }
 
+    handleCheckBox = event => {
+            return this.props.updateForm(event.target.name, !JSON.parse(event.target.value))
+    };
+
     render() {
+        console.log('this.props.formValues',this.props.formValues)
+        const { sport, arts, educational, nature, music, morning, afternoon, evening, freeOnly } = this.props.formValues
         return (
             <Row>
                 <Col>
                     <form >
-                        {this.state.loaded && <SearchBar />}
+                        {this.state.loaded && 
+                            <SearchBar />
+                        }
                         <label><Icon icon={angleDown} /> CATEGORY
-                        {/* any input changed: dispatch action => this.props.getEventsByCategory() */}
-                            <Input name="sport" type="checkbox" value="sport" label='Sport' />
-                            <Input name="arts&Craft" type="checkbox" value="arts&Craft" label='Arts & Craft' />
-                            <Input name="educational" type="checkbox" value="educational" label='Educational' />
-                            <Input name="nature" type="checkbox" value="nature" label='Nature' />
-                            <Input name="music" type="checkbox" value="music" label='Music' />
+                            <Input onChange={(event) => {this.handleCheckBox(event)}} name="sport" type="checkbox" value={JSON.stringify(sport)} label='Sport' />
+                            <Input onChange={(event) => {this.handleCheckBox(event)}} name="arts" type="checkbox" value={JSON.stringify(arts)} label='Arts & Craft' />
+                            <Input onChange={(event) => {this.handleCheckBox(event)}} name="educational" type="checkbox" value={JSON.stringify(educational)} label='Educational' />
+                            <Input onChange={(event) => {this.handleCheckBox(event)}} name="nature" type="checkbox" value={JSON.stringify(nature)} label='Nature' />
+                            <Input onChange={(event) => {this.handleCheckBox(event)}} name="music" type="checkbox" value={JSON.stringify(music)} label='Music' />
                         </label>
                         <label> TIMES
-                        {/* any input changed: dispatch action => this.props.getEventsByTimes() */}
-                            <Input name="morning" type="checkbox" value="morning" label='Morning (before 12PM)' />
-                            <Input name="afternoon" type="checkbox" value="afternoon" label='Afternoon (12PM - 4PM)' />
-                            <Input name="evening" type="checkbox" value="evening" label='Evening (after 4PM)' />
+                            <Input onChange={(event) => {this.handleCheckBox(event)}} name="morning" type="checkbox" value={JSON.stringify(morning)} label='Morning (before 12PM)' />
+                            <Input onChange={(event) => {this.handleCheckBox(event)}} name="afternoon" type="checkbox" value={JSON.stringify(afternoon)} label='Afternoon (12PM - 4PM)' />
+                            <Input onChange={(event) => {this.handleCheckBox(event)}} name="evening" type="checkbox" value={JSON.stringify(evening)} label='Evening (after 4PM)' />
                         </label>
                         <label> FREE ACTVITIES ONLY
-                        {/* input changed: dispatch action => this.props.getFreeEventsOnly(), otherwise all events */}
-                                <Input type='switch' name='free' />
+                            <Input onChange={(event) => {this.handleCheckBox(event)}} name="freeOnly" type="checkbox" value={JSON.stringify(freeOnly)} label='All free' />
                         </label>
-                        <div className="switch">
-                            <label>
-                                <input type="checkbox" />
-                                <span className="lever"></span>
-                            </label>
-                        </div>
                         <label> AGE
-                        {/* Input changed: dispatch action => this.props.getEventsByAgeRange() */}
                             <SliderRange />
                         </label>
                         <label> DISTANCE
-                        {/* Input changed: dispatch action => this.props.getEventsByDistance() */}
                             <DistanceSliderRange />
                         </label>
                     </form>
@@ -85,4 +81,10 @@ class FilterForm extends Component {
     }
 }
 
-export default FilterForm
+const mapStateToProps = ({ formValues }) => ({ formValues })
+const mapDispatchToProps = (dispatch) => {
+    return bindActionCreators({ updateForm }, dispatch)
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(FilterForm)
+

@@ -1,4 +1,3 @@
-import { Row, Col } from 'react-materialize'
 import 'rc-slider/assets/index.css';
 import 'rc-tooltip/assets/bootstrap.css';
 import React, { Component } from 'react';
@@ -21,7 +20,7 @@ class DistanceSliderRange extends Component {
 
 
     onSliderChange = (value) => {
-        console.log('value inside onSliderChange', value)
+        // console.log('value inside onSliderChange', value)
         this.setState({
             value
         })
@@ -29,7 +28,7 @@ class DistanceSliderRange extends Component {
 
     handle = (props) => {
         const { value, dragging, index, ...restProps } = props;
-        console.log('value', value)
+        // console.log('value', value)
         return (
             <Tooltip
                 prefixCls="rc-slider-tooltip"

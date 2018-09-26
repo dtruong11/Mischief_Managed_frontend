@@ -9,7 +9,7 @@ export const request = (url, method, body='null') => {
             headers: { 'Content-Type': 'application/json' },
             data: body
         }).then(res => {
-            console.log("I am response inside request", res)
+            // console.log("I am response inside request", res)
             return res})
     } catch(e) {
         console.log(e)

@@ -1,7 +1,4 @@
 import events from '../requests/events'
-const st = require('knex-postgis')(db)
-
-
 
 // export const 
 export const FILTER_EVENTS_SUCCESS = 'FILTER_EVENTS_SUCCESS'
@@ -27,5 +24,13 @@ export const getEventsByLocation = () => {
                 payload: err
             })
         }
+    }
+}
+
+// ****** filter through the form state, anything false not include in the req.query ******
+
+export const filterEvents = () => {
+    return async (dispatch) => {
+
     }
 }

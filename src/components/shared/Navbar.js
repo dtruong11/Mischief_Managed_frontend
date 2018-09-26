@@ -17,7 +17,7 @@ import { Link } from 'react-router-dom'
 import { bindActionCreators } from 'redux'
 import { userVerify } from '../../actions/authUsers'
 import { userLogout } from '../../actions/authUsers'
-import Login from '../Login'
+// import Login from '../Login'
 // import { getUser } from '../actions/authUsers'
 
 class Navigation extends Component {
@@ -40,7 +40,7 @@ class Navigation extends Component {
 
 
     render() {
-        console.log("this.props.isLoggedIn", this.props.isLoggedIn)
+        // console.log("this.props.isLoggedIn", this.props.isLoggedIn)
         return (
             <div>
                 <Navbar color="light" light expand="md">

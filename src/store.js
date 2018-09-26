@@ -3,9 +3,10 @@ import logger from 'redux-logger'
 import { createStore, applyMiddleware, combineReducers, compose } from 'redux'
 import { auth } from './reducers/authUsers'
 import { events } from './reducers/events'
+import { formValues } from './reducers/updateForm'
 
 const rootReducer = combineReducers({
-    auth, events
+    auth, events, formValues
 })
 
 export default () => createStore(

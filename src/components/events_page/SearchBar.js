@@ -2,9 +2,10 @@ import React from 'react';
 import PlacesAutocomplete, { geocodeByAddress, getLatLng } from 'react-places-autocomplete';
 import { classnames } from '../helpers/autocomplete';
 import '../../styles/eventPage.css'
-import { FormGroup, Label, Input, Button } from 'reactstrap'
+import { Input } from 'react-materialize'
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux'
+import { updateForm } from '../../actions/updateForm'
 
 
 class SearchBar extends React.Component {
@@ -19,6 +20,67 @@ class SearchBar extends React.Component {
     };
   }
 
+  autocomplete = ({ getInputProps, suggestions, getSuggestionItemProps }) => {
+
+    const inputProps = getInputProps({
+      placeholder: 'Search Places...',
+      className: 'Demo__search-input',
+    })
+    
+    console.log('HERE?', suggestions, inputProps);
+
+
+    return (
+      <div className="Demo__search-bar-container">
+        <div className="Demo__search-input-container">
+          <Input
+            {...inputProps}
+          />
+          {this.state.address.length > 0 && <span onClick={this.handleCloseClick}>x</span>}
+        </div>
+        {this.renderSuggestions(suggestions, getSuggestionItemProps)}
+      </div>
+    );
+  }
+
+  renderSuggestions =  (suggestions, getSuggestionItemProps) => {
+    if(suggestions.length > 0) {
+      return (
+        <div className="Demo__autocomplete-container">
+          {suggestions.map(suggestion => {
+            const className = classnames('Demo__suggestion-item', {
+              'Demo__suggestion-item--active': suggestion.active,
+            });
+
+            return (
+              /* eslint-disable react/jsx-key */
+              <div
+                {...getSuggestionItemProps(suggestion, { className })}
+              >
+                <strong>
+                  {suggestion.formattedSuggestion.mainText}
+                </strong>{' '}
+                <small>
+                  {suggestion.formattedSuggestion.secondaryText}
+                </small>
+              </div>
+            );
+            /* eslint-enable react/jsx-key */
+          })}
+          <div className="Demo__dropdown-footer">
+            <div>
+              {/* <img
+                src={require('../images/powered_by_google_default.png')}
+                className="Demo__dropdown-footer-image"
+              /> */}
+            </div>
+          </div>
+        </div>
+      )
+    }
+  }
+
+    
 
   handleChange = address => {
     this.setState({
@@ -36,8 +98,11 @@ class SearchBar extends React.Component {
     geocodeByAddress(selected)
       .then(res => getLatLng(res[0]))
       .then(({ lat, lng }) => {
-        // call backend: dispatch => search events based on location 
-        // ** this.props.getEventsByLocation({ lat, lng }) ** 
+        console.log('lat', lat, 'lng', lng)
+        // Update form state in redux store
+        this.props.updateForm('lat', lat)
+        this.props.updateForm('long', lng)
+
         this.setState({
           latitude: lat,
           longitude: lng,
@@ -73,7 +138,7 @@ class SearchBar extends React.Component {
       isGeocoding,
     } = this.state;
 
-    console.log('this.state.latitude', latitude, 'this.state.longitude', longitude)
+    // console.log('this.state.latitude', latitude, 'this.state.longitude', longitude)
     return (
       <div>
         <PlacesAutocomplete
@@ -84,61 +149,7 @@ class SearchBar extends React.Component {
           shouldFetchSuggestions={address.length > 2}
           highlightFirstSuggestion={true}
         >
-          {({ getInputProps, suggestions, getSuggestionItemProps }) => {
-            return (
-              <div className="Demo__search-bar-container">
-                <FormGroup className="Demo__search-input-container">
-                  <Label for="search">LOCATION</Label>
-                  <Input
-                    {...getInputProps({
-                      placeholder: 'Search Places...',
-                      className: 'Demo__search-input',
-                    })}
-                  />
-                  {this.state.address.length > 0 && (
-                    <Button
-                      className="Demo__clear-button"
-                      onClick={this.handleCloseClick}
-                    >
-                      x
-                    </Button>
-                  )}
-                </FormGroup>
-                {suggestions.length > 0 && (
-                  <div className="Demo__autocomplete-container">
-                    {suggestions.map(suggestion => {
-                      const className = classnames('Demo__suggestion-item', {
-                        'Demo__suggestion-item--active': suggestion.active,
-                      });
-
-                      return (
-                        /* eslint-disable react/jsx-key */
-                        <div
-                          {...getSuggestionItemProps(suggestion, { className })}
-                        >
-                          <strong>
-                            {suggestion.formattedSuggestion.mainText}
-                          </strong>{' '}
-                          <small>
-                            {suggestion.formattedSuggestion.secondaryText}
-                          </small>
-                        </div>
-                      );
-                      /* eslint-enable react/jsx-key */
-                    })}
-                    <div className="Demo__dropdown-footer">
-                      <div>
-                        {/* <img
-                          src={require('../images/powered_by_google_default.png')}
-                          className="Demo__dropdown-footer-image"
-                        /> */}
-                      </div>
-                    </div>
-                  </div>
-                )}
-              </div>
-            );
-          }}
+          {(this.autocomplete)}
         </PlacesAutocomplete>
         {errorMessage.length > 0 && (
           <div className="Demo__error-message">{this.state.errorMessage}</div>
@@ -147,12 +158,13 @@ class SearchBar extends React.Component {
     );
   }
 }
+const mapStateToProps = ({ formValues }) => ({ formValues })
 
-// const mapDispatchToProps = (dipsatch) => bindActionCreators({
-//   getEventsByLocation
-// }, dispatch)
+const mapDispatchToProps = (dispatch) => {
+  return bindActionCreators({ updateForm }, dispatch)
+}
 
 
-// export default connect(null, mapDispatchToProps)(SearchBar);
 
-export default SearchBar
+export default connect(mapStateToProps, mapDispatchToProps)(SearchBar);
+

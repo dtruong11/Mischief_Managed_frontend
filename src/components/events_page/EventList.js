@@ -11,12 +11,16 @@ import EventCard from './EventCard'
 import { getEvents } from '../../actions/events'
 
 class EventList extends Component {
-    componentDidMount() {
-        this.props.getEvents() // action creator 
+    // componentDidMount() {
+    //     this.props.getEvents() // action creator 
+    // }
+
+    constructor(props) {
+        super(props)
     }
 
     render() {
-        // console.log('this.props in EventList',this.props.events)
+        console.log('this.props in EventList',this.props)
         return (
         <div>
             {this.props.events.payload.map(event => {
@@ -29,7 +33,7 @@ class EventList extends Component {
 }
 
 
-const mapStateToProps = ({ events }) => ({ events })
+const mapStateToProps = ({ events, formValues }) => ({ events, formValues })
 const mapDispatchToProps = (dispatch) => {
     return bindActionCreators({ getEvents }, dispatch)
 }

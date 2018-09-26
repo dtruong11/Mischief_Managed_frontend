@@ -21,7 +21,7 @@ class Login extends Component {
 
   submitLogin = e => {
     e.preventDefault()
-    console.log('history', this.props);
+    // console.log('history', this.props);
     this.props.userLogin(this.state, this.props.history)
     this.setState({
       email: '',

@@ -17,10 +17,17 @@ class App extends Component {
 
   componentDidMount = () => {
     this.props.userVerify()
+
+    //// run action to get current lat/long => store in redux; create an action GET_CURRENT_LOCATION 
+    // navigator.geolocation.getCurrentPosition(function(location) {
+    //   console.log('my current lat',location.coords.latitude);
+    //   console.log('my current long',location.coords.longitude);
+    //   console.log('accuracy rate',location.coords.accuracy);
+    // });
   }
 
   render() {
-    console.log('APP', this.props)
+    // console.log('APP', this.props)
     return (<Router>
       <div className="App">
 

@@ -5,7 +5,7 @@ const UnAuthenticatedRoute = ({ component: Component, isLoggedIn, ...rest }) => 
     <Route
         {...rest}
         render={props => {
-            console.log('AUTH ROUTE', isLoggedIn);
+            // console.log('AUTH ROUTE', isLoggedIn);
             return isLoggedIn ? (
                 <Redirect
                     to={{
