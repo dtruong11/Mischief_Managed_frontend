@@ -10,3 +10,11 @@ img {
 .Demo__search-input-container {
     position: relative;
 }
+
+.list_map {
+    display: flex;
+    justify-content: center;
+    margin: auto;
+    text-align: center;
+    padding-bottom: 5vh;
+}

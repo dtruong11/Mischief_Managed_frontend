@@ -5,6 +5,7 @@ import FilterForm from "./FilterForm";
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { getEvents } from '../../actions/events'
+import '../../styles/eventPage.css'
 
 
 class EventPage extends Component {
@@ -22,6 +23,12 @@ class EventPage extends Component {
  
     return (
       <Container style={{marginTop: '50px'}}>
+        <Row className='list_map'>
+          <Col lg='5'></Col>
+          <Col>List View</Col>
+          <Col>Map View</Col>
+          <Col lg='5'></Col>
+        </Row>
         <Row>
           <Col lg="9">
             <EventList events={this.props.events} />
