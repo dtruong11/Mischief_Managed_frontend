@@ -1,21 +1,21 @@
 import {
-    UPDATE_FORMS_VALUE,
-    GET_FORM_VALUES
+    UPDATE_FORMS_VALUE
 } from '../actions/updateForm'
 
 let formInitialState = {
     lat: '',
     long: '',
     sport: false,
-    arts: false,
+    art: false,
     educational: false,
     nature: false,
     music: false,
     morning: false,
     afternoon: false,
     evening: false,
-    freeOnly: false,
-    age: []
+    cost: false,
+    age: [],
+    range: 20
 }
 
 export const formValues = (state = formInitialState, {

@@ -9,29 +9,39 @@ import '../../styles/eventPage.css'
 
 
 class EventPage extends Component {
-
-  componentWillMount = () => {
-    this.props.getEvents() // action creator 
+  constructor(props) {
+    super(props)
+    this.state = {
+      listview: true
+    }
   }
+
   componentDidMount = () => {
-    console.log("componentdidMount, this.props.events",this.props.events)
+    console.log("componentdidMount, this.props.events", this.props.events)
   };
 
+  handleListView = () => {
+    this.setState({ listview: true })
+  }
+
+  handleMapView = () => {
+    this.setState({ listview: false })
+  }
 
 
   render() {
- 
+
     return (
-      <Container style={{marginTop: '50px'}}>
+      <Container style={{ marginTop: '50px' }}>
         <Row className='list_map'>
           <Col lg='5'></Col>
-          <Col>List View</Col>
-          <Col>Map View</Col>
+          <Col onClick={this.handleListView} className={this.state.listview && "list_map_button"}>List View</Col>
+          <Col onClick={this.handleMapView} className={!this.state.listview && "list_map_button"}>Map View</Col>
           <Col lg='5'></Col>
         </Row>
         <Row>
           <Col lg="9">
-            <EventList events={this.props.events} />
+            <EventList />
           </Col>
           <Col lg="3">
             <FilterForm />
@@ -44,7 +54,7 @@ class EventPage extends Component {
 
 const mapStateToProps = ({ events }) => ({ events })
 const mapDispatchToProps = (dispatch) => {
-    return bindActionCreators({ getEvents }, dispatch)
+  return bindActionCreators({ getEvents }, dispatch)
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(EventPage)

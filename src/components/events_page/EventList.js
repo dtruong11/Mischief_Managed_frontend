@@ -11,22 +11,22 @@ import EventCard from './EventCard'
 import { getEvents } from '../../actions/events'
 
 class EventList extends Component {
-    // componentDidMount() {
-    //     this.props.getEvents() // action creator 
-    // }
-
-    constructor(props) {
+    constructor(props){
         super(props)
+    }    
+
+    componentWillMount = () => {
+        this.props.getEvents() // action creator 
     }
 
     render() {
-        console.log('this.props in EventList',this.props)
+        console.log('this.props.events inside EVELNTLIST', this.props.events)
         return (
-        <div>
-            {this.props.events.payload.map(event => {
-                return <EventCard key={event.id} event={event} favorite={event.favorite} />
-            })}
-        </div>
+            <div>
+                {this.props.events.payload.map(event => {
+                    return <EventCard key={event.id} event={event} favorite={event.favorite} />
+                })}
+            </div>
         );
     }
 

@@ -45,7 +45,7 @@ class FilterForm extends Component {
 
     render() {
         console.log('this.props.formValues',this.props.formValues)
-        const { sport, arts, educational, nature, music, morning, afternoon, evening, freeOnly } = this.props.formValues
+        const { sport, art, educational, nature, music, morning, afternoon, evening, cost } = this.props.formValues
         return (
             <Row>
                 <Col>
@@ -55,7 +55,7 @@ class FilterForm extends Component {
                         }
                         <label><Icon icon={angleDown} /> CATEGORY
                             <Input onChange={(event) => {this.handleCheckBox(event)}} name="sport" type="checkbox" value={JSON.stringify(sport)} label='Sport' />
-                            <Input onChange={(event) => {this.handleCheckBox(event)}} name="arts" type="checkbox" value={JSON.stringify(arts)} label='Arts & Craft' />
+                            <Input onChange={(event) => {this.handleCheckBox(event)}} name="art" type="checkbox" value={JSON.stringify(art)} label='Arts & Craft' />
                             <Input onChange={(event) => {this.handleCheckBox(event)}} name="educational" type="checkbox" value={JSON.stringify(educational)} label='Educational' />
                             <Input onChange={(event) => {this.handleCheckBox(event)}} name="nature" type="checkbox" value={JSON.stringify(nature)} label='Nature' />
                             <Input onChange={(event) => {this.handleCheckBox(event)}} name="music" type="checkbox" value={JSON.stringify(music)} label='Music' />
@@ -66,7 +66,7 @@ class FilterForm extends Component {
                             <Input onChange={(event) => {this.handleCheckBox(event)}} name="evening" type="checkbox" value={JSON.stringify(evening)} label='Evening (after 4PM)' />
                         </label>
                         <label> FREE ACTVITIES ONLY
-                            <Input onChange={(event) => {this.handleCheckBox(event)}} name="freeOnly" type="checkbox" value={JSON.stringify(freeOnly)} label='All free' />
+                            <Input onChange={(event) => {this.handleCheckBox(event)}} name="cost" type="checkbox" value={JSON.stringify(cost)} label='All free' />
                         </label>
                         <label> AGE
                             <SliderRange />

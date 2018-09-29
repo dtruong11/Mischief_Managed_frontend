@@ -34,7 +34,6 @@ class SliderRange extends Component {
     };
     render() {
         const ageArr = this.props.formValues.age
-        console.log('INSIDE Slider',this.props.formValues)
 
         return (
             <div className='Rangecontainer'>

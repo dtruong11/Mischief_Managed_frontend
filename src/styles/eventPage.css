@@ -18,3 +18,15 @@ img {
     text-align: center;
     padding-bottom: 5vh;
 }
+
+.list_map_button {
+    font-weight: 700;
+    color: #B045BA;
+}
+
+/* .list_map_border {
+    border: 0.5px solid gray;
+    border-radius: 10%; 
+    padding-top: 10px;
+
+} */
