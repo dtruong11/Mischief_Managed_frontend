@@ -23,7 +23,6 @@ class App extends Component {
     // console.log('APP', this.props)
     return (<Router>
       <div className="App">
-
         <header className="App-header">
           <NavBar />
         </header>

@@ -133,9 +133,7 @@ class SearchBar extends React.Component {
     const {
       address,
       errorMessage,
-      latitude,
-      longitude,
-      isGeocoding,
+      // isGeocoding,
     } = this.state;
 
     // console.log('this.state.latitude', latitude, 'this.state.longitude', longitude)

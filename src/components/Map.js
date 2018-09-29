@@ -1,55 +1,53 @@
 import React from 'react';
 import { compose, withProps, withStateHandlers } from "recompose"
 import { withScriptjs, withGoogleMap, GoogleMap, Marker, InfoWindow } from 'react-google-maps'
-import { connect } from 'react-redux';
-// require('dotenv').load()
+import InfoCard from './InfoCardMap'
+
+
 const { REACT_APP_API_KEY } = process.env
 
-const MyMapComponent = compose(
+const Map = compose(
   withProps({
-    googleMapURL: `https://maps.googleapis.com/maps/api/js?key=${REACT_APP_API_KEY}&v=3.exp&libraries=geometry,drawing,places`,
+    googleMapURL: `https://maps.googleapis.com/maps/api/js?key=${REACT_APP_API_KEY}&libraries=geometry,drawing,places`,
     loadingElement: <div style={{ height: `100%` }} />,
-    containerElement: <div style={{ height: `400px` }} />,
+    containerElement: <div style={{ height: `100%` }} />,
     mapElement: <div style={{ height: `100%` }} />,
   }),
+  withStateHandlers(() => ({
+    isOpen: {},
+  }), {
+      onToggleOpen: ({ isOpen }) => (idx) => {
+        if (isOpen.hasOwnProperty(idx)) {
+          return { isOpen: { ...isOpen, [idx]: !isOpen[idx] } }
+        } else {
+          console.log(isOpen)
+          return { isOpen: { ...isOpen, [idx]: true } }
+        }
+      }
+    }
+  ),
   withScriptjs,
   withGoogleMap
 )((props) =>
   <GoogleMap
     defaultZoom={10}
-    defaultCenter={{ lat: 47.599239, lng: -122.333805   }}>
-    {props.isMarkerShown && <Marker position={{ lat: 47.599239 , lng:-122.333805   }} onClick={props.onMarkerClick} />}
+    center={props.formValues.lat ? { lat: parseFloat(props.formValues.lat), lng: parseFloat(props.formValues.lng) } : { lat: 47.599239, lng: -122.333805 }}>
+
+    {props.isMarkerShown &&
+      props.events.payload.map((event, idx) => {
+        const location = { lat: event.lat, lng: event.long }
+        return (
+          <Marker position={location} key={idx} onClick={() => props.onToggleOpen(idx)}>
+            {props.isOpen[idx] && <InfoWindow onCloseClick={() => props.onToggleOpen(idx)}>
+            <InfoCard event={event}/>
+            </InfoWindow>}
+          </Marker>
+        )
+      })
+    }
   </GoogleMap>
 )
 
-class MapWrapper extends React.PureComponent {
-  state = {
-    isMarkerShown: false,
-  }
 
-  componentDidMount() {
-    this.delayedShowMarker()
-  }
+export default Map
 
-  delayedShowMarker = () => {
-    setTimeout(() => {
-      this.setState({ isMarkerShown: true })
-    }, 3000)
-  }
-
-  handleMarkerClick = () => {
-    this.setState({ isMarkerShown: false })
-    this.delayedShowMarker()
-  }
-
-  render() {
-    return (
-      <MyMapComponent
-        isMarkerShown={this.state.isMarkerShown}
-        onMarkerClick={this.handleMarkerClick}
-      />
-    )
-  }
-}
-
-export default MapWrapper
