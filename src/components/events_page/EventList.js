@@ -9,6 +9,10 @@ import EventCard from './EventCard'
 import { ClipLoader } from 'react-spinners';
 import { css } from 'react-emotion';
 import { getEvents } from '../../actions/events'
+import pic from '../../assets/kidevents.jpg'
+import '../../styles/eventPage.css'
+import { withRouter } from 'react-router-dom'
+
 
 const override = css`
     display: flex;
@@ -18,9 +22,6 @@ const override = css`
     text-align: center;
 `;
 
-
-
-
 class EventList extends Component {
   constructor(props) {
     super(props)
@@ -28,6 +29,8 @@ class EventList extends Component {
       showSpinner: false
     }
   }
+
+
 
   componentWillMount = () => {
     this.props.getEvents() // action creator 
@@ -38,11 +41,15 @@ class EventList extends Component {
     }, 200)
   }
 
+  reRoute = (id) => {
+    console.log('id inside reRoute', id)
+    this.props.history.push(`/events/${id}`)
+  }
+
   render() {
     console.log('this.props.events inside EVELNTLIST', this.props.events)
     return (
       <div>
-
         {
           this.props.events.isLoading ?
             <div className='sweet-loading'>
@@ -56,9 +63,13 @@ class EventList extends Component {
             </div>
             :
             <div>
-              {this.props.events.payload.map(event => {
-                return <EventCard key={event.id} event={event} favorite={event.favorite} />
-              })}
+              {this.props.events.payload.length > 0 ? this.props.events.payload.map(event => {
+                return <EventCard key={event.id} onClick={() => this.reRoute(event.id)} event={event} favorite={event.favorite} />
+              }) :
+                <div className="not_found_text">
+                  <img src={pic} className="not_found_events" />
+                  Events not Found
+                </div>}
             </div>
         }
       </div>
@@ -73,4 +84,4 @@ const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({ getEvents }, dispatch)
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(EventList)
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(EventList))

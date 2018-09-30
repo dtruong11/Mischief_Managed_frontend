@@ -1,16 +1,35 @@
-    // submit a review 
-    // onSubmit = (event, content, event_id) => {
-    //     const body = {
-    //         content,
-    //         event_id
-    //     }
-    //     this.props.addReview(body) // createReview in actions creator 
-    // }
+import React, { Component } from 'react'
+import PropTypes from 'prop-types';
+import { withStyles } from '@material-ui/core/styles';
+import Paper from '@material-ui/core/Paper';
+import Grid from '@material-ui/core/Grid';
 
-    // onChange = (event) => {
-    //     this.setState({
-    //         review: event.target.value
-    //     })
-    // }
+const styles = theme => ({
+    root: {
+        flexGrow: 1,
+    },
+    paper: {
+        padding: theme.spacing.unit * 2,
+        textAlign: 'center',
+        color: theme.palette.text.secondary,
+    },
+});
 
-    import React, { Component } from 'react';
+function SingleEventPage(props) {
+    const { classes } = props;
+
+    return (
+        <div className={classes.root}>
+            <Grid container spacing={24}>
+            <Grid item lg={9}>
+                <Paper className={classes.paper}></Paper>
+            </Grid>
+            <Grid item lg={3}>
+                <Paper className={classes.paper}></Paper>
+            </Grid>
+            </Grid>
+        </div>
+    )
+}
+
+export default SingleEventPage

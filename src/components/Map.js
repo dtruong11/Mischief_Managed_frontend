@@ -31,16 +31,17 @@ const Map = compose(
 )((props) =>
   <GoogleMap
     defaultZoom={10}
-    center={props.formValues.lat ? { lat: parseFloat(props.formValues.lat), lng: parseFloat(props.formValues.lng) } : { lat: 47.599239, lng: -122.333805 }}>
+    center={props.formValues.lat ? { lat: parseFloat(props.formValues.lat), lng: parseFloat(props.formValues.long) } : { lat: 47.599239, lng: -122.333805 }}>
 
     {props.isMarkerShown &&
       props.events.payload.map((event, idx) => {
         const location = { lat: event.lat, lng: event.long }
         return (
           <Marker position={location} key={idx} onClick={() => props.onToggleOpen(idx)}>
-            {props.isOpen[idx] && <InfoWindow onCloseClick={() => props.onToggleOpen(idx)}>
-            <InfoCard event={event}/>
-            </InfoWindow>}
+            {props.isOpen[idx] &&
+              <InfoWindow onCloseClick={() => props.onToggleOpen(idx)}>
+                <InfoCard event={event} />
+              </InfoWindow>}
           </Marker>
         )
       })

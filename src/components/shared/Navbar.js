@@ -17,6 +17,7 @@ import { Link } from 'react-router-dom'
 import { bindActionCreators } from 'redux'
 import { userVerify } from '../../actions/authUsers'
 import { userLogout } from '../../actions/authUsers'
+
 // import Login from '../Login'
 // import { getUser } from '../actions/authUsers'
 
@@ -49,7 +50,7 @@ class Navigation extends Component {
                     {this.props.isLoggedIn ? <Collapse isOpen={!this.state.isOpen} navbar>
                         <Nav className="ml-auto" navbar>
                             <NavItem>
-                                <NavLink href="/activities">Activities</NavLink>
+                                <NavLink href="/users/events">Activities</NavLink>
                             </NavItem>
                             <NavItem>
                                 <NavLink href="/parenting">Parenting</NavLink>
@@ -64,7 +65,7 @@ class Navigation extends Component {
                                     </DropdownItem>
                                     <DropdownItem divider />
                                     <DropdownItem>
-                                        Account
+                                        <NavLink href="/profiles">Account</NavLink>
                                     </DropdownItem>
                                     <DropdownItem divider />
                                     <DropdownItem>
@@ -78,7 +79,7 @@ class Navigation extends Component {
                         <Collapse isOpen={this.state.isOpen} navbar>
                             <Nav className="ml-auto" navbar>
                                 <NavItem>
-                                    <Link to="/login/users" className="nav-link">Login</Link>
+                                    <NavLink href="/login/users" className="nav-link">Login</NavLink>
                                 </NavItem>
                             </Nav>
                         </Collapse>}

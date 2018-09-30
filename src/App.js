@@ -11,6 +11,7 @@ import AuthenticateRoute from './components/helpers/AuthenticateRoute'
 import UnauthenticatedRoute from './components/helpers/UnAuthenticateRoute'
 import { userVerify } from './actions/authUsers'
 import EventPage from './components/events_page/EventPage'
+import SingleEventPage from './components/events_page/SingleEvent'
 
 
 class App extends Component {
@@ -39,6 +40,8 @@ class App extends Component {
                   return <Login />
                 }} /> */}
                 <Route exact path="/users/events" component={EventPage} />
+                <Route exact path="/events/:eventId" component={SingleEventPage} />
+                <AuthenticateRoute exact path='/users/events' isLoggedIn={this.props.isLoggedIn} component={EventPage} />
                 <AuthenticateRoute exact path="/profiles" isLoggedIn={this.props.isLoggedIn} component={UserProfile} />
                 <Redirect to="/login/users" />
               </Switch>
