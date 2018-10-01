@@ -12,9 +12,6 @@ const get = async (formObj={}) => {
     }
 
     if (formObj.age && formObj.age.length > 0) {
-        console.log('formObj.age', formObj.age)
-        console.log('min_age', formObj.age[0])
-        console.log('max_age', formObj.age[1])
         str += `min_age=${formObj.age[0]}&max_age=${formObj.age[1]}&`
     }
 
@@ -22,6 +19,12 @@ const get = async (formObj={}) => {
     const link = `${BASE_URL}/events?${str}` 
     const res = await axios.get(link)
     return res.data
+}
+
+const getOne = async (eventTitle) => {
+    const res = await axios.get(`${BASE_URL}/events/${eventTitle}`)
+    return res.data 
+
 }
 
 // get favorite events/ create favorite event for a user 
@@ -40,4 +43,4 @@ const unLike = async (userId, eventId) => {
     return res.data
 }
 
-export default { get, getFavorites, createFavorite, unLike }
+export default { get, getOne, getFavorites, createFavorite, unLike }

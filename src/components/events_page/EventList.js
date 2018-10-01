@@ -41,13 +41,16 @@ class EventList extends Component {
     }, 200)
   }
 
-  reRoute = (id) => {
-    console.log('id inside reRoute', id)
-    this.props.history.push(`/events/${id}`)
+  reRoute = (title, history) => {
+    console.log('title inside reRoute', title)
+    const fixedTitle = title.split(' ').join('-')
+
+    console.log('fixedTitle',fixedTitle)
+    history.push(`/events/${fixedTitle}`)
   }
 
   render() {
-    console.log('this.props.events inside EVELNTLIST', this.props.events)
+    console.log('this.props.events inside EVELNTLIST', this.props)
     return (
       <div>
         {
@@ -64,7 +67,7 @@ class EventList extends Component {
             :
             <div>
               {this.props.events.payload.length > 0 ? this.props.events.payload.map(event => {
-                return <EventCard key={event.id} onClick={() => this.reRoute(event.id)} event={event} favorite={event.favorite} />
+                return <EventCard key={event.id} onClick={() => this.reRoute(event.title, this.props.history)} event={event} favorite={event.favorite} />
               }) :
                 <div className="not_found_text">
                   <img src={pic} className="not_found_events" />

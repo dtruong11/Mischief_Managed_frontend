@@ -1,0 +1,68 @@
+
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,700');
+
+.register_btn {
+    background-color: #B045BA;
+}
+
+.register_btn:hover {
+    background-color: #690375;
+}
+
+.org_name {
+    color: #B045BA;
+    font-weight: bold;
+}
+
+.info {
+    padding: 10%;
+    background-color: #FFF0F5;
+    height: 100%;
+    font-size: 20px;
+}
+.info_right {
+    padding: 10%;
+    background-color: #FFF0F5;
+    height: 100%;
+    font-size: 20px;
+    text-align: center;
+}
+
+img {
+    height: 500px;
+    width: 500px;
+}
+
+.title {
+    /* font-weight: bold; */
+    color: black;
+    font-size: 50px;
+}
+
+.detail {
+    font-weight: bold;
+    font-size: 20px;
+    color: #B045BA;
+}
+
+.body {
+    font-family:'Open Sans', sans-serif;
+}
+
+.pricing {
+    font-weight: bold;
+    font-size: 15px;
+}
+
+.logo {
+    margin: 0;
+    border-radius: 50%;
+    width: 25%;
+    height: 25%;
+    background-color: white;
+    margin-bottom: 20px;
+}
+/* .book {
+    background-color: #F0F0F0;
+    height: 100%;
+} */

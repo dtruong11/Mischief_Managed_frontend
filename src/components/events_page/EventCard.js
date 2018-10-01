@@ -27,11 +27,11 @@ class EventCard extends Component {
 
     render() {
         const { id, title, registered, image_url, min_age, max_age, street, city, state, event_description, favorite, zip, start_date, end_date } = this.props.event
-        console.log('event id inside EventCard', start_date, end_date)
+        console.log('event id inside EventCard', id)
 
         return (
             <Row style={{ marginTop: '15px' }}>
-                <Card>
+                <Card onClick={() => this.props.onClick(id)}>
                     <Col l={4}>
                         <img src={image_url} alt="event_image" ></img>
                     </Col>
@@ -55,7 +55,7 @@ class EventCard extends Component {
     }
 }
 
-const eventTime = (start_date, end_date) => {
+export const eventTime = (start_date, end_date) => {
     const startTime = moment(start_date).format('HH:mm a')
     const endTime = moment(end_date).format('HH:mm a')
     const startDay = moment(start_date).format('ddd, MMM D')

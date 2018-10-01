@@ -4,6 +4,10 @@ export const GET_EVENTS_PENDING = 'GET_EVENTS_PENDING'
 export const GET_EVENTS_SUCCESS = 'GET_EVENTS_SUCCESS'
 export const GET_EVENTS_FAILED = 'GET_EVENTS_FAILED'
 
+export const GET_EVENT_PENDING = 'GET_EVENT_PENDING'
+export const GET_EVENT_SUCCESS = 'GET_EVENT_SUCCESS'
+export const GET_EVENT_FAILED = 'GET_EVENT_FAILED'
+
 export const GET_FAVORITE_EVENTS_PENDING = 'GET_FAVORITE_EVENTS_PENDING'
 export const GET_FAVORITE_EVENTS_SUCCESS = 'GET_FAVORITE_EVENTS_SUCCESS'
 export const GET_FAVORITE_EVENTS_FAILED = 'GET_FAVORITE_EVENTS_FAILED'
@@ -43,6 +47,25 @@ export const getEvents = () => {
 }
 
 
+export const getOneEvent = (eventTitle) => {
+    return async (dispatch) => {
+        try {
+            dispatch({ type: GET_EVENT_PENDING })
+            const payload = await events.getOne(eventTitle)
+            dispatch({
+                type: GET_EVENT_SUCCESS,
+                payload
+            })
+        } catch (err) {
+            console.error(err)
+            dispatch({
+                type: GET_EVENT_FAILED,
+                payload: err
+            })
+        }
+    }
+}
+
 const queryObj = async (values) => {
     // step 1: get form values 
     let formResults = { ...values }
@@ -54,9 +77,9 @@ const queryObj = async (values) => {
     }
 
     if (formResults.range === 0) {
-        objForm.range = 0 
+        objForm.range = 0
         delete formResults.range
-    } 
+    }
 
     for (let key in formResults) {
         if (formResults[key]) {

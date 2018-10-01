@@ -40,7 +40,7 @@ class App extends Component {
                   return <Login />
                 }} /> */}
                 <Route exact path="/users/events" component={EventPage} />
-                <Route exact path="/events/:eventId" component={SingleEventPage} />
+                <Route exact path="/events/:eventTitle" component={SingleEventPage} />
                 <AuthenticateRoute exact path='/users/events' isLoggedIn={this.props.isLoggedIn} component={EventPage} />
                 <AuthenticateRoute exact path="/profiles" isLoggedIn={this.props.isLoggedIn} component={UserProfile} />
                 <Redirect to="/login/users" />

@@ -13,7 +13,6 @@ import {
     DropdownItem
 } from 'reactstrap'
 import { connect } from 'react-redux'
-import { Link } from 'react-router-dom'
 import { bindActionCreators } from 'redux'
 import { userVerify } from '../../actions/authUsers'
 import { userLogout } from '../../actions/authUsers'
