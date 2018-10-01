@@ -4,9 +4,6 @@ import { bindActionCreators } from 'redux';
 import { getEvents } from '../actions/events'
 import { connect } from 'react-redux';
 
-
-
-
 class MapWrapper extends Component {
   state = {
     isMarkerShown: false,
@@ -34,8 +31,6 @@ class MapWrapper extends Component {
     )
   }
 }
-
-
 
 const mapStateToProps = ({ events, formValues }) => ({ events, formValues })
 const mapDispatchToProps = (dispatch) => {

@@ -62,7 +62,9 @@ img {
     background-color: white;
     margin-bottom: 20px;
 }
-/* .book {
-    background-color: #F0F0F0;
-    height: 100%;
-} */
+
+.sub_heading {
+    font-weight: bold;
+    font-size: 25px;
+    color: #696969	;
+}

@@ -33,7 +33,7 @@ class EventCard extends Component {
             <Row style={{ marginTop: '15px' }}>
                 <Card onClick={() => this.props.onClick(id)}>
                     <Col l={4}>
-                        <img src={image_url} alt="event_image" ></img>
+                        <img className='event_card_img' src={image_url} alt="event_image" ></img>
                     </Col>
                     <Col l={4}>
                         <div>{eventTime(start_date, end_date)}</div>

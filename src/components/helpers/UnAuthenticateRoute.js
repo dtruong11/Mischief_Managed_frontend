@@ -9,7 +9,7 @@ const UnAuthenticatedRoute = ({ component: Component, isLoggedIn, ...rest }) => 
             return isLoggedIn ? (
                 <Redirect
                     to={{
-                        pathname: "/profiles",
+                        pathname: "/users/events",
                         state: { from: props.location }
                     }}
                 />
