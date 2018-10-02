@@ -10,9 +10,6 @@ import OrgInfoEvent from './OrgInfoEvent'
 import SingleEventTop from './SingleEventTop'
 import SingleEventMap from '../SingleEventMap'
 
-import { Icon } from 'react-icons-kit'
-import { iosLocationOutline } from 'react-icons-kit/ionicons/iosLocationOutline'
-
 
 class SingleEventPage extends Component {
   constructor(props) {
