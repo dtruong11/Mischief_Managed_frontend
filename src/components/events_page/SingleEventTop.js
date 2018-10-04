@@ -5,6 +5,7 @@ import { Icon } from 'react-icons-kit'
 import { calendar } from 'react-icons-kit/feather/calendar'
 import { dollarSign } from 'react-icons-kit/feather/dollarSign'
 import { crosshair } from 'react-icons-kit/feather/crosshair'
+import RegisterForm from './RegisterForm'
 
 
 class SingleEventTop extends Component {
@@ -23,7 +24,7 @@ class SingleEventTop extends Component {
   }
 
   render() {
-    const { title, image_url, description, cost, street, city, state, zip, min_age, max_age, start_date, end_date, name, logo } = this.props.event
+    const {id, title, image_url, description, cost, street, city, state, zip, min_age, max_age, start_date, end_date, name, logo } = this.props.event
     return (
       <Row>
         <Col>
@@ -44,7 +45,7 @@ class SingleEventTop extends Component {
               ?
               <div className='info_right'>
                 <div>
-                  
+                  <RegisterForm eventId={id} />
                 </div>
               </div>
               :

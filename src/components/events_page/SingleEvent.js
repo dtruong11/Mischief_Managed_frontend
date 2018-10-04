@@ -50,12 +50,17 @@ class SingleEventPage extends Component {
             <SingleEventMap lat={event.lat} lng={event.long} />
           </Row>
           <Row>
-            <p className='sub_heading'> Reviews </p>
-            <Row>
-              <Reviews reviews={event.reviews} />
-            </Row>
-            {/* Add your review here */}
-            <ReviewForm eventId={event.id} />
+            <Col>
+              <Row>
+                <p className='sub_heading'> Reviews </p>
+              </Row>
+              <Row>
+                <Reviews reviews={event.reviews} />
+              </Row>
+              <Row>
+                <ReviewForm eventId={event.id} />
+              </Row>
+            </Col>
           </Row>
         </Container>
       </div>
