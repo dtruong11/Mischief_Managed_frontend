@@ -9,6 +9,8 @@ import '../../styles/singleEventPage.css'
 import OrgInfoEvent from './OrgInfoEvent'
 import SingleEventTop from './SingleEventTop'
 import SingleEventMap from '../SingleEventMap'
+import Reviews from './Reviews'
+import ReviewForm from './ReviewForm'
 
 
 class SingleEventPage extends Component {
@@ -28,51 +30,56 @@ class SingleEventPage extends Component {
   componentDidMount = () => {
     const eventTitle = this.props.location.pathname.split('/')[2]
     this.props.getOneEvent(eventTitle)
-  };
+    // console.log('Inside Singleevent.js componentdidmount', this.props)
+  }
+
+  renderEvent = (event) => {
+    console.log('AM I RENDERING EVENT?');
+
+    return (
+      <div>
+        <Container style={{ marginTop: '18px' }} fluid>
+          <SingleEventTop event={event} />
+        </Container>
+        <Container>
+          <OrgInfoEvent event={event} />
+          <Row>
+            <p className='sub_heading'> Location </p>
+            <br />
+            <br />
+            <SingleEventMap lat={event.lat} lng={event.long} />
+          </Row>
+          <Row>
+            <p className='sub_heading'> Reviews </p>
+            <Row>
+              <Reviews reviews={event.reviews} />
+            </Row>
+            {/* Add your review here */}
+            <ReviewForm eventId={event.id} />
+          </Row>
+        </Container>
+      </div>
+    )
+  }
 
   render() {
-    const event = this.props.events.payload
-    console.log('this is a single event', event)
-    const isLoading = this.props.events.isLoading
+    console.log('this.props inside SingleEvent', this.props)
+    const event = this.props.event
+    // console.log('this is a single event', event)
+    const isLoading = this.props.isLoading
 
     return (
       <div>
         {
-          isLoading
-            ?
-            <div>Still Loading </div>
-            :
-            <div>
-              <Container style={{ marginTop: '18px' }} fluid>
-                <SingleEventTop event={event} />
-              </Container>
-              <Container>
-                <OrgInfoEvent event={event} />
-                <Row>
-                  <p className='sub_heading'> Location  </p>
-                  <br />
-                  <br />
-                  <SingleEventMap lat={event.lat} lng={event.long} />
-                </Row>
-                <Row>
-                  <p className='sub_heading'> Reviews </p>
-                </Row>
-              </Container>
-            </div>
+          !isLoading && event.hasOwnProperty('reviews')
+            ? this.renderEvent(event) : <div>Still Loading </div>
         }
       </div>
-
     )
   }
 }
 
-Container.propTypes = {
-  fluid: true
-  // PropTypes.bool
-  // applies .container-fluid class
-}
-
-const mapStateToProps = ({ events }) => ({ events })
+const mapStateToProps = ({ events }) => ({ event: events.selected, isLoading: events.isLoading })
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({ getOneEvent }, dispatch)
 }

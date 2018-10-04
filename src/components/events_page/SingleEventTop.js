@@ -10,6 +10,16 @@ import { crosshair } from 'react-icons-kit/feather/crosshair'
 class SingleEventTop extends Component {
   constructor(props) {
     super(props)
+    this.state = {
+      clickedRegister: false
+    }
+  }
+
+  handleRegisterClick = () => {
+    this.setState({
+      clickedRegister: true
+    })
+
   }
 
   render() {
@@ -29,20 +39,30 @@ class SingleEventTop extends Component {
           <img className='event_image' src={image_url} alt='event_image'></img>
         </Col>
         <Col>
-          <div className='info_right'>
-            <img className='logo' src={logo}></img>
-            <br />
-            <Icon size={25} icon={calendar} />  {eventTime(start_date, end_date)}
-            <br />
-            <br />
-            <Icon size={25} icon={crosshair} />  {street}, {city}, {state}, {zip}
-            <br />
-            <br />
-            <Icon size={25} icon={dollarSign} />  {cost}
-            <br />
-            <br />
-            <Button className='register_btn' onClick={() => this.handleRegisterClick}>Register</Button>
-          </div>
+          {
+            this.state.clickedRegister
+              ?
+              <div className='info_right'>
+                <div>
+                  
+                </div>
+              </div>
+              :
+              <div className='info_right'>
+                <img className='logo' src={logo}></img>
+                <br />
+                <Icon size={25} icon={calendar} />  {eventTime(start_date, end_date)}
+                <br />
+                <br />
+                <Icon size={25} icon={crosshair} />  {street}, {city}, {state}, {zip}
+                <br />
+                <br />
+                <Icon size={25} icon={dollarSign} />  {cost}
+                <br />
+                <br />
+                <Button className='register_btn' onClick={this.handleRegisterClick}>Register</Button>
+              </div>
+          }
         </Col>
       </Row>
     )

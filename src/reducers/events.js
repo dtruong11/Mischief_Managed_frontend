@@ -20,7 +20,10 @@ import {
 let eventsInitialState = {
     isLoading: false,
     showError: true,
-    payload: []
+    all: [],
+    selected: {},
+    favorites: []
+    // payload: { reviews: [] }
 }
 
 export const events = (state = eventsInitialState, {
@@ -30,30 +33,30 @@ export const events = (state = eventsInitialState, {
         case GET_EVENTS_PENDING:
             return { ...state, isLoading: true, showError: false }
         case GET_EVENTS_SUCCESS:
-            return { ...state, payload: payload.events, isLoading: false, showError: false }
+            return { ...state, all: payload.events, isLoading: false, showError: false }
         case GET_EVENTS_FAILED:
             return { ...state, isLoading: false, showError: true }
 
         case GET_EVENT_PENDING:
             return { ...state, isLoading: true, showError: false }
         case GET_EVENT_SUCCESS:
-            return { ...state, payload: payload.event, isLoading: false, showError: false }
+            return { ...state, selected: payload.event, isLoading: false, showError: false }
         case GET_EVENT_FAILED:
             return { ...state, isLoading: false, showError: true }
 
         case GET_FAVORITE_EVENTS_PENDING:
-            return { ...state, payload, isLoading: true, showError: false }
+            return { ...state, isLoading: true, showError: false }
         case GET_FAVORITE_EVENTS_SUCCESS:
-            return { ...state, payload, isLoading: false, showError: false }
+            return { ...state, favorites: payload.events, isLoading: false, showError: false }
         case GET_FAVORITE_EVENTS_FAILED:
             return { ...state, isLoading: false, showError: true }
 
-        case CREATE_FAVORITE_PENDING:
-            return { ...state, isLoading: true, showError: false }
-        case CREATE_FAVORITE_SUCCESS:
-            return { ...state, payload, isLoading: false, showError: false }
-        case CREATE_FAVORITE_FAILED:
-            return { ...state, isLoading: false, showError: true }
+        // case CREATE_FAVORITE_PENDING:
+        //     return { ...state, isLoading: true, showError: false }
+        // case CREATE_FAVORITE_SUCCESS:
+        //     return { ...state, payload, isLoading: false, showError: false }
+        // case CREATE_FAVORITE_FAILED:
+        //     return { ...state, isLoading: false, showError: true }
         default:
             return state
     }

@@ -22,7 +22,7 @@ export const UNLIKE_EVENT_FAILED = 'UNLIKE_EVENT_FAILED'
 
 
 export const getEvents = () => {
-
+    
     //// run action to get current lat/long => store in redux; create an action GET_CURRENT_LOCATION 
     return async (dispatch, getState) => {
         try {
@@ -50,6 +50,7 @@ export const getEvents = () => {
 export const getOneEvent = (eventTitle) => {
     return async (dispatch) => {
         try {
+            console.log('Hello World')
             dispatch({ type: GET_EVENT_PENDING })
             const payload = await events.getOne(eventTitle)
             dispatch({

@@ -4,9 +4,10 @@ import { createStore, applyMiddleware, combineReducers, compose } from 'redux'
 import { auth } from './reducers/authUsers'
 import { events } from './reducers/events'
 import { formValues } from './reducers/updateForm'
+import { reviews } from './reducers/reviews'
 
 const rootReducer = combineReducers({
-    auth, events, formValues
+    auth, events, formValues, reviews
 })
 
 export default () => createStore(

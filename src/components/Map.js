@@ -34,7 +34,7 @@ const Map = compose(
     center={props.formValues.lat ? { lat: parseFloat(props.formValues.lat), lng: parseFloat(props.formValues.long) } : { lat: 47.599239, lng: -122.333805 }}>
 
     {props.isMarkerShown &&
-      props.events.payload.map((event, idx) => {
+      props.events.map((event, idx) => {
         const location = { lat: event.lat, lng: event.long }
         return (
           <Marker position={location} key={idx} onClick={() => props.onToggleOpen(idx)}>

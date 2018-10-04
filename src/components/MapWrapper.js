@@ -32,7 +32,7 @@ class MapWrapper extends Component {
   }
 }
 
-const mapStateToProps = ({ events, formValues }) => ({ events, formValues })
+const mapStateToProps = ({ events, formValues }) => ({ events: events.all, formValues })
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({ getEvents }, dispatch)
 }

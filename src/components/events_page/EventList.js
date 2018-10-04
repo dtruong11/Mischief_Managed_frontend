@@ -13,7 +13,6 @@ import pic from '../../assets/kidevents.jpg'
 import '../../styles/eventPage.css'
 import { withRouter } from 'react-router-dom'
 
-
 const override = css`
     display: flex;
     margin: 0 auto;
@@ -25,20 +24,10 @@ const override = css`
 class EventList extends Component {
   constructor(props) {
     super(props)
-    this.state = {
-      showSpinner: false
-    }
   }
 
-
-
-  componentWillMount = () => {
+  componentWillMount = () => {    
     this.props.getEvents() // action creator 
-    setTimeout(() => {
-      this.setState({
-        showSpinner: true
-      })
-    }, 200)
   }
 
   reRoute = (title, history) => {
@@ -66,7 +55,7 @@ class EventList extends Component {
             </div>
             :
             <div>
-              {this.props.events.payload.length > 0 ? this.props.events.payload.map(event => {
+              {this.props.events.length > 0 ? this.props.events.map(event => {
                 return <EventCard key={event.id} onClick={() => this.reRoute(event.title, this.props.history)} event={event} favorite={event.favorite} />
               }) :
                 <div className="not_found_text">
@@ -82,7 +71,7 @@ class EventList extends Component {
 }
 
 
-const mapStateToProps = ({ events, formValues }) => ({ events, formValues })
+const mapStateToProps = ({ events, formValues }) => ({ events: events.all, formValues })
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({ getEvents }, dispatch)
 }
