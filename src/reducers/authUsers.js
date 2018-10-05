@@ -21,7 +21,7 @@ export const auth = (state = initialState, action) => {
     switch (action.type) {
         case USER_NOT_LOGINED:
             return {
-                ...state, isLoading: false
+                ...state, isLoading: false, isLoggedIn: false
             }
         case USER_LOGIN_PENDING:
             return {
@@ -49,7 +49,7 @@ export const auth = (state = initialState, action) => {
             }
         case USER_LOGOUT:
             return {
-                ...state, user: {}
+                ...state, user: {}, isLoggedIn: false
             }
         default:
             return state;

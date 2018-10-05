@@ -1,22 +1,26 @@
 import React, { Component } from 'react'
 import {
   Button,
-  Form,
-  FormGroup,
-  Container,
   Row,
   Col,
-  Alert,
-  Input
-} from 'reactstrap'
+  Input,
+  Card,
+  CardTitle
+} from 'react-materialize'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { userLogin } from '../actions/authUsers'
+import '../styles/login.css'
+import LoginForm from './login_signup/LoginForm'
 
 class Login extends Component {
-  state = {
-    email: '',
-    password: ''
+  constructor(props) {
+    super(props)
+    this.state = {
+      email: '',
+      password: '',
+      loginview: true
+    }
   }
 
   submitLogin = e => {
@@ -29,53 +33,45 @@ class Login extends Component {
     })
   }
 
+  handleLoginView = () => {
+    this.setState({ loginview: true })
+  }
+
+  handleSignupView = () => {
+    this.setState({ loginview: false })
+  }
+
   render() {
+    console.log('this.props inside Login.js', this.props.isUser)
     return (
-      <Container className="main-wrapper">
+      <Card className="main-wrapper">
+        <Row>
+          {this.props.isUser ? <p>Welcome Family & Friends</p> : <div>Welcome Organization</div>}
+        </Row>
         <Row style={{ marginTop: "20vh" }} className="mx-0">
-          <Col
-            md={{ size: 5, offset: 3 }}
-            style={{}}
-          >
-            <Form onSubmit={this.submitLogin}>
-              <h2 className="text-center text-danger" className="text-center font-weight-bold"> Log In</h2>
-              <FormGroup>
-                <Input
-                  type="email"
-                  name="email"
-                  id="email-field"
-                  placeholder="email"
-                  value={this.state.email}
-                  onChange={e => this.setState({ email: e.target.value })}
-                />
-              </FormGroup>
-              <FormGroup>
-                <Input
-                  type="password"
-                  name="password"
-                  id="pass-field"
-                  placeholder="password"
-                  value={this.state.password}
-                  onChange={e => this.setState({ password: e.target.value })}
-                />
-              </FormGroup>
-              {this.props.LoginError ? (
-                <p color="danger" className="text-center font-weight-bold">
-                  Invalid email address or password
-                  </p>
-              ) : null}
-              <Button size="lg" block className="mr-3" type="submit" color="primary">
-                Log In
-              </Button >
-              <p className="text-center">OR</p>
-              <Button size="lg" block className="mr-3" type="submit" color="primary">
-                <a href="/signup" style={{ textDecoration: 'none' }}>SIGN UP</a>
-              </Button >
-            </Form>
+          <Col>
+            <Row>
+              <Col>
+              </Col>
+              <Col onClick={this.handleLoginView}>
+                <h5 className="text-center text-danger" className={this.state.loginview && 'login_signup'}> Log In </h5>
+              </Col>
+              <Col onClick={this.handleSignupView}>
+                <h5 className="text-center text-danger" className={!this.state.loginview && 'login_signup'}> Sign Up</h5>
+              </Col>
+              <Col>
+              </Col>
+            </Row>
+            {
+              this.state.loginview ? <LoginForm /> : <div>Hello signup</div>
+            }
           </Col>
         </Row>
+        {
+          this.props.isUser ? <a href='/login/organizers'>I am an organizer</a> : <a href='/login/users'>I am an avid user</a>
+        }
 
-      </Container>
+      </Card>
     )
   }
 }

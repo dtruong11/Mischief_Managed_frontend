@@ -13,7 +13,8 @@ const Map = compose(
     containerElement: <div style={{ height: `100%` }} />,
     mapElement: <div style={{ height: `100%` }} />,
   }),
-  withStateHandlers(() => ({
+  withStateHandlers 
+  (() => ({
     isOpen: {},
   }), {
       onToggleOpen: ({ isOpen }) => (idx) => {

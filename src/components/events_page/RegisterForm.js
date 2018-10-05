@@ -1,10 +1,9 @@
 
 import React, { Component } from 'react';
 import { Row, Input, Label, Button } from 'react-materialize'
-import { arrows_circle_plus } from 'react-icons-kit/linea/arrows_circle_plus'
 import { Icon } from 'react-icons-kit'
 import { userPlus } from 'react-icons-kit/fa/userPlus'
-import { plusCircle } from 'react-icons-kit/fa/plusCircle'
+import events from '../../requests/events'
 
 
 class RegisterForm extends Component {
@@ -14,16 +13,29 @@ class RegisterForm extends Component {
       childName: '',
       age: '',
       addedChild: [],
-      notes: ''
+      notes: '',
+      finisedBooking: false
+
     }
   }
 
-  onSubmit = (e) => {
+  // componentDidMount = async () => {
+  //   // check with API if user registered 
+  //   const isRegistered = await events.checkRegistered(this.props.eventId)
+  //   this.setState({
+  //     isRegistered: isRegistered.data.isRegistered
+  //   })
+  //   console.log('state of the form', this.state)
+  // }
+
+  onSubmit = async (e) => {
     e.preventDefault()
     const childName = this.state.childName
     const age = this.state.age
 
-    this.setState({ childName: '', age: '' })
+    const payload = await events.registerEvent(this.props.eventId, this.state.notes, this.state.addedChild)
+    console.log('payload in registerform on submit', payload)
+    this.setState({ childName: '', age: '', finisedBooking: true })
   }
 
   onChange = (e) => {
@@ -58,10 +70,8 @@ class RegisterForm extends Component {
   }
 
   render() {
-    console.log('inside render ', this.state)
     return (
       <form>
-
         <p>Who is attending?</p>
         <Row>
           <Input name='childName' label="name" value={this.state.childName} onChange={this.onChange} />
@@ -84,28 +94,24 @@ class RegisterForm extends Component {
         {this.state.addedChild.length > 0 && this.state.addedChild.map((el, idx) => {
           return <Row style={{ marginBottom: '5px' }} key={idx}>{`${el.name} ${el.age} ${this.plyear(el.age)} old`}</Row>
         })}
-
-        {/* <Row>
-          <div>
-            <Icon size={18} icon={plusCircle} style={{ color: '#B045BA' }} /><span> Add child</span>
-          </div>
-        </Row> */}
         <Row>
-          <Input name='notes' label='notes' value={this.state.notes} />
+          <Input name='notes' label='notes' value={this.state.notes} onChange={this.onChange} />
         </Row>
         {
-          this.state.childName && this.state.age ?
-            <Button onClick={this.onSubmit}>
-              Book
+          this.state.finisedBooking ? <p>Event registered successfully</p> :
+            (this.state.addedChild.length > 0 && this.state.notes ?
+              <Button onClick={this.onSubmit}>
+                Book
             </Button>
-            :
-            <Button disabled>
-              Book
-            </Button>
+              :
+              <Button disabled>
+                Book
+            </Button>)
         }
       </form>
     )
   }
 }
 
-export default RegisterForm 
+
+export default RegisterForm

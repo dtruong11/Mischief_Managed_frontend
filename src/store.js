@@ -5,9 +5,10 @@ import { auth } from './reducers/authUsers'
 import { events } from './reducers/events'
 import { formValues } from './reducers/updateForm'
 import { reviews } from './reducers/reviews'
+import { location } from './reducers/location'
 
 const rootReducer = combineReducers({
-    auth, events, formValues, reviews
+    auth, events, formValues, reviews, location
 })
 
 export default () => createStore(

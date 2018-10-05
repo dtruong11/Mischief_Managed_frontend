@@ -1,4 +1,6 @@
 import {
+    UPDATE_EVENT_REVIEW,
+
     GET_EVENTS_PENDING,
     GET_EVENTS_SUCCESS,
     GET_EVENTS_FAILED,
@@ -30,6 +32,8 @@ export const events = (state = eventsInitialState, {
     type, payload
 }) => {
     switch (type) {
+        case UPDATE_EVENT_REVIEW:
+            return { ...state, selected: { ...state.selected, reviews: state.selected.reviews.concat(payload)} }
         case GET_EVENTS_PENDING:
             return { ...state, isLoading: true, showError: false }
         case GET_EVENTS_SUCCESS:

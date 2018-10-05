@@ -1,0 +1,11 @@
+.main-wrapper {
+    width: 30%; 
+    /* height: 40%; */
+    margin: auto;
+    margin-top: 10vh;
+}
+
+.login_signup {
+    font-weight: 700;
+    color: #B045BA;
+}

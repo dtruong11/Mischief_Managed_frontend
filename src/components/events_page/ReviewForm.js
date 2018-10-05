@@ -26,12 +26,12 @@ class ReviewForm extends Component {
   onSubmit = (e) => {
     e.preventDefault()
     console.log('SUBMIT REVIEW?');
-    
+
     const content = this.state.content
     const votes = this.state.votes
     const eventId = this.props.eventId
     // console.log(eventId, content, parseInt(votes));
-    
+
     this.props.postReview(eventId, content, parseInt(votes))
     // this.setState({ content: '', votes: '' })
   }
@@ -55,8 +55,9 @@ class ReviewForm extends Component {
             <Input onChange={this.onChange} name='votes' type='radio' value='5' label='5' />
           </Row>
           {
-            this.state.content.length > 0 && this.state.votes && <Button onClick={this.onSubmit}>Add Review</Button>
-
+            this.props.isLoggedIn
+              ? (this.state.content.length > 0 && this.state.votes && <Button onClick={this.onSubmit}>Add Review</Button>)
+              : <p>Please log in to review an event</p>
           }
         </form>
       </Card>
@@ -64,10 +65,9 @@ class ReviewForm extends Component {
   }
 }
 
-const mapStateToProps = ({ reviews }) => ({ reviews })
+const mapStateToProps = ({ reviews, auth }) => ({ reviews, isLoggedIn: auth.isLoggedIn })
 const mapDispatchToProps = (dispatch) => bindActionCreators({
   postReview
 }, dispatch)
-
 
 export default connect(mapStateToProps, mapDispatchToProps)(ReviewForm)

@@ -20,7 +20,6 @@ class MapWrapper extends Component {
     }, 1000)
   }
 
-
   render() {
     return (
       <Map

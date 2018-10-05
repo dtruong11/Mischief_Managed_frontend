@@ -6,13 +6,24 @@ import { calendar } from 'react-icons-kit/feather/calendar'
 import { dollarSign } from 'react-icons-kit/feather/dollarSign'
 import { crosshair } from 'react-icons-kit/feather/crosshair'
 import RegisterForm from './RegisterForm'
+import { connect } from 'react-redux'
+import events from '../../requests/events'
 
 
 class SingleEventTop extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      clickedRegister: false
+      clickedRegister: false,
+      isRegistered: false
+    }
+  }
+  componentDidMount = async () => {
+    const isRegistered = await events.checkRegistered(this.props.event.id)
+    if (isRegistered) {
+      this.setState({
+        isRegistered: isRegistered.data.isRegistered
+      })
     }
   }
 
@@ -23,8 +34,20 @@ class SingleEventTop extends Component {
 
   }
 
+  checkLoggedinRegistered = (loggedIn, registered) => {
+    if (!loggedIn) {
+      return (<div>Please log in to register</div>)
+    } else {
+      if (registered) {
+        return <div>You have registered for this event.</div>
+      } else {
+        return <Button className='register_btn' onClick={this.handleRegisterClick}>Register</Button>
+      }
+    }
+  }
+
   render() {
-    const {id, title, image_url, description, cost, street, city, state, zip, min_age, max_age, start_date, end_date, name, logo } = this.props.event
+    const { id, title, image_url, description, cost, street, city, state, zip, min_age, max_age, start_date, end_date, name, logo } = this.props.event
     return (
       <Row>
         <Col>
@@ -61,7 +84,9 @@ class SingleEventTop extends Component {
                 <Icon size={25} icon={dollarSign} />  {cost}
                 <br />
                 <br />
-                <Button className='register_btn' onClick={this.handleRegisterClick}>Register</Button>
+                {
+                  this.checkLoggedinRegistered(this.props.isLoggedIn, this.state.isRegistered)
+                }
               </div>
           }
         </Col>
@@ -70,4 +95,10 @@ class SingleEventTop extends Component {
   }
 }
 
-export default SingleEventTop
+const mapStateToProps = ({ auth }) => {
+  return {
+    isLoggedIn: auth.isLoggedIn
+  }
+}
+
+export default connect(mapStateToProps, null)(SingleEventTop)

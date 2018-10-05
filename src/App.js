@@ -12,12 +12,15 @@ import UnauthenticatedRoute from './components/helpers/UnAuthenticateRoute'
 import { userVerify } from './actions/authUsers'
 import EventPage from './components/events_page/EventPage'
 import SingleEventPage from './components/events_page/SingleEvent'
+import { getCurrentLocation } from './actions/getCurrentLocation'
 
 
 class App extends Component {
-
   componentDidMount = () => {
+    console.log('in app.js', this.props)
+    // window.location.href
     this.props.userVerify()
+    this.props.getCurrentLocation()
   }
 
   render() {
@@ -34,11 +37,8 @@ class App extends Component {
               :
               <Switch>
                 <Route exact path="/events/map" component={Map} />
-                <UnauthenticatedRoute exact path="/login/users" isLoggedIn={this.props.isLoggedIn} component={Login} />
-                {/* <Route exact path="/login/users" render={() => {
-                  if (this.props.isLoggedIn) return <Redirect to="/profiles" />
-                  return <Login />
-                }} /> */}
+                <UnauthenticatedRoute exact path="/login/users" isUser={true} isLoggedIn={this.props.isLoggedIn} component={Login} />
+                <UnauthenticatedRoute exact path='/login/organizers' isUser={false} component={Login} />
                 <Route exact path="/users/events" component={EventPage} />
                 <Route exact path="/events/:eventTitle" component={SingleEventPage} />
                 <AuthenticateRoute exact path='/users/events' isLoggedIn={this.props.isLoggedIn} component={EventPage} />
@@ -52,19 +52,18 @@ class App extends Component {
     </Router>
 
     );
-
-
   }
 }
-function mapStateToProps(state) {
+const mapStateToProps = ({ auth, location }) => {
   return {
-    isLoading: state.auth.isLoading,
-    isLoggedIn: state.auth.isLoggedIn
+    isLoading: auth.isLoading,
+    isLoggedIn: auth.isLoggedIn,
+    location: location
   }
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ userVerify }, dispatch)
+  return bindActionCreators({ userVerify, getCurrentLocation }, dispatch)
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(App)
