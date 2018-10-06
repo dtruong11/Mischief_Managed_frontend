@@ -22,8 +22,6 @@ export const orgLogin = ({ email, password }, history) => {
         type: ORG_LOGIN_SUCCESS,
         payload: response
       })
-
-
       dispatch({
         type: USER_LOGIN_FAILED
       })
@@ -45,18 +43,17 @@ export const orgLogin = ({ email, password }, history) => {
 }
 
 
-export const orgSignup = (newOrg) => {
+export const orgSignup = (newOrg, history) => {
   // const { name, description, email, password, street, city, state, zip, logo, lat, long } = newOrg
   return async (dispatch) => {
     try {
       dispatch({ type: ORG_SIGNUP_PENDING })
       let response = await authOrg.signup(newOrg)
-      let isSignedUp = await response.json()
-      console.log('this is isSignedUp', isSignedUp)
       dispatch({
         type: ORG_SIGNUP_SUCCESS,
-        payload: isSignedUp
+        payload: response
       })
+      history.push('/login/organizers')
     } catch (err) {
       dispatch({
         type: ORG_SIGNUP_FAILED,

@@ -17,34 +17,35 @@ class SignupFormOrg extends Component {
     super(props)
     this.state = {
       name: '',
-      description: '',
+      aboutus: '',
       email: '',
       password: '',
-      street: '',
-      city: '',
-      state: '',
-      zip: '',
+      street_org: '',
+      city_org: '',
+      state_org: '',
+      zip_org: '',
       logo: '',
-      lat: '',
-      long: ''
+      lat_org: '',
+      long_org: ''
     }
   }
 
   submitSignup = e => {
     e.preventDefault()
+    console.log('inside submitsignup', this.state, typeof(this.state.lat_org))
     this.props.orgSignup(this.state, this.props.history)
     this.setState({
       name: '',
-      description: '',
+      aboutus: '',
       email: '',
       password: '',
-      street: '',
-      city: '',
-      state: '',
-      zip: '',
+      street_org: '',
+      city_org: '',
+      state_org: '',
+      zip_org: '',
       logo: '',
-      lat: '',
-      long: ''
+      lat_org: '',
+      long_org: ''
     })
   }
 
@@ -56,20 +57,18 @@ class SignupFormOrg extends Component {
     })
   }
 
-
-
   showButton = () => {
     if (this.state.name &&
       this.state.email &&
-      this.state.description &&
+      this.state.aboutus &&
       this.state.password &&
-      this.state.street &&
-      this.state.city &&
-      this.state.state &&
-      this.state.zip &&
+      this.state.street_org &&
+      this.state.city_org &&
+      this.state.state_org &&
+      this.state.zip_org &&
       this.state.logo &&
-      this.state.lat &&
-      this.state.long) {
+      this.state.lat_org &&
+      this.state.long_org) {
       return (
         <Button size="lg" block className="mr-3" type="submit" color="primary" onClick={this.submitSignup}>Sign Up </Button >)
     }
@@ -81,6 +80,15 @@ class SignupFormOrg extends Component {
     return (
       <Card className='main-wrapper'>
         <form onSubmit={this.submitSignup}>
+          <Row>
+            <Input
+              name='name' label='NAME'
+              id='name-field'
+              placeholder='name'
+              value={this.state.name}
+              onChange={this.onChange}
+            />
+          </Row>
           <Row>
             <Input
               name='email' label='EMAIL'
@@ -101,52 +109,43 @@ class SignupFormOrg extends Component {
           </Row>
           <Row>
             <Input
-              name='name' label='NAME'
-              id='name-field'
-              placeholder='name'
-              value={this.state.name}
-              onChange={this.onChange}
-            />
-          </Row>
-          <Row>
-            <Input
               type='textarea' label='DESCRIPTION'
-              name='description'
-              id="description-field"
-              placeholder="description"
-              value={this.state.description}
+              name='aboutus'
+              id="aboutus-field"
+              placeholder="aboutus"
+              value={this.state.aboutus}
               onChange={this.onChange}
             />
           </Row>
           <Row>
             <Input
-              name='street' label='STREET'
-              id='street-field'
+              name='street_org' label='STREET'
+              id='street_org-field'
               placeholder='street'
-              value={this.state.street}
+              value={this.state.street_org}
               onChange={this.onChange}
             />
             <Input
-              name="city" label='CITY'
-              id="city-field"
+              name="city_org" label='CITY'
+              id="city_org-field"
               placeholder="city"
-              value={this.state.city}
+              value={this.state.city_org}
               onChange={this.onChange}
             />
           </Row>
           <Row>
             <Input
-              name='state' label='STATE'
-              id='state-field'
+              name='state_org' label='STATE'
+              id='state_org-field'
               placeholder='state'
-              value={this.state.state}
+              value={this.state.state_org}
               onChange={this.onChange}
             />
             <Input
-              name="zip" label='ZIPCODE'
-              id="zip-field"
+              name="zip_org" label='ZIPCODE'
+              id="zip_org-field"
               placeholder="zip"
-              value={this.state.zip}
+              value={this.state.zip_org}
               onChange={this.onChange}
             />
           </Row>
@@ -160,28 +159,27 @@ class SignupFormOrg extends Component {
           </Row>
           <Row>
             <Input
-              name='lat'
+              name='lat_org'
               label='LATITUDE'
-              id='lat-field'
+              id='lat_org-field'
               placeholder='lat'
-              value={this.state.lat}
+              value={this.state.lat_org}
               onChange={this.onChange}
             />
             <Input
-              name="long"
+              name="long_org"
               label='LONGITUDE'
-              id="long-field"
+              id="long_org-field"
               placeholder="long"
-              value={this.state.long}
+              value={this.state.long_org}
               onChange={this.onChange}
             />
           </Row>
-
           {
             this.props.SignupError ? (
               <p color="danger" className="text-center font-weight-bold">
-                Make sure all fields are correct
-            </p>
+                Have you already registered?
+              </p>
             ) : null
           }
           {this.showButton()}

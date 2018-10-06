@@ -12,6 +12,7 @@ import OrgDashboard from './components/organizers/OrgDashboard'
 import './App.css';
 import UserProfile from './components/UserProfile'
 import AuthenticateRoute from './components/helpers/AuthenticateRoute'
+import AuthenticateRouteOrg from './components/helpers/AuthenticateRouteOrg'
 import UnauthenticatedRoute from './components/helpers/UnAuthenticateRoute'
 import UnauthenticatedRouteOrg from './components/helpers/UnAuthenticateRouteOrg'
 
@@ -26,8 +27,8 @@ import SignupUser from './components/login_signup/SignupUser'
 
 class App extends Component {
   componentDidMount = () => {
-    // this.props.orgVerify()
-    // this.props.userVerify()
+    this.props.orgVerify()
+    this.props.userVerify()
     this.props.getCurrentLocation()
   }
 
@@ -41,7 +42,7 @@ class App extends Component {
           <Switch>
             <Route exact path="/events/map" component={Map} />
             <Route exact path='/home' component={HomePage} />
-            <Router exact path='/organizers/landing' component={OrgDashboard} />
+            {/* <Router exact path='/organizers/landing' component={OrgDashboard} /> */}
             <UnauthenticatedRoute exact path="/login/users" isLoggedIn={this.props.isLoggedIn} component={Login} />
             <UnauthenticatedRoute exact path="/signup/users" isLoggedIn={this.props.isLoggedIn} component={SignupUser} />
 
@@ -52,6 +53,7 @@ class App extends Component {
             <Route exact path="/events/:eventTitle" component={SingleEventPage} />
             <AuthenticateRoute exact path='/users/events' isLoggedIn={this.props.isLoggedIn} component={EventPage} />
             <AuthenticateRoute exact path="/profiles" isLoggedIn={this.props.isLoggedIn} component={UserProfile} />
+            <AuthenticateRouteOrg exact path='/organizers/landing' isLoggedIn={this.props.isOrgLoggedIn} component={OrgDashboard} />
             <Redirect to="/home" />
           </Switch>
         </div>

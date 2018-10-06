@@ -41,7 +41,7 @@ export const authOrg = (state = initialState, action) => {
       }
     case ORG_SIGNUP_SUCCESS:
       return {
-        ...state, isLoading: false, isLoggedIn: true
+        ...state, isLoading: false, isLoggedIn: false 
       }
     case ORG_SIGNUP_FAILED:
       return {
