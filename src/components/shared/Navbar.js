@@ -1,21 +1,25 @@
 import React, { Component } from 'react'
+// import {
+//   Collapse,
+//   Navbar,
+//   NavbarToggler,
+//   NavbarBrand,
+//   Nav,
+//   NavItem,
+//   NavLink,
+//   UncontrolledDropdown,
+//   DropdownToggle,
+//   DropdownMenu,
+//   DropdownItem
+// } from 'reactstrap'
 import {
-  Collapse,
-  Navbar,
-  NavbarToggler,
-  NavbarBrand,
-  Nav,
-  NavItem,
-  NavLink,
-  UncontrolledDropdown,
-  DropdownToggle,
-  DropdownMenu,
-  DropdownItem
-} from 'reactstrap'
+  Navbar, NavItem,
+} from 'react-materialize'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { userVerify } from '../../actions/authUsers'
 import { userLogout } from '../../actions/authUsers'
+import { orgVerify, orgLogout } from '../../actions/authOrgs'
 import { withRouter } from 'react-router-dom'
 
 
@@ -31,7 +35,12 @@ class Navigation extends Component {
   }
 
   componentDidMount = () => {
-    this.props.userVerify()
+    //ASK 
+    // const orgUser = this.props.history.location.pathname.includes('organizers')
+    // if (orgUser) {
+      this.props.orgVerify()
+    // }
+    // this.props.userVerify()
   }
 
   toggleNavbar = () => {
@@ -40,61 +49,68 @@ class Navigation extends Component {
     })
   }
 
+  checkLogin = () => {
+
+    let orgName = ''
+    if (this.props.authOrg.hasOwnProperty('name')) {
+      orgName = this.props.authOrg.name || `Organization`
+    }
+
+    const { userLogout, orgLogout, history, isLoggedIn, isLoggedInOrg } = this.props
+    if (isLoggedIn) {
+      return (
+        <div>
+          <NavItem href='/users/events'>Activities</NavItem>
+          <NavItem href="/profile">Profile</NavItem>
+          <NavItem onClick={() => userLogout(history)}>Log Out</NavItem>
+        </div>
+      )
+    } else if (isLoggedInOrg) {
+      return (
+        <div>
+          <NavItem>Welcome, {orgName}</NavItem>
+          <NavItem onClick={(e) => {
+            e.preventDefault()
+            orgLogout(history)
+          }}>Log Out</NavItem>
+        </div>)
+    } else {
+      return (
+        <div>
+          <NavItem href="/login/users">Login</NavItem>
+          <NavItem href="/signup/users" >Sign Up</NavItem>
+        </div>
+      )
+    }
+  }
+
 
   render() {
-    console.log("this.props", this.props)
     return (
-      <div>
-        <Navbar color="light" light expand="md">
-          <NavbarBrand href="/users/events" className="mr-auto">Mischief Managed</NavbarBrand>
-          <NavbarToggler onClick={this.toggleNavbar} className="mr-2" />
-          {this.props.isLoggedIn ? <Collapse isOpen={!this.state.isOpen} navbar>
-            <Nav className="ml-auto" navbar>
-              <NavItem>
-                <NavLink href="/users/events">Activities</NavLink>
-              </NavItem>
-              <NavItem>
-                <NavLink href="/parenting">Parenting</NavLink>
-              </NavItem>
-              <UncontrolledDropdown nav inNavbar>
-                <DropdownToggle nav caret>
-                  Profile
-                </DropdownToggle>
-                <DropdownMenu right>
-                  <DropdownItem>
-                    Favorites
-                </DropdownItem>
-                  <DropdownItem divider />
-                  <DropdownItem>
-                    <NavLink href="/profiles">Account</NavLink>
-                  </DropdownItem>
-                  <DropdownItem divider />
-                  <DropdownItem onClick={() => this.props.userLogout(this.props.history)}>
-                    Log out
-                  </DropdownItem>
-                </DropdownMenu>
-              </UncontrolledDropdown>
-            </Nav>
-          </Collapse> :
-            <Collapse isOpen={this.state.isOpen} navbar>
-              <Nav className="ml-auto" navbar>
-                <NavItem>
-                  <NavLink href="/login/users" className="nav-link">Login</NavLink>
-                </NavItem>
-              </Nav>
-            </Collapse>}
-        </Navbar>
-      </div>
+      <Navbar brand='Mischief Managed' right>
+        {
+          this.checkLogin()
+        }
+      </Navbar>
     );
   }
 
 }
 
-function mapStateToProps(state) {
+
+
+
+
+
+function mapStateToProps({ auth, authOrg }) {
   return {
-    isLoggedIn: state.auth.isLoggedIn
+    isLoggedIn: auth.isLoggedIn,
+    isLoggedInOrg: authOrg.isLoggedIn,
+    authOrg: authOrg.org
   }
 }
-const mapDispatchToProps = dispatch => bindActionCreators({ userVerify, userLogout }, dispatch)
+const mapDispatchToProps = dispatch => bindActionCreators({ userVerify, userLogout, orgVerify, orgLogout }, dispatch)
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Navigation))
+
+

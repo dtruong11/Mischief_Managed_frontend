@@ -7,8 +7,10 @@ import {
 } from 'react-materialize'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { userLogin } from '../../actions/authUsers'
+import { orgLogin } from '../../actions/authOrgs'
 import '../../styles/login.css'
+import { withRouter } from 'react-router-dom'
+
 
 class LoginForm extends Component {
   constructor(props) {
@@ -21,7 +23,7 @@ class LoginForm extends Component {
 
   submitLogin = e => {
     e.preventDefault()
-    this.props.userLogin(this.state, this.props.history)
+      this.props.orgLogin(this.state, this.props.history)
     this.setState({
       email: '',
       password: ''
@@ -30,7 +32,7 @@ class LoginForm extends Component {
 
   render() {
     return (
-      <form onSubmit={this.submitLogin}>
+      <form onSubmit={(e) => this.submitLogin(e)}>
         <Row>
           <Input
             type="email"
@@ -65,16 +67,16 @@ class LoginForm extends Component {
 }
 
 
-const mapStateToProps = ({ auth }) => {
+const mapStateToProps = ({ authOrg }) => {
   return {
-    LoginError: auth.LoginError
+    LoginError: authOrg.LoginError
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    userLogin: bindActionCreators(userLogin, dispatch)
+    orgLogin: bindActionCreators(orgLogin, dispatch)
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(LoginForm)
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(LoginForm))

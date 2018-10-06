@@ -55,17 +55,6 @@ export const getEvents = () => {
   }
 }
 
-// export const registerEvent = (eventId, notes, attendees) => {
-//   return async (dispatch) => {
-//     try {
-//       const payload = await events.registerEvent(eventId, notes, attendees)
-//       dispatch({ type: REGISTER_EVENT })
-//       // What data should I dispatch back? 
-//     } catch (err) {
-//       console.error(err)
-//     }
-//   }
-// }
 
 export const updateEventReview = (review) => {
   return { type: UPDATE_EVENT_REVIEW, payload: review }

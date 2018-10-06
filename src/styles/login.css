@@ -3,9 +3,17 @@
     /* height: 40%; */
     margin: auto;
     margin-top: 10vh;
+    text-align: center;
 }
 
 .login_signup {
     font-weight: 700;
     color: #B045BA;
+}
+
+.form-title {
+    font-weight: bold;
+    color: #B045BA;
+    text-align: center;
+
 }

@@ -1,5 +1,6 @@
 import axios from 'axios'
 import { request } from '../requests/requests'
+import { ORG_LOGIN_FAILED } from './authOrgs'
 export const USER_LOGIN_PENDING = "USER_LOGIN_PENDING"
 export const USER_LOGIN_SUCCESS = 'USER_LOGIN_SUCCESS'
 export const USER_LOGIN_FAILED = 'USER_LOGIN_FAILED'
@@ -23,6 +24,15 @@ export const userLogin = ({ email, password }, history) => {
         type: USER_LOGIN_SUCCESS,
         payload: response.data
       })
+
+      dispatch({
+        type: ORG_LOGIN_FAILED
+      })
+
+      if (localStorage.getItem('token_org')) {
+        localStorage.removeItem('token_org')
+      }
+
       console.log('response in userLogin', response)
       localStorage.setItem('token_user', response.data.token);
       localStorage.setItem('user_id', response.data.id)
@@ -102,6 +112,6 @@ export const userLogout = (history) => {
   return async (dispatch) => {
     localStorage.removeItem('token_user');
     dispatch({ type: USER_LOGOUT })
-    history.push('/users/events')
+    history.push('/users/events') //change to homepage 
   }
 }

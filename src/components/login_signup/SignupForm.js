@@ -54,11 +54,11 @@ class LoginForm extends Component {
         {this.props.LoginError ? (
           <p color="danger" className="text-center font-weight-bold">
             Invalid email address or password
-        </p>
+          </p>
         ) : null}
         <Button size="lg" block className="mr-3" type="submit" color="primary">
           Log In
-      </Button >
+        </Button >
       </form>
     )
   }

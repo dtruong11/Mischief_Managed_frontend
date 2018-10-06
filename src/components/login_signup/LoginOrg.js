@@ -9,11 +9,11 @@ import {
 } from 'react-materialize'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { userLogin } from '../actions/authUsers'
-import '../styles/login.css'
-import LoginForm from './login_signup/LoginForm'
+import { orgLogin } from '../../actions/authOrgs'
+import '../../styles/login.css'
+import LoginFormOrg from './LoginFormOrg'
 
-class Login extends Component {
+class LoginOrg extends Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -26,7 +26,7 @@ class Login extends Component {
   submitLogin = e => {
     e.preventDefault()
     // console.log('history', this.props);
-    this.props.userLogin(this.state, this.props.history)
+    this.props.orgLogin(this.state, this.props.history)
     this.setState({
       email: '',
       password: ''
@@ -42,54 +42,51 @@ class Login extends Component {
   }
 
   render() {
-    console.log('this.props inside Login.js', this.props.isUser)
     return (
       <Card className="main-wrapper">
         <Row>
-           <p>Welcome Family & Friends</p> 
+          <div className='form-title'>Welcome Organization</div>
         </Row>
-        <Row style={{ marginTop: "20vh" }} className="mx-0">
+        <Row className="mx-0">
           <Col>
             <Row>
               <Col>
               </Col>
-              <Col onClick={this.handleLoginView}>
+              {/* <Col onClick={this.handleLoginView}>
                 <h5 className="text-center text-danger" className={this.state.loginview && 'login_signup'}> 
-                Log In 
-                </h5>
+                <a href='/login/organizers'> Log In  </a>
+                 </h5>
               </Col>
               <Col onClick={this.handleSignupView}>
                 <h5 className="text-center text-danger" className={!this.state.loginview ? 'login_signup' : ''}> 
-                Sign Up
+                <a href='/signup/organizers'> Sign Up  </a>
                 </h5>
-              </Col>
+              </Col> */}
               <Col>
               </Col>
             </Row>
-            {
-              this.state.loginview ? <LoginForm /> : <div>Hello signup</div>
-            }
+            <LoginFormOrg /> 
           </Col>
         </Row>
-        <a href='/login/organizers'>I am an organizer</a> 
+        <a href='/signup/organizers'>Not logged in? Sign up</a>
       </Card>
     )
   }
 }
 
-function mapStateToProps(state) {
+function mapStateToProps({ authOrg }) {
   return {
-    LoginError: state.auth.LoginError
+    LoginError: authOrg.LoginError
   }
 }
 
 function mapDispatchToProps(dispatch) {
   return {
-    userLogin: bindActionCreators(userLogin, dispatch)
+    orgLogin: bindActionCreators(orgLogin, dispatch)
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Login)
+export default connect(mapStateToProps, mapDispatchToProps)(LoginOrg)
 
 
 

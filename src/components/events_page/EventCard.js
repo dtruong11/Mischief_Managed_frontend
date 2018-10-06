@@ -74,9 +74,6 @@ export const eventTime = (start_date, end_date) => {
   return range
 }
 
-
-
-
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({ createFavoriteEvent }, dispatch)
 }
