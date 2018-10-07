@@ -31,15 +31,11 @@ class EventList extends Component {
   }
 
   reRoute = (title, history) => {
-    console.log('title inside reRoute', title)
     const fixedTitle = title.split(' ').join('-')
-
-    console.log('fixedTitle',fixedTitle)
     history.push(`/events/${fixedTitle}`)
   }
 
   render() {
-    console.log('this.props.events inside EVELNTLIST', this.props)
     return (
       <div>
         {

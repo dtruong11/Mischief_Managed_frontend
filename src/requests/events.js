@@ -3,7 +3,6 @@ const BASE_URL = 'http://localhost:5000'
 
 // get all events without logging in (no userId)
 const get = async (formObj = {}) => {
-
   let input = { ...formObj }
   delete input.age
   let str = ''

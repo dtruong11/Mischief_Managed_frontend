@@ -15,18 +15,8 @@ class RegisterForm extends Component {
       addedChild: [],
       notes: '',
       finisedBooking: false
-
     }
   }
-
-  // componentDidMount = async () => {
-  //   // check with API if user registered 
-  //   const isRegistered = await events.checkRegistered(this.props.eventId)
-  //   this.setState({
-  //     isRegistered: isRegistered.data.isRegistered
-  //   })
-  //   console.log('state of the form', this.state)
-  // }
 
   onSubmit = async (e) => {
     e.preventDefault()
@@ -51,12 +41,10 @@ class RegisterForm extends Component {
     let childAge = this.state.age
 
     if (childName && childAge) {
-      console.log('this.state.addedChild', this.state.addedChild)
       let joined = this.state.addedChild.concat({ name: childName, age: childAge })
       this.setState({
         addedChild: joined
       })
-      console.log('after adding child', this.state)
     }
 
     this.setState({

@@ -1,5 +1,6 @@
 import authOrg from '../requests/authOrg'
 import { USER_LOGIN_FAILED } from './authUsers'
+
 export const ORG_NOT_LOGINED = 'ORG_NOT_LOGINED'
 export const ORG_LOGIN_PENDING = "ORG_LOGIN_PENDING"
 export const ORG_LOGIN_SUCCESS = 'ORG_LOGIN_SUCCESS'
@@ -12,12 +13,10 @@ export const ORG_SIGNUP_FAILED = 'ORG_SIGNUP_FAILED'
 export const ORG_LOGOUT = 'ORG_LOGOUT'
 
 export const orgLogin = ({ email, password }, history) => {
-
   return async (dispatch) => {
     try {
       dispatch({ type: ORG_LOGIN_PENDING })
       const response = await authOrg.login({ email, password })
-
       dispatch({
         type: ORG_LOGIN_SUCCESS,
         payload: response
@@ -63,21 +62,17 @@ export const orgSignup = (newOrg, history) => {
   }
 };
 
-
-
 export const orgVerify = () => {
-
   return async (dispatch) => {
     const token = localStorage.getItem('token_org')
     const orgId = localStorage.getItem('org_id')
-
     if (token) {
       try {
         const response = await authOrg.verify(token, orgId)
-
+        console.log('response in orgVerify', response.data)
         dispatch({
           type: ORG_LOGIN_SUCCESS,
-          payload: response.data[0]
+          payload: response.data
         })
         return true
       } catch (e) {
@@ -96,13 +91,12 @@ export const orgVerify = () => {
   }
 }
 
-
 export const orgLogout = (history) => {
   console.log('Logging out org ')
   localStorage.removeItem('token_org');
-
   return (dispatch) => {
     dispatch({ type: ORG_LOGOUT })
     history.push('/home')
   }
 }
+

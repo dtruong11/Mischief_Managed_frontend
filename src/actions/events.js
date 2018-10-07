@@ -36,9 +36,6 @@ export const getEvents = () => {
         formObj.lat = location.lat || 47.599086899999996
         formObj.long = location.long || -122.33401690000001
       }
-
-      console.log('!!!!!!', formObj);
-
       dispatch({ type: GET_EVENTS_PENDING })
       const payload = await events.get(formObj)
       dispatch({
@@ -64,7 +61,6 @@ export const updateEventReview = (review) => {
 export const getOneEvent = (eventTitle) => {
   return async (dispatch) => {
     try {
-      console.log('Hello World')
       dispatch({ type: GET_EVENT_PENDING })
       const payload = await events.getOne(eventTitle)
       dispatch({

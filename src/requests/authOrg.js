@@ -23,4 +23,5 @@ const verify = async (token, orgId) => {
 }
 
 
+
 export default { signup, login, verify }

@@ -1,0 +1,21 @@
+.logo_img {
+    position: absolute;
+    width: 300px;
+    left: 40%;
+    margin-top: 10vh;
+    height: 300px;
+}
+
+.wallpaper {
+    padding-bottom: 20px;
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 100%;
+}
+
+.contain-overlay {
+    position: relative; 
+    left: 0; 
+    top: 0;
+}
