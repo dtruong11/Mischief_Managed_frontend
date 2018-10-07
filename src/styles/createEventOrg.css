@@ -1,6 +1,20 @@
 .main_wrapper {
   width: 40%;
   text-align: center;
-  margin-left: 20%;
-  margin-bottom: 50px;
+  margin: 0 auto;
+  /* margin-bottom: 50px; */
+}
+
+.submit_btn {
+  text-align: center;
+}
+
+.calendar_container {
+  border: 0.2px solid #B045BA; 
+
+}
+
+.button_submit {
+  text-align: center;
+  margin: auto;
 }

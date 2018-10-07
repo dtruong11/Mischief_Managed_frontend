@@ -6,6 +6,7 @@ import { getEventsByOrg } from '../../actions/eventsByOrg'
 import { getOrg } from '../../actions/getOneOrg'
 import OrgDashTop from './OrgDashTop'
 import OrgEventForm from './OrgEventForm'
+import OrgEventList from './OrgEventList'
 // import { Link } from 'react-router-dom'
 
 class OrgDashboard extends Component {
@@ -34,6 +35,9 @@ class OrgDashboard extends Component {
           <Col>
             <OrgEventForm />
           </Col>
+        </Row>
+        <Row>
+          <OrgEventList />
         </Row>
       </div>
     )

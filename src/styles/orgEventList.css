@@ -1,0 +1,19 @@
+.all_events {
+  display: flex;
+  margin: 5%;
+  justify-content: space-between;
+  flex-flow: row wrap;
+  align-content: center;
+}
+
+.not_found_events {
+  width: 100%;
+  height: 100%;
+}
+
+.not_found_text {
+  font-weight: bold;
+  color: #B045BA;
+  font-size: 18px;
+  text-align: center;
+}

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Row, Col, Container } from 'reactstrap'
+import { Row, Col } from 'react-materialize'
 import { Icon } from 'react-icons-kit'
 import { mail } from 'react-icons-kit/feather/mail'
 

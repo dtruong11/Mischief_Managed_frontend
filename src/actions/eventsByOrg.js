@@ -12,9 +12,10 @@ export const getEventsByOrg = () => {
       dispatch({ type: GET_EVENTS_BY_ORG_PENDING })
       const orgId = localStorage.getItem('org_id')
       const response = await eventsByOrg.getEventsByOrg(orgId)
+      console.log(' this is response inside getEventsbyORg', response.data[0])
       dispatch({
         type: GET_EVENTS_BY_ORG_SUCCESS,
-        payload: response
+        payload: response.data
       })
     } catch (err) {
       console.error(err)

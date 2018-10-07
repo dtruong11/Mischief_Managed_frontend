@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Row, Col, Container, Button } from 'reactstrap'
+import { Row, Col, Container } from 'reactstrap'
 import { withRouter } from 'react-router-dom'
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -34,7 +34,6 @@ class SingleEventPage extends Component {
   }
 
   renderEvent = (event) => {
-    console.log('AM I RENDERING EVENT?');
 
     return (
       <div>
