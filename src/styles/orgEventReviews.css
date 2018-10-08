@@ -1,0 +1,26 @@
+.wrapper {
+  /* display: flex;
+  flex-flow: row wrap; */
+  justify-content: center;
+}
+
+/* .review_card {
+  text-align: center;
+  padding: 5px; 
+  width: 400px;
+  height: 400px;
+  /* height: 300px; */
+  /* overflow: hidden; */
+
+
+/*  */
+
+review_card {
+  width: 50%;
+}
+
+.avatar {
+  width: 70px; 
+  height: 70px;
+  border-radius: 50%;
+}

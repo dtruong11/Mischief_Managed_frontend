@@ -2,9 +2,6 @@ import axios from 'axios'
 const BASE_URL = 'http://localhost:5000'
 
 const postReview = (eventId, content, votes) => {
-    console.log('POSTREVIEW YAYYYYYY')
-
-    // axios.post()
     return axios(`${BASE_URL}/events/${eventId}/reviews`, {
         method: 'POST',
         headers: {

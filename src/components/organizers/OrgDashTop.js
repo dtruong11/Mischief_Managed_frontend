@@ -18,8 +18,6 @@ class OrgDashTop extends Component {
   }
 
   render() {
-    // const org = this.props.oneOrg.data
-    // console.log('this is org', org)
     const { id, name, aboutus, email, lat_org, long_org, state_org, street_org, zip_org, logo } = this.props.oneOrg
     return (
       <Row>

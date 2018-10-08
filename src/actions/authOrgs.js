@@ -66,6 +66,7 @@ export const orgVerify = () => {
   return async (dispatch) => {
     const token = localStorage.getItem('token_org')
     const orgId = localStorage.getItem('org_id')
+    console.log('this is org_id from localStorage inside orgVerify', orgId)
     if (token) {
       try {
         const response = await authOrg.verify(token, orgId)
@@ -92,7 +93,7 @@ export const orgVerify = () => {
 }
 
 export const orgLogout = (history) => {
-  console.log('Logging out org ')
+  localStorage.removeItem('org_id')
   localStorage.removeItem('token_org');
   return (dispatch) => {
     dispatch({ type: ORG_LOGOUT })

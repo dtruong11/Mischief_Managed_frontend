@@ -1,16 +1,37 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import { Row, Input, Card, Col, Button } from 'react-materialize'
 import {
-  DateInput,
-  TimeInput,
-  DateTimeInput,
-  DatesRangeInput
+  DateTimeInput
 } from 'semantic-ui-calendar-react'
 import { Icon } from 'react-icons-kit'
 import '../../styles/createEventOrg.css'
+import { createEvent } from '../../actions/eventsByOrg'
 var moment = require('moment')
 
+////////////////////////////////////
+// HELPER FUNCTIONS: MOMENTJS TIME 
+////////////////////////////////////
+export const parseTime = (datetime, parseiso = true) => {
+  if (parseiso) {
+    const iso_time = moment(moment(datetime, 'YYYY/MM/DD HH:mm')).toISOString()
+    return iso_time
+  } else {
+    const timeFormat = moment(datetime).format('YYYY/MM/DD HH:mm')
+    return timeFormat
+  }
+}
 
+// check if start time is in the past, today, or future 
+export const checkBefore = (endT) => {
+  // const start = moment(startT)
+  const end = moment(endT)
+  if (end.isSame(moment(), 'day')) return 'today'
+  if (end.isBefore(moment())) return 'past'
+  return 'future'
+  // return start.isBefore(end)
+}
 
 class EventForm extends Component {
   constructor(props) {
@@ -42,18 +63,13 @@ class EventForm extends Component {
 
   onSubmit = async (e) => {
     e.preventDefault()
-    console.log(this.state)
+    const start_date = parseTime(this.state.start_date, true)
+    const end_date = parseTime(this.state.end_date, true)
+    const formInputs = { ...this.state, start_date, end_date }
 
-    const start_date_iso = moment(moment(this.state.start_date, 'YYYY/MM/DD HH:mm')).toISOString()
-    const end_date_iso = moment(moment(this.state.end_date, 'YYYY/MM/DD HH:mm')).toISOString()
+    // backend call to create event 
+    this.props.createEvent(formInputs)
 
-
-    const check_start = moment(start_date_iso).format('YYYY/MM/DD HH:mm')
-    console.log('start_date_iso', start_date_iso)
-    console.log(check_start)
-    console.log('end_date_iso', end_date_iso)
-
-    // backend call 
     this.setState({
       title: '',
       description: '',
@@ -88,12 +104,10 @@ class EventForm extends Component {
   handleChange = (event, { name, value }) => {
     if (this.state.hasOwnProperty(name)) {
       this.setState({ [name]: value });
-      // this.props.changedDate(value)
     }
   }
 
   handleCheckbox = (e) => {
-    console.log('THIS IS HANDLECHECKBOX')
     const name = e.target.name
     const value = e.target.value
     this.setState({
@@ -175,4 +189,5 @@ class EventForm extends Component {
   }
 }
 
-export default EventForm 
+const mapDispatchToProps = (dispatch) => bindActionCreators({ createEvent }, dispatch)
+export default connect(null, mapDispatchToProps)(EventForm) 

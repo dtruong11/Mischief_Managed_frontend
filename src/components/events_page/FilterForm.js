@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-// import { Row, Col, Form } from 'reactstrap';
 import { Row, Col, Input } from 'react-materialize'
 import SearchBar from './SearchBar'
 import SliderRange from './Slider'

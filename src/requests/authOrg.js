@@ -13,6 +13,7 @@ const login = async ({ email, password }) => {
 }
 
 const verify = async (token, orgId) => {
+  console.log('THIS IS orgId inside request verify', orgId)
   const res = await axios(`${BASE_URL}/organizations/${orgId}`, {
     method: 'GET',
     headers: {

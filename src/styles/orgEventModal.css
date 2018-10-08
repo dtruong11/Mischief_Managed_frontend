@@ -1,0 +1,20 @@
+.wrapper{
+  display: flex;
+  /* margin: 40px auto; */
+  flex-flow: row;
+  justify-content: space-between;
+}
+
+.registration_card {
+  display: block;
+  width: 400px;
+  height: 250px;
+  font-size:15px;
+  margin-right: 15px;
+}
+
+.card_img {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+}
