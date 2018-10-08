@@ -10,7 +10,7 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { orgSignup } from '../../actions/authOrgs'
 import '../../styles/login.css'
-
+import { withRouter } from 'react-router-dom'
 
 class SignupFormOrg extends Component {
   constructor(props) {
@@ -32,7 +32,7 @@ class SignupFormOrg extends Component {
 
   submitSignup = e => {
     e.preventDefault()
-    console.log('inside submitsignup', this.state, typeof(this.state.lat_org))
+    console.log('inside submitsignup', this.state, typeof (this.state.lat_org))
     this.props.orgSignup(this.state, this.props.history)
     this.setState({
       name: '',
@@ -178,7 +178,7 @@ class SignupFormOrg extends Component {
           {
             this.props.SignupError ? (
               <p color="danger" className="text-center font-weight-bold">
-                Have you already registered?
+                Have you already registered? Or, make sure all fields are correct.
               </p>
             ) : null
           }
@@ -188,7 +188,6 @@ class SignupFormOrg extends Component {
     )
   }
 }
-
 
 const mapStateToProps = ({ authOrg }) => {
   return {
@@ -202,18 +201,4 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(SignupFormOrg)
-
-
-
-	// "name": "Seattle Children",
-	// "description": "We have fun activities such as book reading and music time.",
-	// "email": "seattle@children.com",
-	// "password":"password",
-	// "street": "4800 Sand Point Way NE",
-	// "city": "Seattle",
-	// "state": "WA",
-	// "zip": "98105",
-	// "logo": "https://www.underconsideration.com/brandnew/archives/seattle_childrens_detail.gif",
-	// "lat": 47.662663,
-	// "long": -122.280493
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(SignupFormOrg))

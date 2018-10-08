@@ -1,11 +1,17 @@
-.logo_img {
+/* .logo_img {
     position: absolute;
     width: 300px;
     left: 40%;
     margin-top: 10vh;
     height: 300px;
-}
+} */
 
+.logo_img {
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+    margin: 0 auto;
+}
 .wallpaper {
     padding-bottom: 20px;
     position: relative;
@@ -18,4 +24,9 @@
     position: relative; 
     left: 0; 
     top: 0;
+}
+
+.top {
+    display: 'box';
+    overflow: hidden;
 }

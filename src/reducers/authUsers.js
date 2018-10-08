@@ -41,7 +41,7 @@ export const auth = (state = initialState, action) => {
             }
         case USER_SIGNUP_SUCCESS:
             return {
-                ...state, isLoading: false, isLoggedIn: true
+                ...state, isLoading: false, isLoggedIn: false
             }
         case USER_SIGNUP_FAILED:
             return {
@@ -49,7 +49,7 @@ export const auth = (state = initialState, action) => {
             }
         case USER_LOGOUT:
             return {
-                ...state, user: {}, isLoggedIn: false
+                ...state, user: {}, isLoggedIn: false, isLoading: false 
             }
         default:
             return state;

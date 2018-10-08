@@ -84,20 +84,20 @@ export const userVerify = () => {
 }
 
 
-export const userSignup = (newUser) => {
+export const userSignup = (newUser, history) => {
   return async (dispatch) => {
     try {
       dispatch({ type: USER_SIGNUP_PENDING })
       let response = await axios(`${BASE_URL}/auth/signup/users`, {
         method: "POST",
         headers: { 'Content-Type': 'application/json' },
-        data: { newUser }
+        data: newUser
       })
-      let isSignedUp = await response.json()
       dispatch({
         type: USER_SIGNUP_SUCCESS,
-        payload: isSignedUp
+        payload: response
       })
+      history.push('/login/users')
     } catch (err) {
       dispatch({
         type: USER_SIGNUP_FAILED,
@@ -108,10 +108,10 @@ export const userSignup = (newUser) => {
 };
 
 export const userLogout = (history) => {
-  console.log('This is logging out')
-  return async (dispatch) => {
+  return (dispatch) => {
     localStorage.removeItem('token_user');
+    localStorage.removeItem('user_id');
     dispatch({ type: USER_LOGOUT })
-    history.push('/users/events') //change to homepage 
+    history.push('/home') //change to homepage 
   }
 }

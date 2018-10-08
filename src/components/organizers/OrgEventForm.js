@@ -124,18 +124,18 @@ class EventForm extends Component {
             <h5>Create your event</h5>
           </Row>
           <Row>
-            <Input name='title' label='TITLE' value={this.state.title} onChange={this.onChange} />
-            <Input name='cost' label='PRICE' value={this.state.cost} onChange={this.onChange} />
+            <Input name='title' label='TITLE' id='title_field' placeholder='title' value={this.state.title} onChange={this.onChange} />
+            <Input name='cost' label='PRICE' id='cost_field' placeholder='price'  value={this.state.cost} onChange={this.onChange} />
           </Row>
           <Row>
-            <Input type='textarea' name='description' label='DESCRIPTION' value={this.state.description} onChange={this.onChange} />
+            <Input type='textarea' placeholder='what is the event about?' name='description' label='DESCRIPTION' value={this.state.description} onChange={this.onChange} />
           </Row>
           <Row>
-            <Input name='min_age' label='MINIMUM AGE' value={this.state.min_age} onChange={this.onChange} />
-            <Input name='max_age' label='MAXIMUM AGE' value={this.state.max_age} onChange={this.onChange} />
+            <Input name='min_age' placeholder='0' label='MINIMUM AGE' value={this.state.min_age} onChange={this.onChange} />
+            <Input name='max_age' placeholder='13' label='MAXIMUM AGE' value={this.state.max_age} onChange={this.onChange} />
           </Row>
           <Row>
-            <Input name='image_url' label='IMAGE LINK' value={this.state.image_url} onChange={this.onChange} />
+            <Input name='image_url' placeholder='https://' label='IMAGE LINK' value={this.state.image_url} onChange={this.onChange} />
           </Row>
           <Row>
             <Input name='street' label='STREET' id='street-field' placeholder='street' value={this.state.street} onChange={this.onChange} />
@@ -157,7 +157,7 @@ class EventForm extends Component {
             <Input onChange={(event) => { this.handleCheckbox(event) }} name="music" type="checkbox" value={JSON.stringify(this.state.music)} label='Music' />
           </Row>
           <Row>
-            <Col>
+            <Col className='date_time'>
               <DateTimeInput
                 name="start_date"
                 placeholder="Start Date"

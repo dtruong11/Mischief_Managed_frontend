@@ -43,7 +43,6 @@ export const orgLogin = ({ email, password }, history) => {
 
 
 export const orgSignup = (newOrg, history) => {
-  // const { name, description, email, password, street, city, state, zip, logo, lat, long } = newOrg
   return async (dispatch) => {
     try {
       dispatch({ type: ORG_SIGNUP_PENDING })

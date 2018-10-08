@@ -31,6 +31,9 @@ class LoginForm extends Component {
   render() {
     return (
       <form onSubmit={this.submitLogin}>
+        <Row className='form-title'>
+          <p>Welcome Family & Friends</p>
+        </Row>
         <Row>
           <Input
             type="email"

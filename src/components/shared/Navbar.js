@@ -8,7 +8,7 @@ import { userVerify } from '../../actions/authUsers'
 import { userLogout } from '../../actions/authUsers'
 import { orgVerify, orgLogout } from '../../actions/authOrgs'
 import { withRouter } from 'react-router-dom'
-
+import '../../styles/home.css'
 
 // import Login from '../Login'
 // import { getUser } from '../actions/authUsers'
@@ -22,12 +22,8 @@ class Navigation extends Component {
   }
 
   componentDidMount = () => {
-    //ASK 
-    // const orgUser = this.props.history.location.pathname.includes('organizers')
-    // if (orgUser) {
-      this.props.orgVerify()
-    // }
-    // this.props.userVerify()
+    this.props.orgVerify()
+    this.props.userVerify()
   }
 
   toggleNavbar = () => {
@@ -65,6 +61,7 @@ class Navigation extends Component {
     } else {
       return (
         <div>
+          <NavItem href="/users/events">Activities</NavItem>
           <NavItem href="/login/users">Login</NavItem>
           <NavItem href="/signup/users" >Sign Up</NavItem>
         </div>
@@ -75,7 +72,7 @@ class Navigation extends Component {
 
   render() {
     return (
-      <Navbar brand='Mischief Managed' right>
+      <Navbar className='nav_style' brand='Mischief Managed' right>
         {
           this.checkLogin()
         }

@@ -44,43 +44,50 @@ const OrgEventModal = (props) => {
       <Row>
         <Col>
           {
-            registration.length > 0 &&
-            <Row className='wrapper'>
-
-              <div className='wrapper'>
-                {
-                  registration.map((el, idx) => {
-                    return (
-                      <Card className='registration_card' key={idx}>
-                        <Row>
-                          <Col lg={3}>
-                            <img className='card_img' src={el.avatar} />
-                            <p>{`${el.first_name} ${el.last_name}`}</p>
-                            <p>{`${el.user_state}`}</p>
-                          </Col>
-                          <Col lg={9}>
-                            <p>{el.attendingChildren.length < 1 ? `Attending Child:` : `Atttending Children`}</p>
-                            {
-                              el.attendingChildren.map((child, idx) => {
-                                return <p key={idx}>{`${child.name},`}{child.age > 1 ? `${child.age} years old` : `${child.age} year old`}</p>
-                              })
-                            }
-                          </Col>
-                        </Row>
-                        <Row>
-                          <p>{el.user_notes}</p>
-                        </Row>
-                      </Card>)
-                  })
-                }
-              </div>
-            </Row>
+            registration.length > 0 ?
+              <Row className='wrapper'>
+                <div className='wrapper'>
+                  {
+                    registration.map((el, idx) => {
+                      return (
+                        <Card className='registration_card' key={idx}>
+                          <Row>
+                            <Col lg={3}>
+                              <img className='card_img' src={el.avatar} />
+                              <p>{`${el.first_name} ${el.last_name}`}</p>
+                              <p>{`${el.user_state}`}</p>
+                            </Col>
+                            <Col lg={9}>
+                              <p>{el.attendingChildren.length < 1 ? `Attending Child:` : `Atttending Children`}</p>
+                              {
+                                el.attendingChildren.map((child, idx) => {
+                                  return <p key={idx}>{`${child.name}, `}{child.age > 1 ? `${child.age} years old` : `${child.age} year old`}</p>
+                                })
+                              }
+                            </Col>
+                          </Row>
+                          <Row>
+                            <p>{el.user_notes}</p>
+                          </Row>
+                        </Card>)
+                    })
+                  }
+                </div>
+              </Row> : <Row>
+                <Col>
+                  <p>No registration yet</p>
+                </Col>
+              </Row>
           }
         </Col>
       </Row>
-      <p>REVIEWS:</p>
+      <Row>
+        <OrgEventReviews reviews={reviews} />
+      </Row>
 
-    </Modal>
+
+
+    </Modal >
   )
 }
 

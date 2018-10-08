@@ -33,6 +33,7 @@ class App extends Component {
   }
 
   render() {
+    console.log('APP JS isLoggedIn', this.props.isLoggedIn)
     return (<Router>
       <div className="App">
         <header className="App-header">
@@ -52,7 +53,7 @@ class App extends Component {
             <Route exact path="/users/events" component={EventPage} />
             <Route exact path="/events/:eventTitle" component={SingleEventPage} />
             <AuthenticateRoute exact path='/users/events' isLoggedIn={this.props.isLoggedIn} component={EventPage} />
-            <AuthenticateRoute exact path="/profiles" isLoggedIn={this.props.isLoggedIn} component={UserProfile} />
+            <AuthenticateRoute exact path="/profile" isLoggedIn={this.props.isLoggedIn} component={UserProfile} />
             <AuthenticateRouteOrg exact path='/organizers/landing' isLoggedIn={this.props.isOrgLoggedIn} component={OrgDashboard} />
             <Redirect to="/home" />
           </Switch>

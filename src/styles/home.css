@@ -1,0 +1,48 @@
+.signin {
+  margin-top: 15px;
+  padding: 70px;
+  text-align: center;
+  margin: auto;
+  height: 40vh;
+  align-content: center;
+  background-color: #FFF0F5;
+  font-size: 18px;
+}
+
+.btn_login {
+  margin-top: 10px;
+  margin-bottom: 20px;
+  color: white ;
+  text-decoration: none;
+  background-color: #B045BA;
+  transition: all .2s ease-in-out;
+}
+
+.btn_login:hover 
+{
+  background-color: #B045BA;
+  color: white ;
+  text-decoration:none ; 
+  cursor: pointer;  
+  transform: scale(1.1);
+}
+
+.title_signin {
+  font-weight: bold;
+  font-size: 22px;
+}
+
+.nav_style {
+  background-color: #B045BA;
+  height: 60px;
+}
+
+nav a:hover {
+  text-decoration: none ;
+  color: white ;
+
+}
+
+nav ul a:hover {
+  transform: scale(1.1);
+}

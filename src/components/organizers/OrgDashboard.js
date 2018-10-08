@@ -21,7 +21,6 @@ class OrgDashboard extends Component {
 
   render() {
     // GET ONE ORGANIZATION WITH NESTED EVENTS
-    const eventList = this.props.events.data
     console.log('this.props in orgDashboard', this.props)
 
     return (

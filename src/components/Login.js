@@ -1,11 +1,8 @@
 import React, { Component } from 'react'
 import {
-  Button,
   Row,
   Col,
-  Input,
-  Card,
-  CardTitle
+  Card
 } from 'react-materialize'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
@@ -18,8 +15,8 @@ class Login extends Component {
     super(props)
     this.state = {
       email: '',
-      password: '',
-      loginview: true
+      password: ''
+      // loginview: true
     }
   }
 
@@ -33,46 +30,24 @@ class Login extends Component {
     })
   }
 
-  handleLoginView = () => {
-    this.setState({ loginview: true })
-  }
+  // handleLoginView = () => {
+  //   this.setState({ loginview: true })
+  // }
 
-  handleSignupView = () => {
-    this.setState({ loginview: false })
-  }
+  // handleSignupView = () => {
+  //   this.setState({ loginview: false })
+  // }
 
   render() {
-    console.log('this.props inside Login.js', this.props.isUser)
     return (
       <Card className="main-wrapper">
-        <Row>
-           <p>Welcome Family & Friends</p> 
-        </Row>
-        <Row style={{ marginTop: "20vh" }} className="mx-0">
+        <Row className="mx-0">
           <Col>
-            <Row>
-              <Col>
-              </Col>
-              <Col onClick={this.handleLoginView}>
-                <h5 className="text-center text-danger" className={this.state.loginview && 'login_signup'}> 
-                Log In 
-                </h5>
-              </Col>
-              <Col onClick={this.handleSignupView}>
-                <h5 className="text-center text-danger" className={!this.state.loginview ? 'login_signup' : ''}> 
-                Sign Up
-                </h5>
-              </Col>
-              <Col>
-              </Col>
-            </Row>
-            {
-              this.state.loginview ? <LoginForm /> : <div>Hello signup</div>
-            }
+            <LoginForm />
           </Col>
-        </Row>
-        <a href='/login/organizers'>I am an organizer</a> 
-      </Card>
+        </Row >
+        <a href='/login/organizers'>I am an organizer</a>
+      </Card >
     )
   }
 }

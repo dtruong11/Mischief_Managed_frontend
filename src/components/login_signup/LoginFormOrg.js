@@ -23,7 +23,7 @@ class LoginForm extends Component {
 
   submitLogin = e => {
     e.preventDefault()
-      this.props.orgLogin(this.state, this.props.history)
+    this.props.orgLogin(this.state, this.props.history)
     this.setState({
       email: '',
       password: ''
@@ -33,6 +33,9 @@ class LoginForm extends Component {
   render() {
     return (
       <form onSubmit={(e) => this.submitLogin(e)}>
+        <Row className='form-title'>
+          <div className='form-title'>Welcome Organization</div>
+        </Row>
         <Row>
           <Input
             type="email"
@@ -54,9 +57,9 @@ class LoginForm extends Component {
           />
         </Row>
         {this.props.LoginError ? (
-          <p color="danger" className="text-center font-weight-bold">
+          <p style={{ color: '#cc0000', marginBottom: '7px' }} className="text-center font-weight-bold">
             Invalid email address or password
-        </p>
+         </p>
         ) : null}
         <Button className="mr-3" type="submit">
           Log In

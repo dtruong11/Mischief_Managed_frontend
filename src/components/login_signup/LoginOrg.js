@@ -1,11 +1,8 @@
 import React, { Component } from 'react'
 import {
-  Button,
   Row,
   Col,
-  Input,
-  Card,
-  CardTitle
+  Card
 } from 'react-materialize'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
@@ -18,8 +15,7 @@ class LoginOrg extends Component {
     super(props)
     this.state = {
       email: '',
-      password: '',
-      loginview: true
+      password: ''
     }
   }
 
@@ -33,39 +29,20 @@ class LoginOrg extends Component {
     })
   }
 
-  handleLoginView = () => {
-    this.setState({ loginview: true })
-  }
+  // handleLoginView = () => {
+  //   this.setState({ loginview: true })
+  // }
 
-  handleSignupView = () => {
-    this.setState({ loginview: false })
-  }
+  // handleSignupView = () => {
+  //   this.setState({ loginview: false })
+  // }
 
   render() {
     return (
       <Card className="main-wrapper">
-        <Row>
-          <div className='form-title'>Welcome Organization</div>
-        </Row>
         <Row className="mx-0">
           <Col>
-            <Row>
-              <Col>
-              </Col>
-              {/* <Col onClick={this.handleLoginView}>
-                <h5 className="text-center text-danger" className={this.state.loginview && 'login_signup'}> 
-                <a href='/login/organizers'> Log In  </a>
-                 </h5>
-              </Col>
-              <Col onClick={this.handleSignupView}>
-                <h5 className="text-center text-danger" className={!this.state.loginview ? 'login_signup' : ''}> 
-                <a href='/signup/organizers'> Sign Up  </a>
-                </h5>
-              </Col> */}
-              <Col>
-              </Col>
-            </Row>
-            <LoginFormOrg /> 
+              <LoginFormOrg />
           </Col>
         </Row>
         <a href='/signup/organizers'>Not logged in? Sign up</a>
