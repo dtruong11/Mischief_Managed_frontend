@@ -13,7 +13,6 @@ export const USER_SIGNUP_FAILED = 'USER_SIGNUP_FAILED'
 export const USER_LOGOUT = 'USER_LOGOUT'
 
 /// HEROKU DEPLOYED BACKEND 
-// https://capstonedt.herokuapp.com
 
 const BASE_URL = 'https://capstonebackmischief.herokuapp.com'
 export const userLogin = ({ email, password }, history) => {
