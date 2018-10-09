@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const BASE_URL = 'https://capstonedt.herokuapp.com'
+const BASE_URL = 'https://capstonebackmischief.herokuapp.com'
 
 // get all events by organization, with nested regsitration, reviews, attendees
 
