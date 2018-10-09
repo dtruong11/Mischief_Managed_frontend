@@ -1,6 +1,5 @@
 import axios from 'axios'
-const BASE_URL =  'htpp://localhost:5000'
-// const BASE_URL = 'https://capstonedt.herokuapp.com/auth'
+const BASE_URL = 'https://capstonedt.herokuapp.com/auth'
 const TOKEN_USER = 'token_user'
 const TOKEN_ORG = 'token_org'
 

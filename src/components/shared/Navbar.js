@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import {
   Navbar, NavItem,
 } from 'react-materialize'
+import { NavLink } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { userVerify } from '../../actions/authUsers'
@@ -43,8 +44,17 @@ class Navigation extends Component {
       return (
         <div>
           <NavItem href='/users/events'>Activities</NavItem>
-          <NavItem href="/profile">Profile</NavItem>
-          <NavItem onClick={() => userLogout(history)}>Log Out</NavItem>
+          <NavItem
+            onClick={(e) => {
+              e.preventDefault()
+              history.push('/profile')
+            }}
+            href="/profile">Profile</NavItem>
+          <NavItem onClick={(e) => {
+            e.preventDefault()
+            userLogout(history)
+          }}
+          >Log Out</NavItem>
         </div>
       )
     } else if (isLoggedInOrg) {
@@ -59,8 +69,9 @@ class Navigation extends Component {
     } else {
       return (
         <div>
+          {/* <li><Navlink to='/home'>Test</Navlink></li> */}
           <NavItem href="/users/events">Activities</NavItem>
-          <NavItem href="/login/users">Login</NavItem>
+          <NavItem href="/login/users" >Login</NavItem>
           <NavItem href="/signup/users" >Sign Up</NavItem>
         </div>
       )
