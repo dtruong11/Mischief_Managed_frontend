@@ -11,10 +11,11 @@ export const CREATE_EVENT_FAILED = 'CREATE_EVENT_FAILED'
 export const UPDATE_EVENTS = 'UPDATE_EVENTS'
 
 export const getEventsByOrg = () => {
-  return async (dispatch) => {
+  return async (dispatch, getState) => {
     try {
       dispatch({ type: GET_EVENTS_BY_ORG_PENDING })
-      const orgId = localStorage.getItem('org_id')
+      const orgId = getState().authOrg.org.id
+      console.log('this is orgId inside events by ORg', orgId)
 
       const response = await eventsByOrg.getEventsByOrg(orgId)
       dispatch({

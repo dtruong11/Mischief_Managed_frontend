@@ -9,6 +9,9 @@ import { bindActionCreators } from 'redux'
 import { orgLogin } from '../../actions/authOrgs'
 import '../../styles/login.css'
 import LoginFormOrg from './LoginFormOrg'
+import { withRouter } from 'react-router-dom'
+import { orgVerify } from '../../actions/authOrgs'
+
 
 class LoginOrg extends Component {
   constructor(props) {
@@ -19,22 +22,14 @@ class LoginOrg extends Component {
     }
   }
 
-  submitLogin = e => {
-    e.preventDefault()
-    // console.log('history', this.props);
-    this.props.orgLogin(this.state, this.props.history)
-    this.setState({
-      email: '',
-      password: ''
-    })
-  }
-
-  // handleLoginView = () => {
-  //   this.setState({ loginview: true })
-  // }
-
-  // handleSignupView = () => {
-  //   this.setState({ loginview: false })
+  // submitLogin = async e => {
+  //   e.preventDefault()
+  //   // await this.props.orgLogin(this.state, this.props.history)
+  //   // this.setState({
+  //   //   email: '',
+  //   //   password: ''
+  //   // })
+  //   // await this.props.orgVerify()
   // }
 
   render() {
@@ -42,7 +37,7 @@ class LoginOrg extends Component {
       <Card className="main-wrapper">
         <Row className="mx-0">
           <Col>
-              <LoginFormOrg />
+            <LoginFormOrg />
           </Col>
         </Row>
         <a href='/signup/organizers'>Not logged in? Sign up</a>
@@ -58,12 +53,10 @@ function mapStateToProps({ authOrg }) {
 }
 
 function mapDispatchToProps(dispatch) {
-  return {
-    orgLogin: bindActionCreators(orgLogin, dispatch)
-  }
+  return bindActionCreators({ orgLogin, orgVerify }, dispatch)
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(LoginOrg)
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(LoginOrg))
 
 
 

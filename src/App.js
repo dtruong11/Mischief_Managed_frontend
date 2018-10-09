@@ -26,8 +26,8 @@ import SignupUser from './components/login_signup/SignupUser'
 
 
 class App extends Component {
-  componentDidMount = () => {
-    this.props.orgVerify()
+  componentDidMount = async () => {
+    await this.props.orgVerify()
     this.props.userVerify()
     this.props.getCurrentLocation()
   }

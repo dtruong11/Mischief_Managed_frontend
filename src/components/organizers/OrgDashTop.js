@@ -15,33 +15,19 @@ class OrgDashTop extends Component {
   }
 
   componentDidMount = () => {
-    console.log('this.props.getOrg()', this.props.getOrg())
-    this.props.getOrg()
+    // console.log('this.props.getOrg()', this.props.getOrg())
+    // this.props.getOrg()
   }
 
+
   render() {
-    const { id, name, aboutus, email, lat_org, long_org, state_org, street_org, zip_org, logo } = this.props.oneOrg
+    const { id, name, aboutus, email, lat_org, long_org, state_org, street_org, zip_org, logo } = this.props.authOrg.org
+
+    // const { id, name, aboutus, email, lat_org, long_org, state_org, street_org, zip_org, logo } = this.props.oneOrg
+    // console.log('org inside orgDashTop', this.props.oneOrg)
+    console.log('this.props.authOrg.org', this.props.authOrg.org)
     return (
       <div className='top'>
-        {/* <Row>
-          <Col lg={3}>
-            <img className='logo_img' src={logo} alt='org_logo' />
-          </Col>
-          <Col lg={9}>
-            <div className='org-info'>{aboutus}</div>
-          </Col>
-        </Row> */}
-        {/* <Row>
-          <div className='contain-overlay'>
-            <img className='wallpaper' src={mainOrgPic} alt='organization_image' />
-            <img className='logo_img' src={logo} alt='org_logo' />
-          </div>
-        </Row>
-        <Row>
-          <Col >
-            <div className='org-info'>{aboutus}</div>
-          </Col>
-        </Row> */}
         <Slider style={{ marginBottom: '15px' }}>
           <Slide
             // style={{ position: 'relative', overflow: 'hidden' }}
@@ -68,7 +54,7 @@ class OrgDashTop extends Component {
   }
 }
 
-const mapStateToProps = ({ eventsByOrg, oneOrg }) => ({ oneOrg: oneOrg.org, events: eventsByOrg.all, isLoading: eventsByOrg.isLoading })
+const mapStateToProps = ({ eventsByOrg, oneOrg, authOrg }) => ({ oneOrg: oneOrg.org, events: eventsByOrg.all, isLoading: eventsByOrg.isLoading, authOrg })
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({ getOrg }, dispatch)
 }

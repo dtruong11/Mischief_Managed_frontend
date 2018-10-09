@@ -1,9 +1,10 @@
 .all_events {
   display: flex;
-  margin: 5%;
-  justify-content: space-between;
-  flex-flow: row wrap;
+  margin: 0 5%;
+  justify-content: center;
+  flex-direction: row;
   align-content: center;
+  align-items: center;
 }
 
 .not_found_events {
@@ -16,4 +17,31 @@
   color: #B045BA;
   font-size: 18px;
   text-align: center;
+}
+
+.section_text {
+  color: #B045BA;
+  text-align: left;
+  font-size: 20px;
+  font-weight: bold;
+  justify-content: center;
+}
+
+.no_event_pic {
+  width: 300px;
+  height: 200px;
+}
+
+.event_block {
+  margin: 60px auto;
+  justify-content: center;
+}
+
+.wrapping_row {
+  margin-top: 10px;
+  justify-content: center;
+}
+
+.row {
+  justify-content: center;
 }

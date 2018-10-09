@@ -11,9 +11,9 @@ export const getOrg = () => {
     try {
       const token = localStorage.getItem('token_org')
       const orgId = localStorage.getItem('org_id')
-      dispatch({ type: GET_ORG_PENDING })
+      // dispatch({ type: GET_ORG_PENDING })
       const response = await authOrg.verify(token, orgId)
-      console.log('this is response for getOneORg inside getEventsByOrg actions', response.data)
+      console.log('this is getOrg response.data', response.data)
       dispatch({
         type: GET_ORG_SUCCESS,
         payload: response.data

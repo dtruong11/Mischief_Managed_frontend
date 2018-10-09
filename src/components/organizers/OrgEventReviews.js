@@ -8,7 +8,7 @@ const OrgEventReviews = ({ reviews }) => {
   return (
     <Col>
       {
-        reviews.length > 0
+        reviews && reviews.length > 0
           ? <Row >
             <div style={{ marginTop: '250px' }}>REVIEWS</div>
             {

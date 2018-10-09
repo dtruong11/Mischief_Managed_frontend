@@ -21,9 +21,9 @@ class LoginForm extends Component {
     }
   }
 
-  submitLogin = e => {
+  submitLogin = async (e) => {
     e.preventDefault()
-    this.props.orgLogin(this.state, this.props.history)
+    await this.props.orgLogin(this.state, this.props.history)
     this.setState({
       email: '',
       password: ''

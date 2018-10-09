@@ -10,8 +10,6 @@ import { orgVerify, orgLogout } from '../../actions/authOrgs'
 import { withRouter } from 'react-router-dom'
 import '../../styles/home.css'
 
-// import Login from '../Login'
-// import { getUser } from '../actions/authUsers'
 
 class Navigation extends Component {
   constructor(props) {
@@ -93,5 +91,4 @@ function mapStateToProps({ auth, authOrg }) {
 const mapDispatchToProps = dispatch => bindActionCreators({ userVerify, userLogout, orgVerify, orgLogout }, dispatch)
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Navigation))
-
 

@@ -3,7 +3,8 @@ import { Modal, Button, Row, Col, Card } from 'react-materialize'
 import { eventTime } from '../events_page/EventCard'
 import '../../styles/orgEventModal.css'
 import OrgEventReviews from './OrgEventReviews'
-
+import { Icon } from 'react-icons-kit'
+import { withPlus } from 'react-icons-kit/entypo/withPlus'
 const OrgEventModal = (props) => {
   const modalStyle = {
     // justifyContent: 'center',
@@ -16,6 +17,7 @@ const OrgEventModal = (props) => {
     width: '200px'
   }
   const { id, title, description, image_url, street, city, state, zip, min_age, max_age, start_date, end_date, registration, reviews } = props.event
+  console.log('this is registration', registration)
 
   return (
     <Modal
@@ -27,7 +29,7 @@ const OrgEventModal = (props) => {
         <Button flat modal="close" waves="light">Close</Button>
       }
       trigger={
-        <Button>See this event</Button>
+        <Icon className='event_icon' size={23} icon={withPlus} />
       }>
       <Row style={{ marginBottom: '180px' }}>
         <Col lg={4}>
@@ -44,7 +46,7 @@ const OrgEventModal = (props) => {
       <Row>
         <Col>
           {
-            registration.length > 0 ?
+            registration && registration.length > 0 ?
               <Row className='wrapper'>
                 <div className='wrapper'>
                   {

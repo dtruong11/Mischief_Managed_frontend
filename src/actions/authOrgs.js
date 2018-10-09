@@ -1,5 +1,6 @@
 import authOrg from '../requests/authOrg'
 import { USER_LOGIN_FAILED } from './authUsers'
+import { getEventsByOrg } from '../actions/eventsByOrg'
 
 export const ORG_NOT_LOGINED = 'ORG_NOT_LOGINED'
 export const ORG_LOGIN_PENDING = "ORG_LOGIN_PENDING"
@@ -31,6 +32,8 @@ export const orgLogin = ({ email, password }, history) => {
 
       localStorage.setItem('token_org', response.token);
       localStorage.setItem('org_id', response.id)
+      dispatch(getEventsByOrg())
+
       history.push('/organizers/landing')
     } catch (err) {
       dispatch({
@@ -62,7 +65,8 @@ export const orgSignup = (newOrg, history) => {
 };
 
 export const orgVerify = () => {
-  return async (dispatch) => {
+  return async (dispatch, getState) => {
+    console.log('this is the org Id inside orgVerify',getState().authOrg.org.id)
     const token = localStorage.getItem('token_org')
     const orgId = localStorage.getItem('org_id')
     console.log('this is org_id from localStorage inside orgVerify', orgId)

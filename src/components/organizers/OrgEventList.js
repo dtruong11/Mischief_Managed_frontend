@@ -10,14 +10,14 @@ import OrgEventCard from './OrgEventCard'
 import pic from '../../assets/kidevents.jpg'
 import '../../styles/orgEventList.css'
 import { checkBefore } from './OrgEventForm'
-
+import bee from '../../assets/bee.png'
 
 class OrgEventList extends Component {
   constructor(props) {
     super(props)
   }
 
-  componentWillMount = () => {
+  componentDidMount = () => {
     this.props.getEventsByOrg()
   }
 
@@ -25,15 +25,20 @@ class OrgEventList extends Component {
     if (eventsArr.length > 0) {
       return eventsArr.map((event, idx) => {
         return (
-          <Row>
-            <OrgEventCard key={idx} event={event} favorite={event.favorite} />
-          </Row>
+          <OrgEventCard key={`${event.title}_${idx}`} event={event} favorite={event.favorite} />
         )
       })
     } else {
       return (
         <Row>
-          <p>No Events Yet</p>
+          <Col>
+            <Row>
+              <img className='no_event_pic' src={bee} alt='no_event' />
+            </Row>
+            <Row>
+              <p className="not_found_text">No Events Yet</p>
+            </Row>
+          </Col>
         </Row>
       )
     }
@@ -45,54 +50,50 @@ class OrgEventList extends Component {
       const today = events.filter(event => checkBefore(event.end_date) === 'today')
       const future = events.filter(event => checkBefore(event.end_date) === 'future')
       return (
-        <Col>
-          <Row>
+        <div className='event_block'>
+          <Row className='all_events'>
             <Col>
               <Row>
-                TODAY's EVENTS
+                <p className="section_text">TODAY's EVENTS</p>
               </Row>
               {this.createEventCard(today)}
             </Col>
           </Row>
-          <Row>
+          <Row className='all_events'>
             <Col>
               <Row>
-                UPCOMING EVENTS
+                <p className="section_text">UPCOMING EVENTS</p>
               </Row>
               {this.createEventCard(future)}
             </Col>
           </Row>
-          <Row>
+          <Row className='all_events'>
             <Col>
               <Row>
-                PAST EVENTS
+                <p className="section_text">PAST EVENTS</p>
               </Row>
               {this.createEventCard(past)}
             </Col>
           </Row>
-        </Col>)
+        </div>)
     } else {
       return (
         <div className="not_found_text">
           <img src={pic} className="not_found_events" />
-          <p>Events not Found</p>
+          <p className="not_found_text">Events not Found</p>
         </div>
       )
     }
   }
 
   render() {
-    console.log('this.props.events YAYYY LOOK', this.props.events[0])
+    console.log('this.props.events in OrgEventList component', this.props.events)
     return (
       <Col>
         {
           this.props.isLoading ? <div>Loading </div>
             :
-            <Row>
-              {
-                this.displayEvents(this.props.events)
-              }
-            </Row>
+            this.displayEvents(this.props.events)
         }
       </Col>
     );

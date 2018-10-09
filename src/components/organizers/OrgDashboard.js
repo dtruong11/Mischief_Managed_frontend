@@ -7,6 +7,7 @@ import { getOrg } from '../../actions/getOneOrg'
 import OrgDashTop from './OrgDashTop'
 import OrgEventForm from './OrgEventForm'
 import OrgEventList from './OrgEventList'
+
 // import { Link } from 'react-router-dom'
 
 class OrgDashboard extends Component {
@@ -14,15 +15,13 @@ class OrgDashboard extends Component {
     super(props)
   }
 
-  componentDidMount = () => {
-    this.props.getOrg()
-    this.props.getEventsByOrg()
-  }
+  // componentDidMount = async () => {
+  //   // await this.props.getOrg()
+  //   // await this.props.getEventsByOrg()
+  // }
 
   render() {
     // GET ONE ORGANIZATION WITH NESTED EVENTS
-    console.log('this.props in orgDashboard', this.props)
-
     return (
       <div>
         <Row>
@@ -36,16 +35,20 @@ class OrgDashboard extends Component {
           </Col>
         </Row>
         <Row>
-            <OrgEventList />
+          <Col>
+            <OrgEventList/>
+          </Col>
         </Row>
       </div>
     )
   }
 }
 
-const mapStateToProps = ({ eventsByOrg, oneOrg }) => ({ oneOrg: oneOrg.org, events: eventsByOrg.all, isLoading: eventsByOrg.isLoading })
-const mapDispatchToProps = (dispatch) => {
-  return bindActionCreators({ getEventsByOrg, getOrg }, dispatch)
-}
+// const mapStateToProps = ({ eventsByOrg, oneOrg }) => ({ oneOrg: oneOrg.org, events: eventsByOrg.all, isLoading: eventsByOrg.isLoading })
+// const mapDispatchToProps = (dispatch) => {
+//   return bindActionCreators({ getEventsByOrg, getOrg }, dispatch)
+// }
 
-export default connect(mapStateToProps, mapDispatchToProps)(OrgDashboard)
+// export default connect(mapStateToProps, mapDispatchToProps)(OrgDashboard)
+
+export default OrgDashboard

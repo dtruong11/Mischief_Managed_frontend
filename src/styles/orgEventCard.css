@@ -1,47 +1,20 @@
-.box {
-  width: 60%;
-  /* height: 350px; */
-  background:#FFF;
-  margin: 40px auto;
-
+.wrapping_row {
+  margin-top: 15px;
+  justify-content: center;
 }
 
-.event_pic {
-  height: 10%;
-  overflow: hidden;
+.event_card {
+  width: 86%;
+  font-size: 18px;
 }
 
-.effect
-{
-  position: relative;
+.event_card_icon {
+  margin-right: 5px;
+  color: #7A193D;
 }
-.effect:before, .effect:after
-{
-  z-index: -1;
-  position: absolute;
-  content: "";
-  bottom: 15px;
-  left: 10px;
-  width: 50%;
-  top: 80%;
-  max-width:300px;
-  background: #777;
-  -webkit-box-shadow: 0 15px 10px #777;
-  -moz-box-shadow: 0 15px 10px #777;
-  box-shadow: 0 15px 10px #777;
-  -webkit-transform: rotate(-3deg);
-  -moz-transform: rotate(-3deg);
-  -o-transform: rotate(-3deg);
-  -ms-transform: rotate(-3deg);
-  transform: rotate(-3deg);
-}
-.effect:after
-{
-  -webkit-transform: rotate(3deg);
-  -moz-transform: rotate(3deg);
-  -o-transform: rotate(3deg);
-  -ms-transform: rotate(3deg);
-  transform: rotate(3deg);
-  right: 10px;
-  left: auto;
+
+.event_title {
+  color: #BA2C73;
+  font-weight: bold;
+  font-size: 25px;
 }
