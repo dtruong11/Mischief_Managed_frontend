@@ -14,8 +14,9 @@ export const USER_LOGOUT = 'USER_LOGOUT'
 
 /// HEROKU DEPLOYED BACKEND 
 // https://capstonedt.herokuapp.com
-
 const BASE_URL = 'http://localhost:5000'
+
+// const BASE_URL = 'https://capstonedt.herokuapp.com'
 export const userLogin = ({ email, password }, history) => {
   return async (dispatch) => {
     try {

@@ -58,11 +58,11 @@ export const updateEventReview = (review) => {
 }
 
 
-export const getOneEvent = (eventTitle) => {
+export const getOneEvent = (eventId) => {
   return async (dispatch) => {
     try {
       dispatch({ type: GET_EVENT_PENDING })
-      const payload = await events.getOne(eventTitle)
+      const payload = await events.getOne(eventId)
       dispatch({
         type: GET_EVENT_SUCCESS,
         payload

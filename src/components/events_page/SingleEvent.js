@@ -28,13 +28,13 @@ class SingleEventPage extends Component {
   }
 
   componentDidMount = () => {
-    const eventTitle = this.props.location.pathname.split('/')[2]
-    this.props.getOneEvent(eventTitle)
-    // console.log('Inside Singleevent.js componentdidmount', this.props)
+
+    const eventId = this.props.location.pathname.split('/')[2]
+    this.props.getOneEvent(eventId)
   }
 
   renderEvent = (event) => {
-
+    console.log('this is event inside SingleEvent', event)
     return (
       <div>
         <Container style={{ marginTop: '18px' }} fluid>
@@ -57,7 +57,7 @@ class SingleEventPage extends Component {
                 <Reviews reviews={event.reviews} />
               </Row>
               <Row>
-                <ReviewForm eventId={event.id} />
+                <ReviewForm eventId={event.event_id} />
               </Row>
             </Col>
           </Row>

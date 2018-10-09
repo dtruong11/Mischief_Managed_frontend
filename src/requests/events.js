@@ -1,6 +1,8 @@
 import axios from 'axios'
 const BASE_URL = 'http://localhost:5000'
 
+// const BASE_URL = 'https://capstonedt.herokuapp.com'
+
 // get all events without logging in (no userId)
 const get = async (formObj = {}) => {
   let input = { ...formObj }
@@ -20,8 +22,8 @@ const get = async (formObj = {}) => {
   return res.data
 }
 
-const getOne = async (eventTitle) => {
-  const res = await axios.get(`${BASE_URL}/events/${eventTitle}`)
+const getOne = async (eventId) => {
+  const res = await axios.get(`${BASE_URL}/events/${eventId}`)
   return res.data
 }
 

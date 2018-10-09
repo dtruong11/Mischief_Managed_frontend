@@ -30,9 +30,8 @@ class EventList extends Component {
     this.props.getEvents() // action creator 
   }
 
-  reRoute = (title, history) => {
-    const fixedTitle = title.split(' ').join('-')
-    history.push(`/events/${fixedTitle}`)
+  reRoute = (id, history) => {
+    history.push(`/events/${id}`)
   }
 
   render() {
@@ -52,7 +51,7 @@ class EventList extends Component {
             :
             <div>
               {this.props.events.length > 0 ? this.props.events.map(event => {
-                return <EventCard key={event.id} onClick={() => this.reRoute(event.title, this.props.history)} event={event} favorite={event.favorite} />
+                return <EventCard key={event.id} onClick={() => this.reRoute(event.event_id, this.props.history)} event={event} favorite={event.favorite} />
               }) :
                 <div className="not_found_text">
                   <img src={pic} className="not_found_events" />

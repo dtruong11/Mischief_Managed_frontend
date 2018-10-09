@@ -68,6 +68,7 @@ class EventForm extends Component {
     const end_date = parseTime(this.state.end_date, true)
     const formInputs = { ...this.state, start_date, end_date }
 
+
     delete formInputs.fill_location
     delete formInputs.select_logo
 
@@ -93,8 +94,8 @@ class EventForm extends Component {
       city: '',
       state: '',
       zip: '',
-      long: '',
-      lat: '',
+      long: 0,
+      lat: 0,
       sport: false,
       art: false,
       educational: false,
@@ -143,8 +144,8 @@ class EventForm extends Component {
         city: '',
         state: '',
         zip: '',
-        long: '',
-        lat: '',
+        long: 0,
+        lat: 0,
         sport: false,
         art: false,
         educational: false,

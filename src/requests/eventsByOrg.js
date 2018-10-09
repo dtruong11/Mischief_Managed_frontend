@@ -1,6 +1,8 @@
 import axios from 'axios'
 const BASE_URL = 'http://localhost:5000'
 
+// const BASE_URL = 'https://capstonedt.herokuapp.com'
+
 // get all events by organization, with nested regsitration, reviews, attendees
 
 const getEventsByOrg = async (orgId) => {
