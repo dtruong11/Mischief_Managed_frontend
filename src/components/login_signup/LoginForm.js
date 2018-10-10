@@ -28,6 +28,14 @@ class LoginForm extends Component {
     })
   }
 
+  fillLogin = (value) => {
+    if (!value) {
+      return `student@galvanize.com`
+    } else {
+      return value
+    }
+  }
+
   render() {
     return (
       <form onSubmit={this.submitLogin}>
@@ -40,7 +48,9 @@ class LoginForm extends Component {
             name="email"
             id="email-field"
             placeholder="email"
-            value={this.state.email}
+            value={
+              !this.state.email ? `student@galvanize.com` : this.state.email
+            }
             onChange={e => this.setState({ email: e.target.value })}
           />
         </Row>
@@ -50,7 +60,9 @@ class LoginForm extends Component {
             name="password"
             id="pass-field"
             placeholder="password"
-            value={this.state.password}
+            value={
+              !this.state.password ? `password` : this.state.password
+            }
             onChange={e => this.setState({ password: e.target.value })}
           />
         </Row>
