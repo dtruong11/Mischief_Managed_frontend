@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import {
   Navbar, NavItem,
 } from 'react-materialize'
-import { NavLink } from 'react-router-dom'
+import { NavLink, Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { userVerify } from '../../actions/authUsers'
@@ -43,36 +43,28 @@ class Navigation extends Component {
     if (isLoggedIn) {
       return (
         <div>
-          <NavItem href='/users/events'>Activities</NavItem>
-          <NavItem
-            onClick={(e) => {
-              e.preventDefault()
-              history.push('/profile')
-            }}
-            href="/profile">Profile</NavItem>
-          <NavItem onClick={(e) => {
-            e.preventDefault()
+          <li><Link to="/users/events">Activities</Link></li>
+          <li><Link to='/profile'>Profile</Link></li>
+          <li><Link to='/home' onClick={(e) => {
             userLogout(history)
-          }}
-          >Log Out</NavItem>
+          }}>Log Out</Link></li>
         </div>
       )
     } else if (isLoggedInOrg) {
       return (
         <div>
-          <NavItem>Welcome, {orgName}</NavItem>
-          <NavItem onClick={(e) => {
-            e.preventDefault()
+          <li><Link to='/organizers/landing'>Welcome, {orgName}</Link></li>
+          <li><Link to='/home' onClick={(e) => {
             orgLogout(history)
-          }}>Log Out</NavItem>
-        </div>)
+          }}>Log Out</Link></li>
+        </div>
+      )
     } else {
       return (
         <div>
-          {/* <li><Navlink to='/home'>Test</Navlink></li> */}
-          <NavItem href="/users/events">Activities</NavItem>
-          <NavItem href="/login/users" >Login</NavItem>
-          <NavItem href="/signup/users" >Sign Up</NavItem>
+          <li><Link to="/users/events">Activities</Link></li>
+          <li><Link to='/login/users'>Login</Link></li>
+          <li><Link to='/signup/users'>Sign Up</Link></li>
         </div>
       )
     }

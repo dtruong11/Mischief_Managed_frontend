@@ -1,5 +1,5 @@
 import authOrg from '../requests/authOrg'
-import { USER_LOGIN_FAILED } from './authUsers'
+import { USER_LOGIN_FAILED, USER_LOGOUT } from './authUsers'
 import { getEventsByOrg } from '../actions/eventsByOrg'
 
 export const ORG_NOT_LOGINED = 'ORG_NOT_LOGINED'
@@ -23,7 +23,7 @@ export const orgLogin = ({ email, password }, history) => {
         payload: response
       })
       dispatch({
-        type: USER_LOGIN_FAILED
+        type: USER_LOGOUT
       })
 
       if (localStorage.getItem('token_user')) {
@@ -100,7 +100,7 @@ export const orgLogout = (history) => {
   localStorage.removeItem('token_org');
   return (dispatch) => {
     dispatch({ type: ORG_LOGOUT })
-    history.push('/home')
+    // history.push('/home')
   }
 }
 

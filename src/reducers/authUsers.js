@@ -1,4 +1,5 @@
 import {
+    USER_VERIFY_FAILED,
     USER_NOT_LOGINED,
     USER_LOGIN_PENDING,
     USER_LOGIN_SUCCESS,
@@ -19,6 +20,10 @@ let initialState = {
 
 export const auth = (state = initialState, action) => {
     switch (action.type) {
+        case USER_VERIFY_FAILED:
+            return {
+                ...state, LoginError: false
+            }
         case USER_NOT_LOGINED:
             return {
                 ...state, isLoading: false, isLoggedIn: false
@@ -49,7 +54,7 @@ export const auth = (state = initialState, action) => {
             }
         case USER_LOGOUT:
             return {
-                ...state, user: {}, isLoggedIn: false, isLoading: false 
+                ...state, user: {}, isLoggedIn: false, LoginError: false, isLoading: false
             }
         default:
             return state;

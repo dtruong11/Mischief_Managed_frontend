@@ -32,10 +32,10 @@ const OrgEventModal = (props) => {
         <Icon className='event_icon' size={23} icon={withPlus} />
       }>
       <Row style={{ marginBottom: '180px' }}>
-        <Col lg={4}>
+        <Col l={4}>
           <img style={imageStyle} src={image_url} />
         </Col>
-        <Col lg={8}>
+        <Col l={8}>
           <Row> {eventTime(start_date, end_date)}</Row>
           <Row> About: {description}</Row>
           <Row> Location: {`${street}, ${city}, ${state}, ${zip}`}</Row>
@@ -54,12 +54,12 @@ const OrgEventModal = (props) => {
                       return (
                         <Card className='registration_card' key={idx}>
                           <Row>
-                            <Col lg={3}>
+                            <Col l={3}>
                               <img className='card_img' src={el.avatar} />
                               <p>{`${el.first_name} ${el.last_name}`}</p>
                               <p>{`${el.user_state}`}</p>
                             </Col>
-                            <Col lg={9}>
+                            <Col l={9}>
                               <p>{el.attendingChildren.length < 1 ? `Attending Child:` : `Atttending Children`}</p>
                               {
                                 el.attendingChildren.map((child, idx) => {

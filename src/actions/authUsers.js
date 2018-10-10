@@ -9,6 +9,7 @@ export const USER_NOT_LOGINED = 'USER_NOT_LOGINED'
 export const USER_SIGNUP_PENDING = 'USER_SIGNUP_PENDING'
 export const USER_SIGNUP_SUCCESS = 'USER_SIGNUP_SUCCESS'
 export const USER_SIGNUP_FAILED = 'USER_SIGNUP_FAILED'
+export const USER_VERIFY_FAILED = 'USER_VERIFY_FAILED'
 
 export const USER_LOGOUT = 'USER_LOGOUT'
 
@@ -69,8 +70,7 @@ export const userVerify = () => {
         return true
       } catch (e) {
         dispatch({
-          type: USER_LOGIN_FAILED,
-          payload: e
+          type: USER_VERIFY_FAILED
         })
         return false
       }
@@ -112,6 +112,5 @@ export const userLogout = (history) => {
     localStorage.removeItem('token_user');
     localStorage.removeItem('user_id');
     dispatch({ type: USER_LOGOUT })
-    history.push('/home') //change to homepage 
   }
 }
