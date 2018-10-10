@@ -28,13 +28,13 @@ class EventCard extends Component {
   }
 
   render() {
-    const { id, title, image_url, min_age, max_age, street, city, state, description, favorite, zip, start_date, end_date } = this.props.event
+    const { id, event_id, title, image_url, min_age, max_age, street, city, state, description, favorite, zip, start_date, end_date } = this.props.event
     console.log('event id inside EventCard', id)
     console.log('event description inside EventCard', this.props.event)
 
     return (
       <Row className='wrapping_row'>
-        <Card className='event_card' onClick={() => this.props.onClick(id)}>
+        <Card className='event_card' onClick={() => this.props.onClick(event_id)}>
           <Col s={12} m={6} l={4}>
             <div className='event_card_img' style={{ background: `url('${image_url}')`, height: '228px', backgroundSize: 'cover', backgroundPosition: 'center' }}></div>
           </Col>
