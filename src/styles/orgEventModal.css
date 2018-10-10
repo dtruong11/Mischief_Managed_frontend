@@ -22,3 +22,33 @@
 .event_icon { 
   color: #7A193D;
 }
+
+.modal_style {
+  width:  1000px;
+}
+
+.registration_section {
+  justify-content: space-around;
+}
+
+.registration_card {
+  margin-right: 8px;
+}
+
+.not_registered {
+  width: 250px;
+  height: 150px;
+}
+
+.review_section_title {
+  margin-top: 250px;
+}
+
+.event_card_icon {
+  margin-right: 5px;
+  color: #7A193D;
+}
+
+.modal_event_info {
+  padding: 25px;
+}

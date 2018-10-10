@@ -1,14 +1,13 @@
 import React from 'react'
 import { Col, Row } from 'reactstrap'
-import '../../styles/reviewImage.css'
 import moment from 'moment'
 import { Icon } from 'react-icons-kit'
 import {ic_stars} from 'react-icons-kit/md/ic_stars'
+import '../../styles/reviewImage.css'
 
 const SingleReview = (props) => {
   const { content, votes, created_at, updated_at, first_name, last_name, avatar, city, state } = props.review
   const postedTime = moment(created_at).format('MMMM YYYY')
-  console.log('postedTime', postedTime)
   return (
     <Row>
       <Col>

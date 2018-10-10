@@ -3,11 +3,23 @@
 }
 
 .review_card {
-  width: '500px';
+  width: 70%;
 }
 
 .avatar {
   width: 70px; 
   height: 70px;
   border-radius: 50%;
+}
+
+.reviewer {
+  text-align: center;
+  font-weight: bold;
+  color: #7A193D
+}
+
+.review_content {
+  margin-left: 5px;
+  margin-right: 5px;
+
 }
