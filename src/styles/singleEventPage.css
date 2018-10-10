@@ -66,5 +66,28 @@ img {
 .sub_heading {
     font-weight: bold;
     font-size: 25px;
-    color: #696969	;
+    color: #696969;
+    margin-bottom: 10px;
+}
+
+.single_event_wrapper {
+    margin-top: 20px;
+}
+
+.review_section, .location_section {
+    margin-top: 30px;
+}
+
+.map_section, .org_info_wrapper {
+    margin-top: 20px;
+}
+
+.org_info_section {
+    margin-top: 50px;
+}
+
+.org_title {
+    font-weight: bold;
+    font-size: 17px;
+    color: #7A193D
 }

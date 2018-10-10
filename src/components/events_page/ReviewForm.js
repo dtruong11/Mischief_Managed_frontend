@@ -25,8 +25,6 @@ class ReviewForm extends Component {
 
   onSubmit = (e) => {
     e.preventDefault()
-    console.log('SUBMIT REVIEW?');
-
     const content = this.state.content
     const votes = this.state.votes
     const eventId = this.props.eventId
@@ -42,10 +40,9 @@ class ReviewForm extends Component {
 
     return (
       <Card className='review_form'>
-        <p>Add your review here</p>
         <form>
           <Row >
-            <Input onChange={this.onChange} name='content' placeholder="Your review" s={6} lg={6} />
+            <Input onChange={this.onChange} name='content' placeholder="Hi friend, share your review here" s={6} lg={6} />
           </Row>
           <Row>
             <Input onChange={this.onChange} name='votes' type='radio' value='1' label='1' />
@@ -54,11 +51,17 @@ class ReviewForm extends Component {
             <Input onChange={this.onChange} name='votes' type='radio' value='4' label='4' />
             <Input onChange={this.onChange} name='votes' type='radio' value='5' label='5' />
           </Row>
-          {
-            this.props.isLoggedIn
-              ? (this.state.content.length > 0 && this.state.votes && <Button onClick={this.onSubmit}>Add Review</Button>)
-              : <p>Please log in to review an event</p>
-          }
+          <Row className='review_phrase'>
+            <p>
+              <span> * </span> Rating (1 - worst, 5 - best)</p>
+          </Row>
+          <Row className='reminder'>
+            {
+              this.props.isLoggedIn
+                ? (this.state.content.length > 0 && this.state.votes && <Button onClick={this.onSubmit}>Add Review</Button>)
+                : <p>Please log in to review this event</p>
+            }
+          </Row>
         </form>
       </Card>
     )

@@ -1,4 +1,16 @@
 .review_form {
     width: 50%;
+    text-align: center;
     /* margin: 2% 15% 2% 0; */
+}
+
+.review_phrase {
+    /* color: #7A193D; */
+    font-size: 13px;
+    color: green;
+}
+
+.reminder {
+    font-size: 15px;
+    color: #7A193D;
 }

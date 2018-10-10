@@ -33,7 +33,7 @@ class EventPage extends Component {
   render() {
 
     return (
-      <Container style={{ marginTop: '50px' }}>
+      <Container fluid className="wrapper_event_page" style={{ marginTop: '50px' }}>
         <Row className='list_map'>
           <Col lg='5'></Col>
           <Col onClick={this.handleListView} className={this.state.listview && "list_map_button"}>List View</Col>
@@ -41,10 +41,10 @@ class EventPage extends Component {
           <Col lg='5'></Col>
         </Row>
         <Row>
-          <Col lg="9">
+          <Col s="12" m="8" lg="9">
             {this.state.listview ? <EventList /> : <MapWrapper />}
           </Col>
-          <Col lg="3">
+          <Col s="12" m="4" lg="3">
             <FilterForm />
           </Col>
         </Row>

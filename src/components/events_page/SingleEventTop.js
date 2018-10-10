@@ -4,10 +4,12 @@ import { eventTime } from './EventCard'
 import { Icon } from 'react-icons-kit'
 import { calendar } from 'react-icons-kit/feather/calendar'
 import { dollarSign } from 'react-icons-kit/feather/dollarSign'
-import { crosshair } from 'react-icons-kit/feather/crosshair'
+import { location } from 'react-icons-kit/entypo/location'
 import RegisterForm from './RegisterForm'
 import { connect } from 'react-redux'
 import events from '../../requests/events'
+import '../../styles/singleEventPage.css'
+
 
 
 class SingleEventTop extends Component {
@@ -61,7 +63,7 @@ class SingleEventTop extends Component {
           </div>
         </Col>
         <Col>
-          <img className='event_image' src={image_url} alt='event_image'></img>
+        <div className='event_card_img' style={{ background: `url('${image_url}')`, height: '445px', backgroundSize: 'cover', backgroundPosition: 'center' }}></div>
         </Col>
         <Col>
           {
@@ -76,13 +78,13 @@ class SingleEventTop extends Component {
               <div className='info_right'>
                 <img className='logo' src={logo}></img>
                 <br />
-                <Icon size={25} icon={calendar} />  {eventTime(start_date, end_date)}
+                <Icon className="event_card_icon" size={18} icon={calendar} />  {eventTime(start_date, end_date)}
                 <br />
                 <br />
-                <Icon size={25} icon={crosshair} />  {street}, {city}, {state}, {zip}
+                <Icon className="event_card_icon" size={18} icon={location} />  {street}, {city}, {state}, {zip}
                 <br />
                 <br />
-                <Icon size={25} icon={dollarSign} />  {cost}
+                <Icon className="event_card_icon" size={20} icon={dollarSign} />  {cost}
                 <br />
                 <br />
                 {

@@ -16,7 +16,7 @@ const EventCard = (props) => {
     <Row className='wrapping_row'>
       <Card className='event_card'>
         <Col s={12} m={6} l={5}>
-          <div className='event_card_img' style={{ background: `url('${image_url}')`, height: '240px', backgroundSize: 'cover' }}></div>
+          <div className='event_card_img' style={{ background: `url('${image_url}')`, height: '240px', backgroundSize: 'cover', backgroundPosition: 'center' }}></div>
         </Col>
         <Col s={12} m={6} l={3}>
           <div>{eventTime(start_date, end_date)}</div>

@@ -3,3 +3,14 @@
     height: 70px;
     border-radius: 50%;
 }
+
+.event_card_icon {
+    margin-right: 5px;
+    color: #7A193D;
+}
+
+.reviewer {
+    text-align: center;
+    font-weight: bold;
+    color: #7A193D
+}

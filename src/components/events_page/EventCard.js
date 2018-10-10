@@ -2,7 +2,9 @@ import React, { Component } from 'react'
 import { Icon } from 'react-icons-kit'
 import { heart } from 'react-icons-kit/fa/heart'
 import { heartO } from 'react-icons-kit/fa/heartO'
-
+import { androidHand } from 'react-icons-kit/ionicons/androidHand'
+import { location } from 'react-icons-kit/entypo/location'
+import { smileO } from 'react-icons-kit/fa/smileO'
 
 import { connect } from 'react-redux'
 import { Row, Col, Card } from 'react-materialize'
@@ -26,29 +28,37 @@ class EventCard extends Component {
   }
 
   render() {
-    const { id, title, registered, image_url, min_age, max_age, street, city, state, event_description, favorite, zip, start_date, end_date } = this.props.event
+    const { id, title, image_url, min_age, max_age, street, city, state, description, favorite, zip, start_date, end_date } = this.props.event
     console.log('event id inside EventCard', id)
+    console.log('event description inside EventCard', this.props.event)
 
     return (
-      <Row style={{ marginTop: '15px' }}>
-        <Card onClick={() => this.props.onClick(id)}>
-          <Col l={4}>
-            <img className='event_card_img' src={image_url} alt="event_image" ></img>
+      <Row className='wrapping_row'>
+        <Card className='event_card' onClick={() => this.props.onClick(id)}>
+          <Col s={12} m={6} l={4}>
+            <div className='event_card_img' style={{ background: `url('${image_url}')`, height: '228px', backgroundSize: 'cover', backgroundPosition: 'center' }}></div>
           </Col>
-          <Col l={4}>
-            <div>{eventTime(start_date, end_date)}</div>
+          <Col s={12} m={6} l={4}>
+            <div className='event_text'>{eventTime(start_date, end_date)}</div>
+            <div className='event_text'><Icon className='event_card_icon' size={17} icon={androidHand} />{`For ${min_age} to ${max_age} years old`}</div>
           </Col>
-          <Col l={3}>
-            <div className='event_title'>{title} </div>
-            <div>{`${street}, ${city}, ${state}, ${zip}`}</div>
-            <div>{`From ${min_age} to ${max_age}`}</div>
-            <div>{event_description}</div>
+          <Col s={12} m={6} l={3}>
+            <Row>
+              <div className='event_title'>{title} </div>
+            </Row>
+            <Row>
+              <div className='event_text'><Icon className='event_card_icon' size={17} icon={location} />{`${street}, ${city}, ${state}, ${zip}`}</div>
+            </Row>
+            <Row>
+              <div className='event_text'><Icon className='event_card_icon' size={17} icon={smileO} />{description}</div>
+            </Row>
           </Col>
-          <Col l={1}>
+
+          {/* <Col l={1}>
             {
               favorite ? <Icon icon={heart} /> : <Icon icon={heartO} />
             }
-          </Col>
+          </Col> */}
         </Card>
       </Row>
     )

@@ -2,6 +2,8 @@ import React from 'react'
 import { Col, Row } from 'reactstrap'
 import '../../styles/reviewImage.css'
 import moment from 'moment'
+import { Icon } from 'react-icons-kit'
+import {ic_stars} from 'react-icons-kit/md/ic_stars'
 
 const SingleReview = (props) => {
   const { content, votes, created_at, updated_at, first_name, last_name, avatar, city, state } = props.review
@@ -11,14 +13,14 @@ const SingleReview = (props) => {
     <Row>
       <Col>
         <Row>
-          <Col lg="1">
+          <Col className='reviewer' lg="1">
             <img className='avatar' src={avatar} alt='avatar'></img>
             <p>{first_name}</p>
           </Col>
           <Col lg="11">
             <p>{`Posted in ${postedTime}`}</p>
             <p>{content}</p>
-            <p>{votes}</p>
+            <p><Icon  className='event_card_icon' icon={ic_stars} />{votes}/5</p>
           </Col>
         </Row>
         <hr />

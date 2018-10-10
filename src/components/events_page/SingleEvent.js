@@ -37,19 +37,30 @@ class SingleEventPage extends Component {
     console.log('this is event inside SingleEvent', event)
     return (
       <div>
-        <Container style={{ marginTop: '18px' }} fluid>
+        <Container className='single_event_wrapper' fluid>
           <SingleEventTop event={event} />
         </Container>
-        <Container>
-          <OrgInfoEvent event={event} />
-          <Row>
-            <p className='sub_heading'> Location </p>
-            <br />
-            <br />
-            <SingleEventMap lat={event.lat} lng={event.long} />
-          </Row>
+        <Container className="org_info_section" >
           <Row>
             <Col>
+              <Row>
+                <p className='sub_heading'> About the Organization </p>
+              </Row>
+              <OrgInfoEvent event={event} />
+            </Col>
+          </Row>
+          <Row className='location_section'>
+            <Col>
+              <Row>
+                <p className='sub_heading'> Location </p>
+              </Row>
+              <Row>
+                <SingleEventMap className="map_section" lat={event.lat} lng={event.long} />
+              </Row>
+            </Col>
+          </Row>
+          <Row>
+            <Col className='review_section'>
               <Row>
                 <p className='sub_heading'> Reviews </p>
               </Row>
