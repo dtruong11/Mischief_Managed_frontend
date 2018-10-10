@@ -14,8 +14,8 @@ class LoginForm extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      email: '',
-      password: ''
+      email: 'student@galvanize.com',
+      password: 'password'
     }
   }
 
@@ -49,7 +49,7 @@ class LoginForm extends Component {
             id="email-field"
             placeholder="email"
             value={
-              !this.state.email ? `student@galvanize.com` : this.state.email
+              this.state.email
             }
             onChange={e => this.setState({ email: e.target.value })}
           />
@@ -61,7 +61,7 @@ class LoginForm extends Component {
             id="pass-field"
             placeholder="password"
             value={
-              !this.state.password ? `password` : this.state.password
+              this.state.password
             }
             onChange={e => this.setState({ password: e.target.value })}
           />
