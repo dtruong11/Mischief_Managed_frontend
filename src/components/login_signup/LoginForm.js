@@ -14,8 +14,8 @@ class LoginForm extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      email: 'student@galvanize.com',
-      password: 'password'
+      email: '',
+      password: ''
     }
   }
 
@@ -26,14 +26,6 @@ class LoginForm extends Component {
       email: '',
       password: ''
     })
-  }
-
-  fillLogin = (value) => {
-    if (!value) {
-      return `student@galvanize.com`
-    } else {
-      return value
-    }
   }
 
   render() {
