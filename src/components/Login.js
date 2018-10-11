@@ -9,6 +9,8 @@ import { bindActionCreators } from 'redux'
 import { userLogin } from '../actions/authUsers'
 import '../styles/login.css'
 import LoginForm from './login_signup/LoginForm'
+import { Link } from 'react-router-dom'
+
 
 class Login extends Component {
   constructor(props) {
@@ -46,7 +48,7 @@ class Login extends Component {
             <LoginForm />
           </Col>
         </Row >
-        <a href='/login/organizers'>I am an organizer</a>
+        <Link to='/login/organizers'>I am an organizer</Link>
       </Card >
     )
   }

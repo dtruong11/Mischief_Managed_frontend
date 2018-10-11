@@ -7,6 +7,7 @@ import {
 } from 'react-materialize'
 import '../../styles/login.css'
 import { withRouter } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
@@ -147,7 +148,7 @@ class SignupUser extends Component {
           }
           {this.showButton()}
         </form>
-        <a href='/login/organizers'>I am an organizer</a>
+        <Link to='/login/organizers'>I am an organizer</Link>
       </Card>
     )
   }

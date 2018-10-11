@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import {
   Navbar, NavItem,
 } from 'react-materialize'
-import { NavLink, Link } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { userVerify } from '../../actions/authUsers'

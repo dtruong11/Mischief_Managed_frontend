@@ -11,6 +11,7 @@ import '../../styles/login.css'
 import LoginFormOrg from './LoginFormOrg'
 import { withRouter } from 'react-router-dom'
 import { orgVerify } from '../../actions/authOrgs'
+import { Link } from 'react-router-dom'
 
 
 class LoginOrg extends Component {
@@ -40,7 +41,7 @@ class LoginOrg extends Component {
             <LoginFormOrg />
           </Col>
         </Row>
-        <a href='/signup/organizers'>Not logged in? Sign up</a>
+        <Link to='/signup/organizers'>Not logged in? Sign up</Link>
       </Card>
     )
   }
