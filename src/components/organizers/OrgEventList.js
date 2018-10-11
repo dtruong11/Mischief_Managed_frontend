@@ -91,7 +91,7 @@ class OrgEventList extends Component {
     return (
       <Col>
         {
-          this.props.isLoading ? <div>Loading </div>
+          this.props.isLoading ? <div> </div>
             :
             this.displayEvents(this.props.events)
         }

@@ -44,11 +44,5 @@ class OrgDashboard extends Component {
   }
 }
 
-// const mapStateToProps = ({ eventsByOrg, oneOrg }) => ({ oneOrg: oneOrg.org, events: eventsByOrg.all, isLoading: eventsByOrg.isLoading })
-// const mapDispatchToProps = (dispatch) => {
-//   return bindActionCreators({ getEventsByOrg, getOrg }, dispatch)
-// }
-
-// export default connect(mapStateToProps, mapDispatchToProps)(OrgDashboard)
 
 export default OrgDashboard
