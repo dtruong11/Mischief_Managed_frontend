@@ -11,7 +11,6 @@ export const getCurrentLocation = () => {
         });
       })
 
-      console.log('location here', location)
       dispatch({
         type: GET_CURRENT_LOCATION,
         payload: location

@@ -65,7 +65,6 @@ export const userVerify = () => {
           type: USER_LOGIN_SUCCESS,
           payload: response.data.data[0]
         })
-        // console.log('response in userVerify', response.data.data[0])
         return true
       } catch (e) {
         dispatch({

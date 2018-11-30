@@ -14,7 +14,6 @@ const Handle = Slider.Handle;
 
 class DistanceSliderRange extends Component {
     onSliderChange = (value) => {
-        console.log('value inside onSliderChange', value)
        this.props.updateForm('range', value)
     }
 

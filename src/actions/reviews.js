@@ -10,7 +10,6 @@ export const postReview = (eventId, content, votes) => {
         try {
             dispatch({ type: POST_REVIEW_PENDING })
             const payload = await reviews.postReview(eventId, content, votes)
-            console.log('YAYY, This is payload inside postReview, YAYYYYY', payload)
             dispatch({
                 type: POST_REVIEW_SUCCESS,
                 payload
