@@ -34,7 +34,6 @@ export const userLogin = ({ email, password }, history) => {
         localStorage.removeItem('token_org')
       }
 
-      console.log('response in userLogin', response)
       localStorage.setItem('token_user', response.data.token);
       localStorage.setItem('user_id', response.data.id)
 

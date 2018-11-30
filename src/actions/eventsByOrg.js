@@ -15,7 +15,6 @@ export const getEventsByOrg = () => {
     try {
       dispatch({ type: GET_EVENTS_BY_ORG_PENDING })
       const orgId = getState().authOrg.org.id
-      console.log('this is orgId inside events by ORg', orgId)
 
       const response = await eventsByOrg.getEventsByOrg(orgId)
       dispatch({

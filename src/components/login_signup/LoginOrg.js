@@ -23,16 +23,6 @@ class LoginOrg extends Component {
     }
   }
 
-  // submitLogin = async e => {
-  //   e.preventDefault()
-  //   // await this.props.orgLogin(this.state, this.props.history)
-  //   // this.setState({
-  //   //   email: '',
-  //   //   password: ''
-  //   // })
-  //   // await this.props.orgVerify()
-  // }
-
   render() {
     return (
       <Card className="main-wrapper">

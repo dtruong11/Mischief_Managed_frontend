@@ -7,9 +7,6 @@ export const getCurrentLocation = () => {
     try {
       const location = await new Promise((resolve, reject) => {
         navigator.geolocation.getCurrentPosition((location) => {
-          console.log('my current lat', location.coords.latitude);
-          console.log('my current long', location.coords.longitude);
-          console.log('accuracy rate', location.coords.accuracy);
           resolve({ lat: location.coords.latitude, long: location.coords.longitude })
         });
       })
