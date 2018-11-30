@@ -29,8 +29,6 @@ class EventCard extends Component {
 
   render() {
     const { id, event_id, title, image_url, min_age, max_age, street, city, state, description, favorite, zip, start_date, end_date } = this.props.event
-    console.log('event id inside EventCard', id)
-    console.log('event description inside EventCard', this.props.event)
 
     return (
       <Row className='wrapping_row'>
