@@ -43,7 +43,6 @@ class FilterForm extends Component {
   };
 
   render() {
-    console.log('this.props.formValues', this.props.formValues)
     const { sport, art, educational, nature, music, morning, afternoon, evening, cost } = this.props.formValues
     return (
       <Row>

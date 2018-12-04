@@ -32,7 +32,6 @@ class SignupFormOrg extends Component {
 
   submitSignup = e => {
     e.preventDefault()
-    console.log('inside submitsignup', this.state, typeof (this.state.lat_org))
     this.props.orgSignup(this.state, this.props.history)
     this.setState({
       name: '',
@@ -76,7 +75,6 @@ class SignupFormOrg extends Component {
   }
 
   render() {
-    console.log('this.state', this.state)
     return (
       <Card className='main-wrapper'>
         <form onSubmit={this.submitSignup}>

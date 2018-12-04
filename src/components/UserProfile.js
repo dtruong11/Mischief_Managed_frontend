@@ -7,7 +7,6 @@ import {
 import { connect } from 'react-redux'
 
 const UserProfile = (props) => {
-  // console.log('up props', props)
   return (
     <div>
       <Container>

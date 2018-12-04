@@ -40,7 +40,6 @@ export const createEvent = (formInputs) => {
     try {
       dispatch({ type: CREATE_EVENT_PENDING })
       const res = await eventsByOrg.createEvent(formInputs)
-      console.log('this is res from createEvent', res)
       dispatch({
         type: CREATE_EVENT_SUCCESS,
         payload: res.data // check

@@ -6,14 +6,12 @@ const BASE_URL = 'https://capstonebackmischief.herokuapp.com'
 
 const getEventsByOrg = async (orgId) => {
   const token = localStorage.getItem('token_org')
-  console.log('orgId in getEventsByOrg', orgId, token)
   const res = await axios(`${BASE_URL}/organizations/${orgId}/events`, {
     method: 'GET',
     headers: {
       Authorization: `Bearer ${token}`
     }
   })
-  console.log('this is res.data inside getEventsByOrg', res.data)
   return res.data
 }
 

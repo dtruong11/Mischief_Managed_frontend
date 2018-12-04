@@ -19,7 +19,6 @@ class DistanceSliderRange extends Component {
 
     handle = (props) => {
         const { value, dragging, index, ...restProps } = props;
-        // console.log('value', value)
         return (
             <Tooltip
                 prefixCls="rc-slider-tooltip"
@@ -34,8 +33,6 @@ class DistanceSliderRange extends Component {
     };
     render() {
         const range = this.props.formValues.range 
-        console.log('range in DistanceSlider', range)
-
         return (
             <div className='Rangecontainer'>
                 <div className='sliderAge'>

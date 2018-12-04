@@ -87,7 +87,6 @@ class OrgEventList extends Component {
   }
 
   render() {
-    console.log('this.props.events in OrgEventList component', this.props.events)
     return (
       <Col>
         {

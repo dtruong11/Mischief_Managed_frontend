@@ -21,7 +21,6 @@ const Map = compose(
         if (isOpen.hasOwnProperty(idx)) {
           return { isOpen: { ...isOpen, [idx]: !isOpen[idx] } }
         } else {
-          console.log(isOpen)
           return { isOpen: { ...isOpen, [idx]: true } }
         }
       }

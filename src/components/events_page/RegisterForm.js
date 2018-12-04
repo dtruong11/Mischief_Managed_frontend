@@ -21,7 +21,6 @@ class RegisterForm extends Component {
   onSubmit = async (e) => {
     e.preventDefault()
     const payload = await events.registerEvent(this.props.eventId, this.state.notes, this.state.addedChild)
-    console.log('payload in child registerform on submit', payload)
     this.setState({ childName: '', age: '', finisedBooking: true })
   }
 

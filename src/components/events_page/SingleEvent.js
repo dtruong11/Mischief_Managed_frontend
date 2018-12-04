@@ -34,7 +34,6 @@ class SingleEventPage extends Component {
   }
 
   renderEvent = (event) => {
-    console.log('this is event inside SingleEvent', event)
     return (
       <div>
         <Container className='single_event_wrapper' fluid>
@@ -78,9 +77,7 @@ class SingleEventPage extends Component {
   }
 
   render() {
-    console.log('this.props inside SingleEvent', this.props)
     const event = this.props.event
-    // console.log('this is a single event', event)
     const isLoading = this.props.isLoading
 
     return (

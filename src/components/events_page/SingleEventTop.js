@@ -50,7 +50,6 @@ class SingleEventTop extends Component {
 
   render() {
     const { id, title, image_url, description, cost, street, city, state, zip, min_age, max_age, start_date, end_date, name, logo } = this.props.event
-    console.log('this is id from event', id)
     return (
       <Row>
         <Col>

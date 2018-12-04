@@ -1,19 +1,3 @@
-// import { Card, CardTitle } from 'react-materialize'
-// import React from 'react';
-// import '../styles/InfoCardMap.css'
-
-// const InfoCard = (props) => {
-//     console.log('this props inside InfoCard', props)
-//     const { image_url, title, description, min_age, max_age, start_date, end_date } = props.event
-//     return (
-//         <Card className='small smaller'
-//             header={<CardTitle image={image_url}>{title}</CardTitle>}
-//             actions={[<a href='#'>Check out this event!</a>]}>
-//             {description}
-//         </Card>
-//     )
-// }
-
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
@@ -24,7 +8,6 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-// import '../styles/InfoCardMap.css'
 
 
 const styles = {

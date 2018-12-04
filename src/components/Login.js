@@ -18,13 +18,11 @@ class Login extends Component {
     this.state = {
       email: '',
       password: ''
-      // loginview: true
     }
   }
 
   submitLogin = e => {
     e.preventDefault()
-    // console.log('history', this.props);
     this.props.userLogin(this.state, this.props.history)
     this.setState({
       email: '',
@@ -32,13 +30,6 @@ class Login extends Component {
     })
   }
 
-  // handleLoginView = () => {
-  //   this.setState({ loginview: true })
-  // }
-
-  // handleSignupView = () => {
-  //   this.setState({ loginview: false })
-  // }
 
   render() {
     return (

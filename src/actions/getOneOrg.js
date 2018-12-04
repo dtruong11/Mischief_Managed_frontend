@@ -13,7 +13,6 @@ export const getOrg = () => {
       const orgId = localStorage.getItem('org_id')
       // dispatch({ type: GET_ORG_PENDING })
       const response = await authOrg.verify(token, orgId)
-      console.log('this is getOrg response.data', response.data)
       dispatch({
         type: GET_ORG_SUCCESS,
         payload: response.data

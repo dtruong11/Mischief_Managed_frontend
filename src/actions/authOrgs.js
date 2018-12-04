@@ -66,7 +66,6 @@ export const orgSignup = (newOrg, history) => {
 
 export const orgVerify = () => {
   return async (dispatch, getState) => {
-    console.log('this is the org Id inside orgVerify',getState().authOrg.org.id)
     const token = localStorage.getItem('token_org')
     const orgId = localStorage.getItem('org_id')
     if (token) {
