@@ -33,7 +33,6 @@ class App extends Component {
   }
 
   render() {
-    console.log('APP JS isLoggedIn', this.props.isLoggedIn)
     return (<Router>
       <div className="App">
         <header className="App-header">

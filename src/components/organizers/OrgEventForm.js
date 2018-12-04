@@ -72,13 +72,8 @@ class EventForm extends Component {
     delete formInputs.fill_location
     delete formInputs.select_logo
 
-    console.log('this.state inside onsubmit', this.state)
-    console.log('this is formInputs', formInputs)
-
-    // backend call to create event 
     this.props.createEvent(formInputs) // ENABLE BACK SOON!!! 
 
-    // console.log('this.state BEFORE RESETTING', this.state)
 
     this.setState({
       fill_location: false,
@@ -126,8 +121,6 @@ class EventForm extends Component {
     this.setState({
       [name]: value
     })
-    console.log('name', name)
-    console.log('value', value)
   }
 
   fillLocation = () => {
@@ -191,8 +184,6 @@ class EventForm extends Component {
   }
 
   render() {
-    console.log('this is the STATE AFTER RESETTING', this.state)
-
     const { street_org, city_org, state_org, zip_org, lat_org, long_org, logo } = this.props.org
     return (
       <Card className='main_wrapper'>

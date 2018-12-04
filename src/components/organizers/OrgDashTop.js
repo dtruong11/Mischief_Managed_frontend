@@ -15,22 +15,16 @@ class OrgDashTop extends Component {
   }
 
   componentDidMount = () => {
-    // console.log('this.props.getOrg()', this.props.getOrg())
     // this.props.getOrg()
   }
 
 
   render() {
     const { id, name, aboutus, email, lat_org, long_org, state_org, street_org, zip_org, logo } = this.props.authOrg.org
-
-    // const { id, name, aboutus, email, lat_org, long_org, state_org, street_org, zip_org, logo } = this.props.oneOrg
-    // console.log('org inside orgDashTop', this.props.oneOrg)
-    console.log('this.props.authOrg.org', this.props.authOrg.org)
     return (
       <div className='top'>
         <Slider style={{ marginBottom: '15px' }}>
           <Slide
-            // style={{ position: 'relative', overflow: 'hidden' }}
             src={pic6}
             className='main_pic'
             title={`Welcome, ${name} to Mischief Managed!`}>

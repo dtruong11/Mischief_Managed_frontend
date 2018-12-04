@@ -27,8 +27,6 @@ class SearchBar extends React.Component {
       className: 'Demo__search-input',
     })
     
-    console.log('HERE?', suggestions, inputProps);
-
 
     return (
       <div className="Demo__search-bar-container">
@@ -92,13 +90,11 @@ class SearchBar extends React.Component {
   };
 
   handleSelect = selected => {
-    console.log('selected', selected)
     this.setState({ isGeocoding: true, address: selected });
 
     geocodeByAddress(selected)
       .then(res => getLatLng(res[0]))
       .then(({ lat, lng }) => {
-        console.log('lat', lat, 'lng', lng)
         // Update form state in redux store
         this.props.updateForm('lat', lat)
         this.props.updateForm('long', lng)
@@ -123,7 +119,6 @@ class SearchBar extends React.Component {
   };
 
   handleError = (status, clearSuggestions) => {
-    // console.log('Error from Google Maps API', status); // eslint-disable-line no-console
     this.setState({ errorMessage: status }, () => {
       clearSuggestions();
     });
@@ -133,10 +128,8 @@ class SearchBar extends React.Component {
     const {
       address,
       errorMessage,
-      // isGeocoding,
     } = this.state;
 
-    // console.log('this.state.latitude', latitude, 'this.state.longitude', longitude)
     return (
       <div>
         <PlacesAutocomplete

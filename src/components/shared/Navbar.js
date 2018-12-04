@@ -32,8 +32,6 @@ class Navigation extends Component {
   }
 
   checkLogin = () => {
-    console.log('this.props.authOrg', this.props.authOrg)
-
     let orgName = ''
     if (this.props.authOrg.hasOwnProperty('name')) {
       orgName = this.props.authOrg.name || `Organization`

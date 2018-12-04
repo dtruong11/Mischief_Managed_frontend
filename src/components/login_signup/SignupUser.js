@@ -30,7 +30,6 @@ class SignupUser extends Component {
 
   submitSignup = (e) => {
     e.preventDefault()
-    console.log('the props', this.props.history)
     this.props.userSignup({ ...this.state, zip: parseInt(this.state.zip) }, this.props.history)
     this.setState({
       email: '',

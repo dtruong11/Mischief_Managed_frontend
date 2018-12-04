@@ -28,15 +28,12 @@ class ReviewForm extends Component {
     const content = this.state.content
     const votes = this.state.votes
     const eventId = this.props.eventId
-    // console.log(eventId, content, parseInt(votes));
 
     this.props.postReview(eventId, content, parseInt(votes))
-    // this.setState({ content: '', votes: '' })
   }
 
   render() {
     const showError = this.props.reviews.showError
-    console.log(showError)
 
     return (
       <Card className='review_form'>
