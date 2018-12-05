@@ -7,7 +7,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux'
 import { updateForm } from '../../actions/updateForm'
 
-
+// Problem: after typing an address, the state is set. On change, it is not reset to null 
 class SearchBar extends React.Component {
   constructor(props) {
     super(props);
@@ -26,7 +26,7 @@ class SearchBar extends React.Component {
       placeholder: 'Search Places...',
       className: 'Demo__search-input',
     })
-    
+
 
     return (
       <div className="Demo__search-bar-container">
@@ -41,8 +41,8 @@ class SearchBar extends React.Component {
     );
   }
 
-  renderSuggestions =  (suggestions, getSuggestionItemProps) => {
-    if(suggestions.length > 0) {
+  renderSuggestions = (suggestions, getSuggestionItemProps) => {
+    if (suggestions.length > 0) {
       return (
         <div className="Demo__autocomplete-container">
           {suggestions.map(suggestion => {
@@ -51,7 +51,6 @@ class SearchBar extends React.Component {
             });
 
             return (
-              /* eslint-disable react/jsx-key */
               <div
                 {...getSuggestionItemProps(suggestion, { className })}
               >
@@ -63,14 +62,9 @@ class SearchBar extends React.Component {
                 </small>
               </div>
             );
-            /* eslint-enable react/jsx-key */
           })}
           <div className="Demo__dropdown-footer">
             <div>
-              {/* <img
-                src={require('../images/powered_by_google_default.png')}
-                className="Demo__dropdown-footer-image"
-              /> */}
             </div>
           </div>
         </div>
@@ -78,9 +72,9 @@ class SearchBar extends React.Component {
     }
   }
 
-    
 
   handleChange = address => {
+    console.log("It is changing address", address, 'state check', this.state)
     this.setState({
       address,
       latitude: null,
@@ -91,24 +85,34 @@ class SearchBar extends React.Component {
 
   handleSelect = selected => {
     this.setState({ isGeocoding: true, address: selected });
+    console.log('selected', selected.length)
 
-    geocodeByAddress(selected)
-      .then(res => getLatLng(res[0]))
-      .then(({ lat, lng }) => {
-        // Update form state in redux store
-        this.props.updateForm('lat', lat)
-        this.props.updateForm('long', lng)
-
-        this.setState({
-          latitude: lat,
-          longitude: lng,
-          isGeocoding: false,
-        });
+    if (selected.length === 0) {
+      this.props.updateForm('lat', '')
+      this.props.updateForm('long', '')
+      this.setState({
+        latitude: null,
+        longitude: null
       })
-      .catch(error => {
-        this.setState({ isGeocoding: false });
-      });
+    } else {
+      geocodeByAddress(selected)
+        .then(res => getLatLng(res[0]))
+        .then(({ lat, lng }) => {
+          // Update form state in redux store
+          this.props.updateForm('lat', lat)
+          this.props.updateForm('long', lng)
+          this.setState({
+            latitude: lat,
+            longitude: lng,
+            isGeocoding: false,
+          });
+        })
+        .catch(error => {
+          this.setState({ isGeocoding: false });
+        });
+    }
   };
+
 
   handleCloseClick = () => {
     this.setState({

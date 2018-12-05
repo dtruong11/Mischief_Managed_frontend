@@ -1,6 +1,8 @@
 import axios from 'axios'
 
-const BASE_URL = 'https://capstonebackmischief.herokuapp.com'
+const { REACT_APP_BASE_URL } = process.env
+
+const BASE_URL = REACT_APP_BASE_URL
 
 // get all events by organization, with nested regsitration, reviews, attendees
 

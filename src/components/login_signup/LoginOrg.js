@@ -13,7 +13,6 @@ import { withRouter } from 'react-router-dom'
 import { orgVerify } from '../../actions/authOrgs'
 import { Link } from 'react-router-dom'
 
-
 class LoginOrg extends Component {
   constructor(props) {
     super(props)

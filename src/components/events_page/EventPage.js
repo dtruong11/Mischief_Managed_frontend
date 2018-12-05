@@ -37,7 +37,7 @@ class EventPage extends Component {
         <Row className='list_map'>
           <Col lg='5'></Col>
           <Col onClick={this.handleListView} className={this.state.listview && "list_map_button"}>List View</Col>
-          <Col onClick={this.handleMapView} className={this.state.listview === false && "list_map_button"}>Map View</Col>
+          <Col onClick={this.handleMapView} className={!this.state.listview && "list_map_button"}>Map View</Col>
           <Col lg='5'></Col>
         </Row>
         <Row>

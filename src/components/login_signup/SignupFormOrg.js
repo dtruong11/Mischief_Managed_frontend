@@ -1,11 +1,17 @@
 import React, { Component } from 'react'
+// import {
+//   Button,
+//   Row,
+//   Input,
+//   Card
+// } from 'react-materialize'
 import {
   Button,
   Row,
   Input,
-  Card
-} from 'react-materialize'
-
+  Card,
+  Form
+} from 'reactstrap'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { orgSignup } from '../../actions/authOrgs'
@@ -77,7 +83,7 @@ class SignupFormOrg extends Component {
   render() {
     return (
       <Card className='main-wrapper'>
-        <form onSubmit={this.submitSignup}>
+        <Form onSubmit={this.submitSignup}>
           <Row>
             <Input
               name='name' label='NAME'
@@ -181,7 +187,7 @@ class SignupFormOrg extends Component {
             ) : null
           }
           {this.showButton()}
-        </form>
+        </Form>
       </Card>
     )
   }

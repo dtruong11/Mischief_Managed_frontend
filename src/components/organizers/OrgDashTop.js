@@ -1,13 +1,11 @@
 import React, { Component } from 'react'
-import mainOrgPic from '../../assets/jumbotron.jpg'
-
 import { Row, Col, Slider, Slide } from 'react-materialize'
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { getOrg } from '../../actions/getOneOrg'
 import '../../styles/orgDashboardTop.css'
-import pic6 from '../../assets/kids_fun6.jpg'
-import pic9 from '../../assets/kid_fun9.jpg'
+// import pic6 from '../../assets/kids_fun6.jpg'
+import pic1 from '../../assets/fun6.jpg'
 
 class OrgDashTop extends Component {
   constructor(props) {
@@ -24,15 +22,15 @@ class OrgDashTop extends Component {
     return (
       <div className='top'>
         <Slider style={{ marginBottom: '15px' }}>
-          <Slide
+          {/* <Slide
             src={pic6}
             className='main_pic'
             title={`Welcome, ${name} to Mischief Managed!`}>
             Mischief Managed is a platform for organization like you to connect with families and friends through fun activities .
-            </Slide>
-          <Slide
-            src={pic9}
-            title="Posting Events"
+            </Slide> */}
+          <Slide 
+            src={pic1}
+            title={`Welcome, ${name} to Mischief Managed!`}
             placement="left">
             You can post your events by filling out the create event form.
             </Slide>
