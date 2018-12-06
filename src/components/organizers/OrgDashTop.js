@@ -4,7 +4,6 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { getOrg } from '../../actions/getOneOrg'
 import '../../styles/orgDashboardTop.css'
-// import pic6 from '../../assets/kids_fun6.jpg'
 import pic1 from '../../assets/fun6.jpg'
 
 class OrgDashTop extends Component {
@@ -22,12 +21,6 @@ class OrgDashTop extends Component {
     return (
       <div className='top'>
         <Slider style={{ marginBottom: '15px' }}>
-          {/* <Slide
-            src={pic6}
-            className='main_pic'
-            title={`Welcome, ${name} to Mischief Managed!`}>
-            Mischief Managed is a platform for organization like you to connect with families and friends through fun activities .
-            </Slide> */}
           <Slide 
             src={pic1}
             title={`Welcome, ${name} to Mischief Managed!`}
