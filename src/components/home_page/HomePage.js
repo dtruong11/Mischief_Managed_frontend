@@ -19,7 +19,6 @@ class HomePage extends Component {
         <Col>
           <Slider style={{ marginBottom: '15px' }}>
             <Slide
-              // style={{ position: 'relative', overflow: 'hidden' }}
               src={pic1}
               className='main_pic'
               title="Welcome to Mischief Managed!">
@@ -31,12 +30,6 @@ class HomePage extends Component {
               placement="left">
               Organizations, sign up to post your events and connect with families.
             </Slide>
-            {/* <Slide
-              // src={pic3}
-              title="Welcome Families & Friends"
-              placement="right">
-              Families and friends, sign up today to see new activities.
-            </Slide> */}
             <Slide
               src={pic5}
               title="Browse our activities nearby you"
