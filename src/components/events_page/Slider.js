@@ -33,7 +33,7 @@ class SliderRange extends Component {
     };
     render() {
         const ageArr = this.props.formValues.age
-
+        console.log('check formValues', this.props.formValues)
         return (
             <div className='Rangecontainer'>
                 <div className='sliderAge'>

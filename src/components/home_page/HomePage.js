@@ -1,10 +1,9 @@
 import React, { Component } from 'react'
 import { Row, Col, Button, Slider, Slide, Footer } from 'react-materialize'
 import { Link } from 'react-router-dom'
-import pic1 from '../../assets/kid_fun4.jpg'
-import pic2 from '../../assets/kid_fun2.jpg'
-import pic3 from '../../assets/kid_fun3.jpg'
-import pic5 from '../../assets/kid_fun5.jpg'
+import pic1 from '../../assets/fun4.jpg'
+import pic2 from '../../assets/fun2.jpg'
+import pic5 from '../../assets/fun5.jpg'
 
 import '../../styles/home.css'
 
@@ -32,12 +31,12 @@ class HomePage extends Component {
               placement="left">
               Organizations, sign up to post your events and connect with families.
             </Slide>
-            <Slide
-              src={pic3}
+            {/* <Slide
+              // src={pic3}
               title="Welcome Families & Friends"
               placement="right">
               Families and friends, sign up today to see new activities.
-            </Slide>
+            </Slide> */}
             <Slide
               src={pic5}
               title="Browse our activities nearby you"

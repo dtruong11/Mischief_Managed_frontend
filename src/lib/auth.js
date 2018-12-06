@@ -1,5 +1,7 @@
 import axios from 'axios'
-const BASE_URL = 'https://capstonebackmischief.herokuapp.com/auth'
+const { REACT_APP_BASE_URL } = process.env
+
+const BASE_URL = REACT_APP_BASE_URL
 const TOKEN_USER = 'token_user'
 const TOKEN_ORG = 'token_org'
 

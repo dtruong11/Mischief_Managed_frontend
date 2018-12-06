@@ -14,8 +14,9 @@ export const USER_VERIFY_FAILED = 'USER_VERIFY_FAILED'
 export const USER_LOGOUT = 'USER_LOGOUT'
 
 /// HEROKU DEPLOYED BACKEND 
+const { REACT_APP_BASE_URL } = process.env
 
-const BASE_URL = 'https://capstonebackmischief.herokuapp.com'
+const BASE_URL = REACT_APP_BASE_URL
 export const userLogin = ({ email, password }, history) => {
   return async (dispatch) => {
     try {

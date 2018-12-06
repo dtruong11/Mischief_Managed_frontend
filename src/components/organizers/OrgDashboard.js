@@ -31,12 +31,12 @@ class OrgDashboard extends Component {
         </Row>
         <Row>
           <Col>
-            <OrgEventForm />
+            <OrgEventList/>
           </Col>
         </Row>
         <Row>
           <Col>
-            <OrgEventList/>
+            <OrgEventForm />
           </Col>
         </Row>
       </div>

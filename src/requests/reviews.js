@@ -1,6 +1,8 @@
 import axios from 'axios'
 
-const BASE_URL = 'hhttps://capstonebackmischief.herokuapp.com'
+const { REACT_APP_BASE_URL } = process.env
+
+const BASE_URL = REACT_APP_BASE_URL
 
 const postReview = (eventId, content, votes) => {
     return axios(`${BASE_URL}/events/${eventId}/reviews`, {
