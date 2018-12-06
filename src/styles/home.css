@@ -29,20 +29,20 @@
 
 .title_signin {
   font-weight: bold;
-  font-size: 22px;
+  font-size: 25px;
 }
 
 .nav_style {
   background-color: #B045BA;
-  height: 60px;
+  height: 65px;
 }
 
 nav a:hover {
   text-decoration: none ;
   color: white ;
-
+  box-shadow: none;
 }
 
 nav ul a:hover {
-  transform: scale(1.1);
+  transform: scale(1.05);
 }
