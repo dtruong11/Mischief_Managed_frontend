@@ -26,7 +26,7 @@ class OrgDashTop extends Component {
             title={`Welcome, ${name} to Mischief Managed!`}
             placement="left">
             You can post your events by filling out the create event form.
-            </Slide>
+          </Slide>
           <Slide
             src={logo}
             title={`About ${name}:`}
