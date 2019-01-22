@@ -7,11 +7,13 @@
 ### Overview
 * Mischief Managed (M & M) is a web application that takes away the stress of finding the right activities for parents and families. Parents can filter activities based on location, distance, cost, event type and age range. Parents can also view an interactive map of their search results. If parents are interested in any events, they can login to register and leave reviews. 
 
-![](./gif/MM2.gif)
+<p align="center">
+<img src="./gif/MM2.gif" width=800>
 
 * Mischief Managed is also for organizers who would like to create events and share them with parents in the community. From the orgnization page, organizers can view their events, who signed up, and reviews from families. 
 
-![](./gif/MM3.gif)
+<p align="center">
+<img src="./gif/MM3.gif" width=800>
 
 
 ### Backend 
