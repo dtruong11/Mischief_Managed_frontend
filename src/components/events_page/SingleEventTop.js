@@ -62,7 +62,7 @@ class SingleEventTop extends Component {
           </div>
         </Col>
         <Col>
-        <div className='event_card_img' style={{ background: `url('${image_url}')`, height: '400px', backgroundSize: 'cover', backgroundPosition: 'center' }}></div>
+        <div className='event_card_img event_top' style={{ backgroundImage: `url('${image_url}')` }}></div>
         </Col>
         <Col>
           {

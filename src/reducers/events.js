@@ -11,11 +11,7 @@ import {
 
     GET_FAVORITE_EVENTS_PENDING,
     GET_FAVORITE_EVENTS_SUCCESS,
-    GET_FAVORITE_EVENTS_FAILED,
-
-    CREATE_FAVORITE_PENDING,
-    CREATE_FAVORITE_SUCCESS,
-    CREATE_FAVORITE_FAILED
+    GET_FAVORITE_EVENTS_FAILED
 } from '../actions/events'
 
 
@@ -25,7 +21,6 @@ let eventsInitialState = {
     all: [],
     selected: {},
     favorites: []
-    // payload: { reviews: [] }
 }
 
 export const events = (state = eventsInitialState, {
@@ -54,13 +49,6 @@ export const events = (state = eventsInitialState, {
             return { ...state, favorites: payload.events, isLoading: false, showError: false }
         case GET_FAVORITE_EVENTS_FAILED:
             return { ...state, isLoading: false, showError: true }
-
-        // case CREATE_FAVORITE_PENDING:
-        //     return { ...state, isLoading: true, showError: false }
-        // case CREATE_FAVORITE_SUCCESS:
-        //     return { ...state, payload, isLoading: false, showError: false }
-        // case CREATE_FAVORITE_FAILED:
-        //     return { ...state, isLoading: false, showError: true }
         default:
             return state
     }

@@ -34,7 +34,7 @@ class EventCard extends Component {
       <Row className='wrapping_row'>
         <Card className='event_card' onClick={() => this.props.onClick(event_id)}>
           <Col s={12} m={6} l={4}>
-            <div className='event_card_img' style={{ background: `url('${image_url}')`, height: '228px', backgroundSize: 'cover', backgroundPosition: 'center' }}></div>
+            <div className='event_card_img' style={{ backgroundImage: `url('${image_url}')`, height: '228px' }}></div>
           </Col>
           <Col s={12} m={6} l={4}>
             <div className='event_text'>{eventTime(start_date, end_date)}</div>

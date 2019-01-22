@@ -5,8 +5,8 @@ import { Icon } from 'react-icons-kit'
 import { location } from 'react-icons-kit/entypo/location'
 import { smileO } from 'react-icons-kit/fa/smileO'
 import { androidHand } from 'react-icons-kit/ionicons/androidHand'
-import '../../styles/orgEventCard.css'
 import OrgEventModal from './OrgEventModal'
+import '../../styles/orgEventCard.css'
 
 
 const EventCard = (props) => {
@@ -16,7 +16,7 @@ const EventCard = (props) => {
     <Row className='wrapping_row'>
       <Card className='event_card'>
         <Col s={12} m={6} l={5}>
-          <div className='event_card_img' style={{ background: `url('${image_url}')`, height: '240px', backgroundSize: 'cover', backgroundPosition: 'center' }}></div>
+          <div className='event_img' style={{ backgroundImage: `url('${image_url}')`, height: '240px' }}></div>
         </Col>
         <Col s={12} m={6} l={3}>
           <div>{eventTime(start_date, end_date)}</div>

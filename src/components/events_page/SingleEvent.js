@@ -84,7 +84,7 @@ class SingleEventPage extends Component {
       <div>
         {
           !isLoading && event.hasOwnProperty('reviews')
-            ? this.renderEvent(event) : <div>Still Loading </div>
+            ? this.renderEvent(event) : <div> </div>
         }
       </div>
     )

@@ -71,10 +71,15 @@
 
 .event_card_img {
     width: 100%;
-    height: 22vh;
+    background-size: cover;
+    background-position: center;
 }
 
+.event_top {
+    height: 100%;
+}
 
 .event_text {
     font-size: 17px;
 }
+
