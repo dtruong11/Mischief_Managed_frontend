@@ -1,10 +1,8 @@
 import React, { Component } from 'react'
-import { Row, Col, Button, Slider, Slide, Footer } from 'react-materialize'
+import { Row, Col, Button, Footer } from 'react-materialize'
 import { Link } from 'react-router-dom'
-import pic1 from '../../assets/fun4.jpg'
-import pic2 from '../../assets/fun2.jpg'
-import pic5 from '../../assets/fun5.jpg'
-
+import Benefits from './Benefits'
+import Signin from './Singin'
 import '../../styles/home.css'
 
 
@@ -17,28 +15,18 @@ class HomePage extends Component {
     return (
       <Row>
         <Col>
-          <Slider style={{ marginBottom: '15px' }}>
-            <Slide
-              src={pic1}
-              className='main_pic'
-              title="Welcome to Mischief Managed!">
-              Mischief Managed is a platform for families and friends to find kids activities .
-            </Slide>
-            <Slide
-              src={pic2}
-              title="Welcome Organizations"
-              placement="left">
-              Organizations, sign up to post your events and connect with families.
-            </Slide>
-            <Slide
-              src={pic5}
-              title="Browse our activities nearby you"
-              placement="left">
-              While we try to teach our children all about life, Our children teach us what life is all about. _Angela Schwindt
-            </Slide>
-          </Slider>
           <Row>
-            <Col>
+            <div className='home_img' style={{ backgroundImage: `url('https://source.unsplash.com/IVKX_KrJf7g/1500x800')` }}></div>
+            <div className='get_started'>
+              <Link className='started_link' to="/users/events">Get Started</Link>
+            </div>
+          </Row>
+          <Row className='benefits_section'>
+            <Benefits />
+          </Row>
+          <Row>
+            <Signin />
+            {/* <Col>
               <div className='signin'>
                 <p className='title_signin'>Ready to connect with families?</p>
                 <p>By signing up, you will be able to create and manage your events. You can see who signed up for your events to better plan for the future activities. </p>
@@ -55,7 +43,7 @@ class HomePage extends Component {
                   <Link className='btn_login' to='/login/users'> Parents, log in here</Link>
                 </Button>
               </div>
-            </Col>
+            </Col> */}
           </Row>
 
         </Col>

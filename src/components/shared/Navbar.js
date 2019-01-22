@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import {
-  Navbar, NavItem,
+  Navbar,
 } from 'react-materialize'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
@@ -40,7 +40,7 @@ class Navigation extends Component {
     const { userLogout, orgLogout, history, isLoggedIn, isLoggedInOrg } = this.props
     if (isLoggedIn) {
       return (
-        <div>
+        <div className='nav_items'>
           <li><Link to="/users/events">Activities</Link></li>
           <li><Link to='/profile'>Profile</Link></li>
           <li><Link to='/home' onClick={(e) => {
@@ -50,7 +50,7 @@ class Navigation extends Component {
       )
     } else if (isLoggedInOrg) {
       return (
-        <div>
+        <div className='nav_items'>
           <li><Link to='/organizers/landing'>Welcome, {orgName}</Link></li>
           <li><Link to='/home' onClick={(e) => {
             orgLogout(history)
@@ -59,7 +59,7 @@ class Navigation extends Component {
       )
     } else {
       return (
-        <div>
+        <div className='nav_items'>
           <li><Link to="/users/events">Activities</Link></li>
           <li><Link to='/login/users'>Login</Link></li>
           <li><Link to='/signup/users'>Sign Up</Link></li>
@@ -70,7 +70,7 @@ class Navigation extends Component {
 
 
   render() {
-    return (
+    return (  
       <Navbar className='nav_style' brand='Mischief Managed' right>
         {
           this.checkLogin()
