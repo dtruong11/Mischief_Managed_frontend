@@ -16,7 +16,7 @@ class HomePage extends Component {
       <Row>
         <Col>
           <Row>
-            <div className='home_img' style={{ backgroundImage: `url('https://source.unsplash.com/IVKX_KrJf7g/1500x800')` }}></div>
+            <div className='home_img' style={{ backgroundImage: `url('https://source.unsplash.com/IVKX_KrJf7g/1400x800')` }}></div>
             <div className='get_started'>
               <Link className='started_link' to="/users/events">Get Started</Link>
             </div>
