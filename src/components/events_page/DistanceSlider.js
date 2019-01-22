@@ -40,7 +40,7 @@ class DistanceSliderRange extends Component {
                 </div>
                 <div className='min_age'> 0 </div>
                 <div className='empty_age'></div>
-                <div className='max_age'>{range} miles</div>
+                <div className='max_age'>{range}</div>
             </div>
         );
     }

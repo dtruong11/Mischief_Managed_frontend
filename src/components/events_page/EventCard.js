@@ -64,13 +64,13 @@ class EventCard extends Component {
 }
 
 export const eventTime = (start_date, end_date) => {
-  const startTime = moment(start_date).format('HH:mm a')
-  const endTime = moment(end_date).format('HH:mm a')
+  const startTime = moment(start_date).format('h:mm A')
+  const endTime = moment(end_date).format('h:mm A')
   const startDay = moment(start_date).format('ddd, MMM D')
   const endDay = moment(end_date).format('ddd, MMM D')
 
-  const newStartDate = (moment(start_date).format("ddd, MMM D HH:mm a"))
-  const newEndDate = (moment(end_date).format("ddd, MMM D HH:mm a"))
+  const newStartDate = (moment(start_date).format("ddd, MMM D h:mm A"))
+  const newEndDate = (moment(end_date).format("ddd, MMM D h:mm A"))
   const timeRange = `${newStartDate} - ${newEndDate}`
 
   let range

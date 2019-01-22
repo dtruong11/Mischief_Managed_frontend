@@ -1,7 +1,10 @@
 # MISCHIEF MANAGED (FRONTEND)
 
-![](./gif/MM1.gif)
+<p align="center">
+<img src="./gif/home_mi.png" width=1000>
 
+- Deployed link: https://himischief.herokuapp.com/
+### Overview
 * Mischief Managed (M & M) is a web application that takes away the stress of finding the right activities for parents and families. Parents can filter activities based on location, distance, cost, event type and age range. Parents can also view an interactive map of their search results. If parents are interested in any events, they can login to register and leave reviews. 
 
 ![](./gif/MM2.gif)
@@ -15,7 +18,7 @@
 
 * The backend can be found at https://github.com/dtruong11/Mischief_Managed_Backend
 
-### Installing
+### Installation
 
 * Fork/ clone this repository
 * Create .env file just like the env_example.txt
@@ -38,7 +41,7 @@ The backend of this project has been deployed on Heroku at the address:
 https://capstonebackmischief.herokuapp.com
 
 The frontend of this project has been deployed on Heroku at the address:
-https://mischiefmanaged-capstone.herokuapp.com/
+https://himischief.herokuapp.com/
 
 ### Built With
 * [JavaScript](https://www.javascript.com/) - The language

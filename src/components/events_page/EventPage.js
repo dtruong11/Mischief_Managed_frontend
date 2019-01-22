@@ -36,8 +36,8 @@ class EventPage extends Component {
       <Container fluid className="wrapper_event_page" style={{ marginTop: '50px' }}>
         <Row className='list_map'>
           <Col lg='5'></Col>
-          <Col onClick={this.handleListView} className={this.state.listview && "list_map_button"}>List View</Col>
-          <Col onClick={this.handleMapView} className={!this.state.listview && "list_map_button"}>Map View</Col>
+          <Col onClick={this.handleListView} className={`list_map_txt ${this.state.listview && "list_map_button"}`}>List View</Col>
+          <Col onClick={this.handleMapView} className={`list_map_txt ${!this.state.listview && "list_map_button"}`}>Map View</Col>
           <Col lg='5'></Col>
         </Row>
         <Row>

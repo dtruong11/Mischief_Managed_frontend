@@ -17,7 +17,11 @@
 
 .list_map_button {
     font-weight: 700;
-    color: #B045BA;
+    color: #BA2C73;
+}
+
+.list_map_txt {
+    font-size: 18px;
 }
 
 .wrapper_event_page{
@@ -83,3 +87,8 @@
     font-size: 17px;
 }
 
+/* FORM */
+.form_title {
+    color: #BA2C73;
+    font-size: 13px;
+}
