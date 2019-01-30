@@ -25,7 +25,7 @@ class EventList extends Component {
   }
 
   componentWillMount = () => {
-    setTimeout(() => this.setState({ isLoaded: false }), 2520); // do your async call
+    setTimeout(() => this.setState({ isLoaded: false }), 2850); // do your async call
     this.props.getEvents() // action creator 
   }
 
